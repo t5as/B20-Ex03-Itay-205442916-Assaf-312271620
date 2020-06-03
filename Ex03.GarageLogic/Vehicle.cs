@@ -11,7 +11,6 @@ namespace Ex03.GarageLogic
         private string m_carModel;
         private string m_licenseNumber;
         VehicleState m_vehicleState = VehicleState.InRepair;
-        private float m_energyPercentage;
 
         enum VehicleState
         {
