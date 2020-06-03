@@ -12,6 +12,15 @@ namespace Ex03.GarageLogic
         private string m_licenseNumber;
         VehicleState m_vehicleState = VehicleState.InRepair;
 
+        public Vehicle(string i_ownerName, string i_ownerPhoneNumber, string i_carModel,
+            string i_licenseNumber)
+        {
+            m_ownerName = i_ownerName;
+            m_ownerPhoneNumber = i_ownerPhoneNumber;
+            m_carModel = i_carModel;
+            m_licenseNumber = i_licenseNumber;
+        }
+
         enum VehicleState
         {
             InRepair,
