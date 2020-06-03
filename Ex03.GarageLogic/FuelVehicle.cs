@@ -23,7 +23,19 @@ namespace Ex03.GarageLogic
             Octan96, 
             Octan95, 
             Soler
-        } 
+        }
+
+        public float CurrentFuelAmountLitres
+        {
+            set
+            {
+                m_currentFuelAmountLitres = value;
+                if(m_currentFuelAmountLitres > m_maxFuelAmountLitres)
+                {
+                    m_currentFuelAmountLitres = m_maxFuelAmountLitres;
+                }
+            }
+        }
 
         public void refuel(float i_litresToAdd, FuelType i_fuelType)
         {
