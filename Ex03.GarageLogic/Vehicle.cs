@@ -6,22 +6,21 @@ namespace Ex03.GarageLogic
 {
     public class Vehicle
     {
-        private string m_ownerName;
-        private string m_ownerPhoneNumber;
-        private string m_carModel;
-        private string m_licenseNumber; 
-        VehicleState m_vehicleState = VehicleState.InRepair;
+        private string m_OwnerName;
+        private string m_OwnerPhoneNumber;
+        private string m_CarModel;
+        private string m_LicenseNumber; 
+        eVehicleState m_VehicleState = eVehicleState.InRepair;
 
-        public Vehicle(string i_ownerName, string i_ownerPhoneNumber, string i_carModel,
-            string i_licenseNumber)
+        public Vehicle(string i_ownerName, string i_ownerPhoneNumber, string i_carModel, string i_licenseNumber)
         {
-            m_ownerName = i_ownerName;
-            m_ownerPhoneNumber = i_ownerPhoneNumber;
-            m_carModel = i_carModel;
-            m_licenseNumber = i_licenseNumber;
+            m_OwnerName = i_ownerName;
+            m_OwnerPhoneNumber = i_ownerPhoneNumber;
+            m_CarModel = i_carModel;
+            m_LicenseNumber = i_licenseNumber;
         }
 
-        enum VehicleState
+        enum eVehicleState
         {
             InRepair,
             Fixed,

@@ -4,31 +4,30 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class ElectricVehicle
+    internal class ElectricVehicle
     {
-        private float m_numberOfHoursLeft;
-        private readonly float m_maximalHoursOfBattery;
-
+        private readonly float r_MaximalHoursOfBattery; 
+        private float m_NumberOfHoursLeft;
+        
         public ElectricVehicle(float i_numberOfHoursLeft, float i_maximalHoursOfBattery)
         {
-            m_numberOfHoursLeft = i_numberOfHoursLeft;
-            m_maximalHoursOfBattery = i_maximalHoursOfBattery;
+            r_MaximalHoursOfBattery = i_maximalHoursOfBattery;
+            m_NumberOfHoursLeft = i_numberOfHoursLeft;
         } 
 
-        public void chargeBattery(float i_numberOfHoursToCharge)
+        public void ChargeBattery(float i_numberOfHoursToCharge)
         {
-            m_numberOfHoursLeft += i_numberOfHoursToCharge; 
-            if(m_maximalHoursOfBattery < m_numberOfHoursLeft)
+            m_NumberOfHoursLeft += i_numberOfHoursToCharge; 
+
+            if(r_MaximalHoursOfBattery < m_NumberOfHoursLeft)
             {
-                m_numberOfHoursLeft = m_maximalHoursOfBattery;
+                m_NumberOfHoursLeft = r_MaximalHoursOfBattery;
             }
         }
 
-        public float getEnergyStatus()
+        public float GetEnergyStatus()
         {
-            return m_numberOfHoursLeft / m_maximalHoursOfBattery;
+            return m_NumberOfHoursLeft / r_MaximalHoursOfBattery;
         }
-    } 
-
-    
+    }
 }

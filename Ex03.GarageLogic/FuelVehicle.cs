@@ -6,18 +6,17 @@ namespace Ex03.GarageLogic
 {
     internal class FuelVehicle
     {
-        private FuelType m_fuelType;
-        private float m_currentFuelAmountLitres;
-        private readonly float m_maxFuelAmountLitres; 
+        private eFuelType m_FuelType;
+        private float m_CurrentFuelAmountLitres;
+        private readonly float r_MaxFuelAmountLitres; 
 
-        public FuelVehicle(FuelType i_fuelType, float i_maxFuelAmountLitres)
+        public FuelVehicle(eFuelType i_fuelType, float i_maxFuelAmountLitres)
         {
-            m_fuelType = i_fuelType;            
-            m_maxFuelAmountLitres = i_maxFuelAmountLitres;
+            m_FuelType = i_fuelType;            
+            r_MaxFuelAmountLitres = i_maxFuelAmountLitres;
         }
         
-
-        public enum FuelType
+        public enum eFuelType
         {
             Octan98, 
             Octan96, 
@@ -29,30 +28,31 @@ namespace Ex03.GarageLogic
         {
             set
             {
-                m_currentFuelAmountLitres = value;
-                if(m_currentFuelAmountLitres > m_maxFuelAmountLitres)
+                m_CurrentFuelAmountLitres = value;
+
+                if(m_CurrentFuelAmountLitres > r_MaxFuelAmountLitres)
                 {
-                    m_currentFuelAmountLitres = m_maxFuelAmountLitres;
+                    m_CurrentFuelAmountLitres = r_MaxFuelAmountLitres;
                 }
             }
         }
 
-        public void refuel(float i_litresToAdd, FuelType i_fuelType)
+        public void Refuel(float i_litresToAdd, eFuelType i_fuelType)
         {
-            if(i_fuelType == m_fuelType)
+            if(i_fuelType == m_FuelType)
             {
-                m_currentFuelAmountLitres += i_litresToAdd;
+                m_CurrentFuelAmountLitres += i_litresToAdd;
             } 
-            if(m_currentFuelAmountLitres > m_maxFuelAmountLitres)
-            {
-                m_currentFuelAmountLitres = m_maxFuelAmountLitres;
-            }
 
+            if(m_CurrentFuelAmountLitres > r_MaxFuelAmountLitres)
+            {
+                m_CurrentFuelAmountLitres = r_MaxFuelAmountLitres;
+            }
         } 
 
-        public float getEnergyStatus()
+        public float GetEnergyStatus()
         {
-            return m_currentFuelAmountLitres / m_maxFuelAmountLitres;
+            return m_CurrentFuelAmountLitres / r_MaxFuelAmountLitres;
         }
     }
 }
