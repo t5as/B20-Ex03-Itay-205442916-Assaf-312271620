@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
         private string m_OwnerPhoneNumber;
         private string m_CarModel;
         private string m_LicenseNumber; 
-        eVehicleState m_VehicleState = eVehicleState.InRepair;
+        private eVehicleState m_VehicleState = eVehicleState.InRepair;
 
         public Vehicle(string i_ownerName, string i_ownerPhoneNumber, string i_carModel, string i_licenseNumber)
         {
@@ -20,7 +20,47 @@ namespace Ex03.GarageLogic
             m_LicenseNumber = i_licenseNumber;
         }
 
-        enum eVehicleState
+        public string ownerName
+        {
+            get
+            {
+                return m_OwnerName;
+            }
+        } 
+
+        public string ownerPhoneNumber
+        {
+            get
+            {
+                return m_OwnerPhoneNumber;
+            }
+        } 
+
+        public string carModel
+        {
+            get
+            {
+                return m_CarModel;
+            }
+        }
+
+        public string licenseNumber
+        {
+            get
+            {
+                return m_LicenseNumber;
+            }
+        } 
+
+        public eVehicleState VehicleStatus
+        {
+            get
+            {
+                return m_VehicleState;
+            }
+        }
+
+        public enum eVehicleState
         {
             InRepair,
             Fixed,
