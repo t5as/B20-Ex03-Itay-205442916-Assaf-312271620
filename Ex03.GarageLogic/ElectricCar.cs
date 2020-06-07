@@ -20,6 +20,12 @@ namespace Ex03.GarageLogic
             m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, r_MaxHoursOfBattery);
         }
 
+        public void chargeCar(float i_hoursTocharge)
+        {
+            m_ElectricData.ChargeBattery(i_hoursTocharge);
+        }
+
+
         public override string ToString()
         {
             StringBuilder vehicleStringData = new StringBuilder();

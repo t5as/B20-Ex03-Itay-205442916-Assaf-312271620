@@ -50,6 +50,23 @@ namespace Ex03.GarageLogic
         public void displayVehicleData(string i_licenseNumber)
         {
             Vehicle vehicle = searchVehicle(i_licenseNumber);
+            Console.WriteLine(vehicle.ToString());
+        } 
+
+        public void chargeVehicle(string i_licenseNumber, uint i_numberOfMinutesCharge)
+        {
+            Vehicle vehicle = searchVehicle(i_licenseNumber);
+            float hoursToCharge = i_numberOfMinutesCharge / 60;
+            if (vehicle is ElectricCar)
+            {
+                ElectricCar electricCar = vehicle as ElectricCar;                
+                electricCar.chargeCar(hoursToCharge);
+                
+            }else if(vehicle is ElectricMotorcycle)
+            {
+                ElectricMotorcycle electricMotor = vehicle as ElectricMotorcycle;
+                electricMotor.chargeMotorcycle(hoursToCharge);
+            }
         }
 
         /*public Vehicle createVehicle(string i_carType)
