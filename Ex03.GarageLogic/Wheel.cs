@@ -17,7 +17,6 @@ namespace Ex03.GarageLogic
             r_MaxAirPressure = i_maxAirPressure;
         } 
 
-
         private string AirPressureStatus
         {
             get
@@ -26,7 +25,7 @@ namespace Ex03.GarageLogic
                 airPressureData.Append(m_CurrentAirPressure);
                 airPressureData.Append(" / ");
                 airPressureData.Append(r_MaxAirPressure);
-                return String.Format(airPressureData.ToString());
+                return string.Format(airPressureData.ToString());
             }
         }
 
@@ -35,16 +34,24 @@ namespace Ex03.GarageLogic
             StringBuilder wheelData = new StringBuilder();
             wheelData.Append("Wheel Manufacturer: " + m_ManufacturerName + "\n");
             wheelData.Append("Wheels air pressure: " + AirPressureStatus);
-            return String.Format(wheelData.ToString());
+            return string.Format(wheelData.ToString());
         }
 
         public void InflateWheel(float i_amountOfAirToAdd)
         {
-            m_CurrentAirPressure += i_amountOfAirToAdd; 
-
-            if(m_CurrentAirPressure > r_MaxAirPressure)
+            try
             {
-                m_CurrentAirPressure = r_MaxAirPressure;
+                m_CurrentAirPressure += i_amountOfAirToAdd;
+
+                if (m_CurrentAirPressure > r_MaxAirPressure)
+                {
+                    m_CurrentAirPressure = r_MaxAirPressure;
+                }
+            }
+            catch (Exception e)
+            {
+                ValueOutOfRangeException valueOutOfRangeException = new ValueOutOfRangeException(e, i_amountOfAirToAdd, 0f, r_MaxAirPressure);
+                throw valueOutOfRangeException;
             }
         }
     }

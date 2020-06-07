@@ -11,11 +11,16 @@ namespace Ex03.GarageLogic
         private readonly byte r_NumberOfWheels = 4;
         private Wheel m_WheelData;
 
-        public Car(string i_ownerName, string i_ownerPhoneNumber,
-                          string i_carModel, string i_licenseNumber, eNumberOfDoors i_numberOfDoors,
-                          eCarColor i_carColor, string i_manufacturerName,
-                          float i_currentAirPressure) : base(i_ownerName,
-            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        public Car(
+            string i_ownerName, 
+            string i_ownerPhoneNumber,
+            string i_carModel, 
+            string i_licenseNumber, 
+            eNumberOfDoors i_numberOfDoors,
+            eCarColor i_carColor, 
+            string i_manufacturerName,
+            float i_currentAirPressure) : 
+            base(i_ownerName, i_ownerPhoneNumber, i_carModel, i_licenseNumber)
         {
             r_NumberOfDoors = i_numberOfDoors;
             r_CarColor = i_carColor;
@@ -45,7 +50,7 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(m_WheelData.ToString() + "\n");
             vehicleStringData.Append("Number Of Doors: " + r_NumberOfDoors + "\n");
             vehicleStringData.Append("Car Color: " + r_CarColor);
-            return String.Format(vehicleStringData.ToString());
+            return string.Format(vehicleStringData.ToString());
         }
     }
 }

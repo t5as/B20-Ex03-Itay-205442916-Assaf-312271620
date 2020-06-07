@@ -37,7 +37,7 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(m_WheelData.ToString() + "\n");
             vehicleStringData.Append("License Type: " + r_TypeOfLicense + "\n");
             vehicleStringData.Append("Engine Size: " + r_EngineSize);
-            return String.Format(vehicleStringData.ToString());
+            return string.Format(vehicleStringData.ToString());
         }
     }
 }

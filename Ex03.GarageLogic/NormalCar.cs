@@ -23,7 +23,7 @@ namespace Ex03.GarageLogic
             StringBuilder vehicleStringData = new StringBuilder();
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_FuelData.ToString());
-            return String.Format(vehicleStringData.ToString());
+            return string.Format(vehicleStringData.ToString());
         }
     }
 }

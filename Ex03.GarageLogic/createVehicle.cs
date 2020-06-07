@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public static class CreateVehicle
     {
-        public static ElectricMotorcycle createElectricMotorcycle(string i_ownerName, string i_ownerPhoneNumber,
+        public static ElectricMotorcycle CreateElectricMotorcycle(string i_ownerName, string i_ownerPhoneNumber,
             string i_carModel, string i_licenseNumber, int i_engineSize,
             Motorcycle.eTypeOfLicense i_typeOfLicense, string i_manufacturerName,
             float i_currentAirPressure, float i_numberOfHoursLeft)
@@ -16,7 +16,7 @@ namespace Ex03.GarageLogic
             i_currentAirPressure, i_numberOfHoursLeft);
         } 
 
-        public static NormalMotorcycle createNormalMotorcycle(string i_ownerName, string i_ownerPhoneNumber,
+        public static NormalMotorcycle CreateNormalMotorcycle(string i_ownerName, string i_ownerPhoneNumber,
             string i_carModel, string i_licenseNumber, int i_engineSize,
             Motorcycle.eTypeOfLicense i_typeOfLicense, string i_manufacturerName,
             float i_currentAirPressure, float i_currentFuelAmountLitres)
@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
             i_currentAirPressure, i_currentFuelAmountLitres);
         } 
 
-        public static ElectricCar createElectricCar(string i_ownerName, string i_ownerPhoneNumber,
+        public static ElectricCar CreateElectricCar(string i_ownerName, string i_ownerPhoneNumber,
             string i_carModel, string i_licenseNumber, Car.eNumberOfDoors i_numberOfDoors,
             Car.eCarColor i_carColor, string i_manufacturerName,
             float i_currentAirPressure, float i_numberOfHoursLeft)
@@ -35,7 +35,7 @@ namespace Ex03.GarageLogic
             i_numberOfDoors, i_carColor, i_manufacturerName, i_currentAirPressure, i_numberOfHoursLeft);
         } 
 
-        public static NormalCar createNormalCar(string i_ownerName, string i_ownerPhoneNumber,
+        public static NormalCar CreateNormalCar(string i_ownerName, string i_ownerPhoneNumber,
             string i_carModel, string i_licenseNumber, Car.eNumberOfDoors i_numberOfDoors,
             Car.eCarColor i_carColor, string i_manufacturerName,
             float i_currentAirPressure, float i_currentFuelAmountLitres)
@@ -45,7 +45,7 @@ namespace Ex03.GarageLogic
             i_currentFuelAmountLitres);
         }
 
-        public static Truck createTruck(string i_ownerName, string i_ownerPhoneNumber,
+        public static Truck CreateTruck(string i_ownerName, string i_ownerPhoneNumber,
             string i_carModel, string i_licenseNumber, bool i_isDrivingHazardousMaterial,
             float i_baggageVolume, string i_manufacturerName, float i_currentAirPressure,
             float i_currentAmountFuelLitres)

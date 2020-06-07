@@ -20,18 +20,25 @@ namespace Ex03.GarageLogic
             m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, r_MaxHoursOfBattery);
         }
 
-        public void chargeCar(float i_hoursTocharge)
+        public void ChargeCar(float i_hoursToCharge)
         {
-            m_ElectricData.ChargeBattery(i_hoursTocharge);
+            try
+            {
+                m_ElectricData.ChargeBattery(i_hoursToCharge);
+            }
+            catch(Exception e)
+            {
+                ValueOutOfRangeException valueOutOfRangeException = new ValueOutOfRangeException(e, i_hoursToCharge, 0f, r_MaxHoursOfBattery);
+                throw valueOutOfRangeException;
+            }
         }
-
 
         public override string ToString()
         {
             StringBuilder vehicleStringData = new StringBuilder();
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_ElectricData.ToString());
-            return String.Format(vehicleStringData.ToString());
+            return string.Format(vehicleStringData.ToString());
         }
     }
 }

@@ -25,6 +25,5 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(m_FuelData.ToString());
             return String.Format(vehicleStringData.ToString());
         }
-    } 
-
+    }
 }

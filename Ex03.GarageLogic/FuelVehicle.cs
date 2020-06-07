@@ -37,7 +37,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-
         private string FuelStatus
         {
             get
@@ -46,7 +45,7 @@ namespace Ex03.GarageLogic
                 fuelStatus.Append(m_CurrentFuelAmountLitres);
                 fuelStatus.Append(" / ");
                 fuelStatus.Append(r_MaxFuelAmountLitres);
-                return String.Format(fuelStatus.ToString());
+                return string.Format(fuelStatus.ToString());
             }
         }
 
@@ -55,19 +54,31 @@ namespace Ex03.GarageLogic
             StringBuilder fuelData = new StringBuilder();
             fuelData.Append("Fuel Type: " + m_FuelType + "\n");
             fuelData.Append("Fuel tank status: " + FuelStatus);
-            return String.Format(fuelData.ToString());
+            return string.Format(fuelData.ToString());
         }
 
         public void Refuel(float i_litresToAdd, eFuelType i_fuelType)
         {
-            if(i_fuelType == m_FuelType)
+            try
             {
-                m_CurrentFuelAmountLitres += i_litresToAdd;
-            } 
+                if (i_fuelType == m_FuelType)
+                {
+                    m_CurrentFuelAmountLitres += i_litresToAdd;
+                }
 
-            if(m_CurrentFuelAmountLitres > r_MaxFuelAmountLitres)
+                if (m_CurrentFuelAmountLitres > r_MaxFuelAmountLitres)
+                {
+                    m_CurrentFuelAmountLitres = r_MaxFuelAmountLitres;
+                }
+            }
+            catch (ArgumentException e)
             {
-                m_CurrentFuelAmountLitres = r_MaxFuelAmountLitres;
+                ArgumentException argumentException = new ArgumentException(string.Format("{0} is not the correct fuel type", i_fuelType), e);
+            }
+            catch (Exception e)
+            {
+                ValueOutOfRangeException valueOutOfRangeException = new ValueOutOfRangeException(e, i_litresToAdd, 0f, r_MaxFuelAmountLitres);
+                throw valueOutOfRangeException;
             }
         } 
 

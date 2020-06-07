@@ -32,7 +32,7 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(m_FuelData.ToString() + "\n");
             vehicleStringData.Append("Trunk Volume: " + r_TrunkVolume + "\n");
             vehicleStringData.Append("Driving hazardous materials? : " + r_IsDrivingHazardousMaterial);
-            return String.Format(vehicleStringData.ToString());
+            return string.Format(vehicleStringData.ToString());
         }
     }
 }

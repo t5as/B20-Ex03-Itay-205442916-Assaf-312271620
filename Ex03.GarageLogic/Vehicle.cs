@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
             m_LicenseNumber = i_licenseNumber;
         }
 
-        public string ownerName
+        public string OwnerName
         {
             get
             {
@@ -28,7 +28,7 @@ namespace Ex03.GarageLogic
             }
         } 
 
-        public string ownerPhoneNumber
+        public string OwnerPhoneNumber
         {
             get
             {
@@ -36,7 +36,7 @@ namespace Ex03.GarageLogic
             }
         } 
 
-        public string carModel
+        public string CarModel
         {
             get
             {
@@ -44,7 +44,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public string licenseNumber
+        public string LicenseNumber
         {
             get
             {
@@ -58,6 +58,7 @@ namespace Ex03.GarageLogic
             {
                 return m_VehicleState;
             }
+
             set
             {
                 m_VehicleState = value;
@@ -66,7 +67,6 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-
             StringBuilder vehicleStringData = new StringBuilder();
             vehicleStringData.Append("License Number: " + m_LicenseNumber + "\n");
             vehicleStringData.Append("Vehicle Model: " + m_CarModel + "\n");

@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public class ElectricMotorcycle : Motorcycle
     {
-        private readonly float m_MaxHoursOfBattery = 1.2f;
+        private readonly float r_MaxHoursOfBattery = 1.2f;
         private ElectricVehicle m_ElectricData; 
 
         public ElectricMotorcycle(
@@ -17,15 +17,21 @@ namespace Ex03.GarageLogic
             base(i_ownerName, i_ownerPhoneNumber, i_carModel, i_licenseNumber,
                 i_engineSize, i_typeOfLicense, i_manufacturerName, i_currentAirPressure)
         {
-            m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, m_MaxHoursOfBattery);
+            m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, r_MaxHoursOfBattery);
         }
 
-
-        public void chargeMotorcycle(float i_hoursTocharge)
+        public void ChargeMotorcycle(float i_hoursToCharge)
         {
-            m_ElectricData.ChargeBattery(i_hoursTocharge);
+            try
+            {
+                m_ElectricData.ChargeBattery(i_hoursToCharge);
+            }
+            catch (Exception e)
+            {
+                ValueOutOfRangeException valueOutOfRangeException = new ValueOutOfRangeException(e, i_hoursToCharge, 0f, r_MaxHoursOfBattery);
+                throw valueOutOfRangeException;
+            }
         }
-
 
         public override string ToString()
         {
