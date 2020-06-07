@@ -29,5 +29,15 @@ namespace Ex03.GarageLogic
             AA,
             B
         }
+
+        public override string ToString()
+        {
+            StringBuilder vehicleStringData = new StringBuilder();
+            vehicleStringData.Append(base.ToString() + "\n");
+            vehicleStringData.Append(m_WheelData.ToString() + "\n");
+            vehicleStringData.Append("License Type: " + r_TypeOfLicense + "\n");
+            vehicleStringData.Append("Engine Size: " + r_EngineSize);
+            return String.Format(vehicleStringData.ToString());
+        }
     }
 }

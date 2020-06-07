@@ -19,5 +19,13 @@ namespace Ex03.GarageLogic
         {
             m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, m_MaxHoursOfBattery);
         }
+
+        public override string ToString()
+        {
+            StringBuilder vehicleStringData = new StringBuilder();
+            vehicleStringData.Append(base.ToString() + "\n");
+            vehicleStringData.Append(m_ElectricData.ToString());             
+            return String.Format(vehicleStringData.ToString());
+        }
     }
 }

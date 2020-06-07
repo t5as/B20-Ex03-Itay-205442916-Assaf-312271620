@@ -21,6 +21,46 @@ namespace Ex03.GarageLogic
             return null;
         } 
         
+        public void displayVehiclesLicenses()
+        {
+            foreach(Vehicle vehicle in m_GarageVehicles)
+            {
+                Console.WriteLine(vehicle.licenseNumber);
+            }
+        } 
+
+        public void displayVehiclesLicenses(Vehicle.eVehicleState i_vehicleState)
+        {
+            foreach(Vehicle vehicle in m_GarageVehicles)
+            {
+                if(vehicle.VehicleStatus == i_vehicleState)
+                {
+                    Console.WriteLine(vehicle.licenseNumber);
+                }
+            }
+        } 
+
+        public void updateVehicleState(string i_licenseNumber, 
+            Vehicle.eVehicleState i_newVehicleState)
+        {
+            Vehicle vehicle = searchVehicle(i_licenseNumber);
+            vehicle.VehicleStatus = i_newVehicleState;
+        } 
+
+        public void displayVehicleData(string i_licenseNumber)
+        {
+            Vehicle vehicle = searchVehicle(i_licenseNumber);
+        }
+
+        /*public Vehicle createVehicle(string i_carType)
+        {
+            Vehicle vehicle = null;
+            if (i_carType == "electric car")
+            {
+                vehicle = CreateVehicle.createElectricCar()
+            }
+        }*/
+        
 
 
         

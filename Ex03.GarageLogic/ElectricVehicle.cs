@@ -29,5 +29,10 @@ namespace Ex03.GarageLogic
         {
             return m_NumberOfHoursLeft / r_MaximalHoursOfBattery;
         }
+
+        public override string ToString()
+        {
+            return GetEnergyStatus().ToString();
+        }
     }
 }

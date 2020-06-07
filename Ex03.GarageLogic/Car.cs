@@ -37,5 +37,15 @@ namespace Ex03.GarageLogic
             Four = 4,
             Five = 5
         }
+
+        public override string ToString()
+        {
+            StringBuilder vehicleStringData = new StringBuilder();
+            vehicleStringData.Append(base.ToString() + "\n");
+            vehicleStringData.Append(m_WheelData.ToString() + "\n");
+            vehicleStringData.Append("Number Of Doors: " + r_NumberOfDoors + "\n");
+            vehicleStringData.Append("Car Color: " + r_CarColor);
+            return String.Format(vehicleStringData.ToString());
+        }
     }
 }

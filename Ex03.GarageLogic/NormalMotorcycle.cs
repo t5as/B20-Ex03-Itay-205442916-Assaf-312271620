@@ -16,6 +16,15 @@ namespace Ex03.GarageLogic
                 i_engineSize, i_typeOfLicense, i_manufacturerName, i_currentAirPressure)
         {
             m_FuelData.CurrentFuelAmountLitres = i_currentFuelAmountLitres; 
-        }   
-    }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder vehicleStringData = new StringBuilder();
+            vehicleStringData.Append(base.ToString() + "\n");
+            vehicleStringData.Append(m_FuelData.ToString());
+            return String.Format(vehicleStringData.ToString());
+        }
+    } 
+
 }

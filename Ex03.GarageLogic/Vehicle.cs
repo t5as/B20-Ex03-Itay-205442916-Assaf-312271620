@@ -58,6 +58,21 @@ namespace Ex03.GarageLogic
             {
                 return m_VehicleState;
             }
+            set
+            {
+                m_VehicleState = value;
+            }
+        }
+
+        public override string ToString()
+        {
+
+            StringBuilder vehicleStringData = new StringBuilder();
+            vehicleStringData.Append("License Number: " + m_LicenseNumber + "\n");
+            vehicleStringData.Append("Vehicle Model: " + m_CarModel + "\n");
+            vehicleStringData.Append("Vehicle Owner Name: " + m_OwnerName + "\n");
+            vehicleStringData.Append("Vehicle State: " + m_VehicleState);
+            return vehicleStringData.ToString();
         }
 
         public enum eVehicleState

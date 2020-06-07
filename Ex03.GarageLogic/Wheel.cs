@@ -15,6 +15,27 @@ namespace Ex03.GarageLogic
             m_ManufacturerName = i_manufacturerName;
             m_CurrentAirPressure = i_currentAirPressure;
             r_MaxAirPressure = i_maxAirPressure;
+        } 
+
+
+        private string AirPressureStatus
+        {
+            get
+            {
+                StringBuilder airPressureData = new StringBuilder();
+                airPressureData.Append(m_CurrentAirPressure);
+                airPressureData.Append(" / ");
+                airPressureData.Append(r_MaxAirPressure);
+                return String.Format(airPressureData.ToString());
+            }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder wheelData = new StringBuilder();
+            wheelData.Append("Wheel Manufacturer: " + m_ManufacturerName + "\n");
+            wheelData.Append("Wheels air pressure: " + AirPressureStatus);
+            return String.Format(wheelData.ToString());
         }
 
         public void InflateWheel(float i_amountOfAirToAdd)

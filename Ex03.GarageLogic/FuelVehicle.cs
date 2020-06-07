@@ -37,6 +37,27 @@ namespace Ex03.GarageLogic
             }
         }
 
+
+        private string FuelStatus
+        {
+            get
+            {
+                StringBuilder fuelStatus = new StringBuilder();
+                fuelStatus.Append(m_CurrentFuelAmountLitres);
+                fuelStatus.Append(" / ");
+                fuelStatus.Append(r_MaxFuelAmountLitres);
+                return String.Format(fuelStatus.ToString());
+            }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder fuelData = new StringBuilder();
+            fuelData.Append("Fuel Type: " + m_FuelType + "\n");
+            fuelData.Append("Fuel tank status: " + FuelStatus);
+            return String.Format(fuelData.ToString());
+        }
+
         public void Refuel(float i_litresToAdd, eFuelType i_fuelType)
         {
             if(i_fuelType == m_FuelType)
