@@ -9,6 +9,7 @@ namespace Ex03.GarageLogic
         private readonly int r_EngineSize;
         private readonly eTypeOfLicense r_TypeOfLicense;
         private readonly byte r_NumberOfWheels = 2;
+        private static readonly byte r_MaxAirPressure = 30;
         private Wheel m_WheelData;
 
         public Motorcycle(string i_ownerName, string i_ownerPhoneNumber,
@@ -19,7 +20,7 @@ namespace Ex03.GarageLogic
         {
             r_EngineSize = i_engineSize;
             r_TypeOfLicense = i_typeOfLicense;
-            m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, 30);
+            m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
         }
 
         public enum eTypeOfLicense
@@ -38,6 +39,19 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append("License Type: " + r_TypeOfLicense + "\n");
             vehicleStringData.Append("Engine Size: " + r_EngineSize);
             return string.Format(vehicleStringData.ToString());
+        }
+
+        public static Dictionary<string, string> dataFromUser()
+        {
+            Dictionary<string, string> dataToGet = Vehicle.dataFromUser();
+            dataToGet.Add("Please enter integer representing engine size: ",
+                "int");
+            dataToGet.Add("Please enter license type (A, A1, AA or B): ",
+                "enum: A, A1, AA, B");
+            dataToGet.Add("Please enter wheels manufacturer name: ", "string");
+            dataToGet.Add("Please enter current air pressure in wheels (smaller than max: "
+                 + r_MaxAirPressure + " : ", "float");
+            return dataToGet;
         }
     }
 }

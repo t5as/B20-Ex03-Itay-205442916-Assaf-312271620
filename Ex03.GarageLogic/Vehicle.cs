@@ -80,6 +80,16 @@ namespace Ex03.GarageLogic
             InRepair,
             Fixed,
             Payed
+        } 
+
+        public static Dictionary<string, string> dataFromUser()
+        {
+            Dictionary<string, string> dataToGet = new Dictionary<string, string>();
+            dataToGet.Add("Please enter vehicle owner name: ", "string"); 
+            dataToGet.Add("Please enter vehicle owner phone number: ", "string");
+            dataToGet.Add("Please enter vehicle model: ", "string");
+            dataToGet.Add("Please enter vehicle license number: ", "string");
+            return dataToGet;
         }
     }
 }
