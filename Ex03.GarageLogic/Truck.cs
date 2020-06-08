@@ -9,6 +9,7 @@ namespace Ex03.GarageLogic
         private readonly bool r_IsDrivingHazardousMaterial;
         private readonly float r_TrunkVolume;
         private readonly byte r_NumberOfWheels = 16;
+        private static readonly byte r_MaxAirPressure = 28;
         private Wheel m_WheelData;
         private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Soler, 120);
 
@@ -20,7 +21,7 @@ namespace Ex03.GarageLogic
         {
             r_IsDrivingHazardousMaterial = i_isDrivingHazardousMaterial;
             r_TrunkVolume = i_TrunkVolume;
-            m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, 28);
+            m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
             m_FuelData.CurrentFuelAmountLitres = i_currentFuelAmountLitres;
         }
 
@@ -33,6 +34,18 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append("Trunk Volume: " + r_TrunkVolume + "\n");
             vehicleStringData.Append("Driving hazardous materials? : " + r_IsDrivingHazardousMaterial);
             return string.Format(vehicleStringData.ToString());
+        }
+
+        public static Dictionary<string, string> dataFromUser()
+        {
+            Dictionary<string, string> dataToGet = Vehicle.dataFromUser();
+            dataToGet.Add("Please enter wheels manufacturer name: ", "string");
+            dataToGet.Add("Please enter current air pressure in wheels (smaller than max: "
+                 + r_MaxAirPressure + " : ", "float");
+            dataToGet.Add("Please state if driving hazardous material (true, false): ",
+                "bool");
+            dataToGet.Add("Please enter truck trunk volume: ", "float");
+            return dataToGet;
         }
     }
 }

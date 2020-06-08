@@ -9,6 +9,7 @@ namespace Ex03.GarageLogic
         private readonly eNumberOfDoors r_NumberOfDoors;
         private readonly eCarColor r_CarColor;
         private readonly byte r_NumberOfWheels = 4;
+        private static readonly byte r_MaxAirPressure = 32;
         private Wheel m_WheelData;
 
         public Car(
@@ -24,7 +25,7 @@ namespace Ex03.GarageLogic
         {
             r_NumberOfDoors = i_numberOfDoors;
             r_CarColor = i_carColor;
-            m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, 32);
+            m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
         }
 
         public enum eCarColor
@@ -51,6 +52,19 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append("Number Of Doors: " + r_NumberOfDoors + "\n");
             vehicleStringData.Append("Car Color: " + r_CarColor);
             return string.Format(vehicleStringData.ToString());
+        }
+
+        public static Dictionary<string, string> dataFromUser()
+        {
+            Dictionary<string, string> dataToGet = Vehicle.dataFromUser();            
+            dataToGet.Add("Please enter number of doors (two, three, four, five): ",
+                "enum: two, three, four, five");
+            dataToGet.Add("Please enter car color (red, white, black or silver): ",
+                "enum: red, white, black, silver");
+            dataToGet.Add("Please enter wheels manufacturer name: ", "string");
+            dataToGet.Add("Please enter current air pressure in wheels (smaller than max: "
+                 + r_MaxAirPressure + " : ", "float");
+            return dataToGet;
         }
     }
 }
