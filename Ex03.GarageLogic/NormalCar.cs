@@ -6,7 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class NormalCar : Car
     {
-        private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Octan96, 60);
+        private static readonly float k_maxFuelAmountLitres = 60;
+        private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Octan96, k_maxFuelAmountLitres);
 
         public NormalCar(string i_ownerName, string i_ownerPhoneNumber,
                                 string i_carModel, string i_licenseNumber, eNumberOfDoors i_numberOfDoors,
@@ -24,6 +25,19 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_FuelData.ToString());
             return string.Format(vehicleStringData.ToString());
+        }
+
+        public static Dictionary<string, string> dataFromUser()
+        {
+            Dictionary<string, string> dataToGet = Car.dataFromUser();
+            Dictionary<string, string> fuelData = FuelVehicle.fuelDataFromUser(); 
+            foreach(var fuelProperty in fuelData)
+            {
+                dataToGet.Add(fuelProperty.Key, fuelProperty.Value);
+            }
+            dataToGet.Add("Please enter current amount of fuel (smaller than max: "
+                + k_maxFuelAmountLitres + ") : ", "float");
+            return dataToGet;
         }
     }
 }

@@ -50,7 +50,7 @@ namespace Ex03.GarageLogic
                 "enum: A, A1, AA, B");
             dataToGet.Add("Please enter wheels manufacturer name: ", "string");
             dataToGet.Add("Please enter current air pressure in wheels (smaller than max: "
-                 + r_MaxAirPressure + " : ", "float");
+                 + r_MaxAirPressure + "): ", "float");
             return dataToGet;
         }
     }

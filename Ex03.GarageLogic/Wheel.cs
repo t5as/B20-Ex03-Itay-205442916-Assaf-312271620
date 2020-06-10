@@ -37,12 +37,6 @@ namespace Ex03.GarageLogic
             return string.Format(wheelData.ToString());
         }
 
-        public static Dictionary<string, string> wheelDataFromUser()
-        {
-            Dictionary<string, string> dataToGet = Vehicle.dataFromUser();
-            dataToGet.Add("Please enter wheels manufacturer name: ", "string");
-            return dataToGet;
-        }
 
         public void InflateWheel(float i_amountOfAirToAdd)
         {
