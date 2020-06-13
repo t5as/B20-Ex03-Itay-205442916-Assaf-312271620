@@ -4,56 +4,29 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public static class CreateVehicle
+    public class CreateVehicle
     {
-        public static ElectricMotorcycle CreateElectricMotorcycle(string i_ownerName, string i_ownerPhoneNumber,
-            string i_carModel, string i_licenseNumber, int i_engineSize,
-            Motorcycle.eTypeOfLicense i_typeOfLicense, string i_manufacturerName,
-            float i_currentAirPressure, float i_numberOfHoursLeft)
-        {
-            return new ElectricMotorcycle(i_ownerName, i_ownerPhoneNumber, i_carModel,
-                i_licenseNumber, i_engineSize, i_typeOfLicense, i_manufacturerName,
-            i_currentAirPressure, i_numberOfHoursLeft);
-        } 
+        public static Dictionary<string, Object[]> vehicles = new Dictionary<string, Object[]>();
+        Vehicle vehicle = null; 
 
-        public static NormalMotorcycle CreateNormalMotorcycle(string i_ownerName, string i_ownerPhoneNumber,
-            string i_carModel, string i_licenseNumber, int i_engineSize,
-            Motorcycle.eTypeOfLicense i_typeOfLicense, string i_manufacturerName,
-            float i_currentAirPressure, float i_currentFuelAmountLitres)
+        public CreateVehicle(string i_ownerName, string i_ownerPhoneNumber, string i_carModel, string i_licenseNumber)
         {
-            return new NormalMotorcycle(i_ownerName, i_ownerPhoneNumber, i_carModel,
-                i_licenseNumber, i_engineSize, i_typeOfLicense, i_manufacturerName,
-            i_currentAirPressure, i_currentFuelAmountLitres);
-        } 
-
-        public static ElectricCar CreateElectricCar(string i_ownerName, string i_ownerPhoneNumber,
-            string i_carModel, string i_licenseNumber, Car.eNumberOfDoors i_numberOfDoors,
-            Car.eCarColor i_carColor, string i_manufacturerName,
-            float i_currentAirPressure, float i_numberOfHoursLeft)
-        {
-            return new ElectricCar(i_ownerName, i_ownerPhoneNumber, i_carModel, i_licenseNumber,
-            i_numberOfDoors, i_carColor, i_manufacturerName, i_currentAirPressure, i_numberOfHoursLeft);
-        } 
-
-        public static NormalCar CreateNormalCar(string i_ownerName, string i_ownerPhoneNumber,
-            string i_carModel, string i_licenseNumber, Car.eNumberOfDoors i_numberOfDoors,
-            Car.eCarColor i_carColor, string i_manufacturerName,
-            float i_currentAirPressure, float i_currentFuelAmountLitres)
-        {
-            return new NormalCar(i_ownerName, i_ownerPhoneNumber, i_carModel, i_licenseNumber,
-            i_numberOfDoors, i_carColor, i_manufacturerName, i_currentAirPressure,
-            i_currentFuelAmountLitres);
+            vehicle = new Vehicle(i_ownerName, i_ownerPhoneNumber,
+                i_carModel, i_licenseNumber);
         }
 
-        public static Truck CreateTruck(string i_ownerName, string i_ownerPhoneNumber,
-            string i_carModel, string i_licenseNumber, bool i_isDrivingHazardousMaterial,
-            float i_baggageVolume, string i_manufacturerName, float i_currentAirPressure,
-            float i_currentAmountFuelLitres)
+        public void CreateVehicles()
         {
-            return new Truck(i_ownerName, i_ownerPhoneNumber, i_carModel, 
-                i_licenseNumber, i_isDrivingHazardousMaterial,
-                i_baggageVolume, i_manufacturerName, i_currentAirPressure,
-                i_currentAmountFuelLitres);
+            vehicles.Add("NormalCar",
+                new object[] { NormalCar.dataFromUser(), new NormalCar()});
+            vehicles.Add("ElectricCar",  
+                new object[] { ElectricCar.dataFromUser(), new ElectricCar() });
+            vehicles.Add("NormalMotorcycle",
+                new object[] { NormalMotorcycle.dataFromUser(), new NormalMotorcycle()});
+            vehicles.Add("ElectricMotorcycle", 
+                new object[] { ElectricMotorcycle.dataFromUser(), new ElectricMotorcycle() });
+            vehicles.Add("Truck", 
+                new object[] { Truck.dataFromUser(), (Truck)vehicle });
         }
     }
 }

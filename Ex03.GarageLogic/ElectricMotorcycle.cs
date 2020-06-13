@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public class ElectricMotorcycle : Motorcycle
     {
-        private readonly float r_MaxHoursOfBattery = 1.2f;
+        private static readonly float r_MaxHoursOfBattery = 1.2f;
         private ElectricVehicle m_ElectricData; 
 
         public ElectricMotorcycle(
@@ -39,6 +39,14 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_ElectricData.ToString());             
             return String.Format(vehicleStringData.ToString());
+        }
+
+        public static Dictionary<string, string> dataFromUser()
+        {
+            Dictionary<string, string> dataToGet = Motorcycle.dataFromUser();
+            dataToGet.Add("Please enter battery hours left (smaller than max: "
+                + r_MaxHoursOfBattery + ") : ", "float");
+            return dataToGet;
         }
     }
 }

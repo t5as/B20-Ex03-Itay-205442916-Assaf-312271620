@@ -13,7 +13,7 @@ namespace Ex03.GarageLogic
         private Wheel m_WheelData;
         private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Soler, 120);
 
-        public Truck(string i_ownerName, string i_ownerPhoneNumber,
+        /*public Truck(string i_ownerName, string i_ownerPhoneNumber,
                    string i_carModel, string i_licenseNumber, bool i_isDrivingHazardousMaterial,
                    float i_TrunkVolume, string i_manufacturerName,
                    float i_currentAirPressure, float i_currentFuelAmountLitres) : base(i_ownerName,
@@ -23,6 +23,13 @@ namespace Ex03.GarageLogic
             r_TrunkVolume = i_TrunkVolume;
             m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
             m_FuelData.CurrentFuelAmountLitres = i_currentFuelAmountLitres;
+        }*/ 
+
+        public Truck(string i_ownerName, string i_ownerPhoneNumber,
+                   string i_carModel, string i_licenseNumber) : base(i_ownerName,
+            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        {
+            
         }
 
         public override string ToString()
@@ -41,7 +48,7 @@ namespace Ex03.GarageLogic
             Dictionary<string, string> dataToGet = Vehicle.dataFromUser();
             dataToGet.Add("Please enter wheels manufacturer name: ", "string");
             dataToGet.Add("Please enter current air pressure in wheels (smaller than max: "
-                 + r_MaxAirPressure + " : ", "float");
+                 + r_MaxAirPressure + "): ", "float");
             dataToGet.Add("Please state if driving hazardous material (true, false): ",
                 "bool");
             dataToGet.Add("Please enter truck trunk volume: ", "float");
