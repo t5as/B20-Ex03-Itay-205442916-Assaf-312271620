@@ -22,9 +22,9 @@ namespace Ex03.GarageLogic
             vehicles.Add("ElectricCar",  
                 new object[] { ElectricCar.dataFromUser(), new ElectricCar() });
             vehicles.Add("NormalMotorcycle",
-                new object[] { NormalMotorcycle.dataFromUser(), new NormalMotorcycle()});
+                new object[] { NormalMotorcycle.dataFromUser(), (NormalMotorcycle)vehicle});
             vehicles.Add("ElectricMotorcycle", 
-                new object[] { ElectricMotorcycle.dataFromUser(), new ElectricMotorcycle() });
+                new object[] { ElectricMotorcycle.dataFromUser(), (ElectricMotorcycle)vehicle });
             vehicles.Add("Truck", 
                 new object[] { Truck.dataFromUser(), (Truck)vehicle });
         }

@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic
         private static readonly byte r_MaxAirPressure = 30;
         private Wheel m_WheelData;
 
-        public Motorcycle(string i_ownerName, string i_ownerPhoneNumber,
+        /*public Motorcycle(string i_ownerName, string i_ownerPhoneNumber,
             string i_carModel, string i_licenseNumber, int i_engineSize,
             eTypeOfLicense i_typeOfLicense, string i_manufacturerName,
             float i_currentAirPressure) : base(i_ownerName,
@@ -21,6 +21,13 @@ namespace Ex03.GarageLogic
             r_EngineSize = i_engineSize;
             r_TypeOfLicense = i_typeOfLicense;
             m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
+        }*/
+
+        public Motorcycle(string i_ownerName, string i_ownerPhoneNumber,
+                   string i_carModel, string i_licenseNumber) : base(i_ownerName,
+            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        {
+
         }
 
         public enum eTypeOfLicense

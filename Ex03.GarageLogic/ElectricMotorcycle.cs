@@ -7,9 +7,9 @@ namespace Ex03.GarageLogic
     public class ElectricMotorcycle : Motorcycle
     {
         private static readonly float r_MaxHoursOfBattery = 1.2f;
-        private ElectricVehicle m_ElectricData; 
+        private ElectricVehicle m_ElectricData;
 
-        public ElectricMotorcycle(
+        /*public ElectricMotorcycle(
             string i_ownerName, string i_ownerPhoneNumber,
             string i_carModel, string i_licenseNumber, int i_engineSize,
             eTypeOfLicense i_typeOfLicense, string i_manufacturerName,
@@ -18,7 +18,14 @@ namespace Ex03.GarageLogic
                 i_engineSize, i_typeOfLicense, i_manufacturerName, i_currentAirPressure)
         {
             m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, r_MaxHoursOfBattery);
+        }*/
+        public ElectricMotorcycle(string i_ownerName, string i_ownerPhoneNumber,
+                   string i_carModel, string i_licenseNumber) : base(i_ownerName,
+            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        {
+
         }
+
 
         public void ChargeMotorcycle(float i_hoursToCharge)
         {
