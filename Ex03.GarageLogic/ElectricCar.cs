@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
         private static readonly float r_MaxHoursOfBattery = 2.1f;
         private ElectricVehicle m_ElectricData;
 
-        public ElectricCar(
+        /*public ElectricCar(
             string i_ownerName, string i_ownerPhoneNumber,
             string i_carModel, string i_licenseNumber, eNumberOfDoors i_numberOfDoors,
             eCarColor i_carColor, string i_manufacturerName,
@@ -18,6 +18,13 @@ namespace Ex03.GarageLogic
                 i_numberOfDoors, i_carColor, i_manufacturerName, i_currentAirPressure)
         {
             m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, r_MaxHoursOfBattery);
+        }*/
+
+        public ElectricCar(string i_ownerName, string i_ownerPhoneNumber,
+                          string i_carModel, string i_licenseNumber) : base(i_ownerName,
+            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        {
+
         }
 
         public void ChargeCar(float i_hoursToCharge)

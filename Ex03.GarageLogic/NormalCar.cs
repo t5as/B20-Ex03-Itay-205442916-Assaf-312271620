@@ -17,9 +17,14 @@ namespace Ex03.GarageLogic
             i_numberOfDoors, i_carColor, i_manufacturerName, i_currentAirPressure)
         {
             m_FuelData.CurrentFuelAmountLitres = i_currentFuelAmountLitres;
-        }*/ 
+        }*/
 
-        
+        public NormalCar(string i_ownerName, string i_ownerPhoneNumber,
+                          string i_carModel, string i_licenseNumber) : base(i_ownerName,
+            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        {
+
+        }
 
         public override string ToString()
         {

@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic
         private static readonly byte r_MaxAirPressure = 32;
         private Wheel m_WheelData;
 
-        public Car(
+        /*public Car(
             string i_ownerName, 
             string i_ownerPhoneNumber,
             string i_carModel, 
@@ -26,6 +26,13 @@ namespace Ex03.GarageLogic
             r_NumberOfDoors = i_numberOfDoors;
             r_CarColor = i_carColor;
             m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
+        }*/
+
+        public Car(string i_ownerName, string i_ownerPhoneNumber,
+                          string i_carModel, string i_licenseNumber) : base(i_ownerName,
+            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        {
+
         }
 
         public enum eCarColor
