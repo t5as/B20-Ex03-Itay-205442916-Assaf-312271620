@@ -13,6 +13,7 @@ namespace Ex03.GarageLogic
             NormalMotorcycle,
             ElectricMotorcycle,
             Truck    
-        }
+        } 
+        
     }
 }
