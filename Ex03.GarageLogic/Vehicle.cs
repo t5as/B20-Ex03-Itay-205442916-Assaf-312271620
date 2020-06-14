@@ -90,6 +90,11 @@ namespace Ex03.GarageLogic
             dataToGet.Add("Please enter vehicle model: ", "string");
             dataToGet.Add("Please enter vehicle license number: ", "string");
             return dataToGet;
+        } 
+
+        public void setData(Dictionary<string, string> i_check)
+        {
+            m_OwnerName = i_check["ownername"];
         }
     }
 }

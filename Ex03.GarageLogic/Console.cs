@@ -18,6 +18,16 @@ namespace Ex03.GarageLogic
             string license = "1122294";
             return new Vehicle(ownername, phone, model, license);
 
+        } 
+
+        public static string getCarType(string[] i_typesArray)
+        {
+            foreach(string vehicleType in i_typesArray)
+            {
+                System.Console.WriteLine("For " + vehicleType +
+                    " press: " + Array.IndexOf(i_typesArray, vehicleType));
+            }
+            return i_typesArray[2];
         }
     }
 }

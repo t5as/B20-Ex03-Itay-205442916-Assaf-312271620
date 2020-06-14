@@ -8,14 +8,12 @@ namespace Ex03.GarageLogic
     { 
         static void Main()
         {
-            CreateVehicle newVehicleCreator = new CreateVehicle("aabbb", "1111", "mazda", "12343");
-            GarageLogic gl = new GarageLogic();
-            gl.initializeNewVehicle(newVehicleCreator);
+            CreateVehicle newVehicleCreator = new CreateVehicle(Console.Creater());
             Dictionary<string, object[]> entranceData = newVehicleCreator.VehiclesData;
-            foreach(KeyValuePair<string, object[]> data in entranceData)
-            {
-                Console.WriteLine(data.Key);
-            }
+            string[] keys = new string[entranceData.Keys.Count];
+            entranceData.Keys.CopyTo(keys, 0);
+            var newVehicle = entranceData[Console.getCarType(keys)][1];
+            System.Console.WriteLine(newVehicle.GetType());
         }
     }
 }

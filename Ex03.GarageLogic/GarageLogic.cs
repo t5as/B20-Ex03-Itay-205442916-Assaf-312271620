@@ -34,7 +34,7 @@ namespace Ex03.GarageLogic
         {
             foreach(Vehicle vehicle in m_GarageVehicles)
             {
-                Console.WriteLine(vehicle.LicenseNumber);
+                System.Console.WriteLine(vehicle.LicenseNumber);
             }
         } 
 
@@ -44,7 +44,7 @@ namespace Ex03.GarageLogic
             {
                 if(vehicle.VehicleStatus == i_vehicleState)
                 {
-                    Console.WriteLine(vehicle.LicenseNumber);
+                    System.Console.WriteLine(vehicle.LicenseNumber);
                 }
             }
         } 
@@ -59,7 +59,7 @@ namespace Ex03.GarageLogic
         public void DisplayVehicleData(string i_licenseNumber)
         {
             Vehicle vehicle = SearchVehicle(i_licenseNumber);
-            Console.WriteLine(vehicle.ToString());
+            System.Console.WriteLine(vehicle.ToString());
         } 
 
         public void ChargeVehicle(string i_licenseNumber, uint i_numberOfMinutesCharge)
