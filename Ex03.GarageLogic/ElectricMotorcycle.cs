@@ -19,9 +19,8 @@ namespace Ex03.GarageLogic
         {
             m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, r_MaxHoursOfBattery);
         }*/
-        public ElectricMotorcycle(string i_ownerName, string i_ownerPhoneNumber,
-                   string i_carModel, string i_licenseNumber) : base(i_ownerName,
-            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        public ElectricMotorcycle(Vehicle i_vehicle) : base(i_vehicle.OwnerName,
+            i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
         {
 
         }

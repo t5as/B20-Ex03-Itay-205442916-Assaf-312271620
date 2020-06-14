@@ -6,27 +6,44 @@ namespace Ex03.GarageLogic
 {
     public class CreateVehicle
     {
-        public static Dictionary<string, Object[]> vehicles = new Dictionary<string, Object[]>();
-        Vehicle vehicle = null; 
+        private Dictionary<string, Object[]> vehicles = new Dictionary<string, Object[]>();
+        private Vehicle vehicle = null; 
 
-        public CreateVehicle(string i_ownerName, string i_ownerPhoneNumber, string i_carModel, string i_licenseNumber)
+        public CreateVehicle(Vehicle i_vehicle)
         {
-            vehicle = new Vehicle(i_ownerName, i_ownerPhoneNumber,
-                i_carModel, i_licenseNumber);
+            vehicle = i_vehicle;
+            CreateVehicles();
+        } 
+
+        public Vehicle CreatedVehicle
+        {
+            get
+            {
+                return vehicle;
+            }
+        }  
+
+        public Dictionary<string, object[]> VehiclesData
+        {
+            get
+            {
+                return vehicles;
+            }
         }
 
+        
         public void CreateVehicles()
         {
             vehicles.Add("NormalCar",
-                new object[] { NormalCar.dataFromUser(), new NormalCar()});
+                new object[] { NormalCar.dataFromUser(), new NormalCar(vehicle)});
             vehicles.Add("ElectricCar",  
-                new object[] { ElectricCar.dataFromUser(), new ElectricCar() });
+                new object[] { ElectricCar.dataFromUser(), new ElectricCar(vehicle)});
             vehicles.Add("NormalMotorcycle",
-                new object[] { NormalMotorcycle.dataFromUser(), (NormalMotorcycle)vehicle});
+                new object[] { NormalMotorcycle.dataFromUser(), new NormalMotorcycle(vehicle)});
             vehicles.Add("ElectricMotorcycle", 
-                new object[] { ElectricMotorcycle.dataFromUser(), (ElectricMotorcycle)vehicle });
+                new object[] { ElectricMotorcycle.dataFromUser(), new ElectricMotorcycle(vehicle)});
             vehicles.Add("Truck", 
-                new object[] { Truck.dataFromUser(), (Truck)vehicle });
+                new object[] { Truck.dataFromUser(), new Truck(vehicle)});
         }
     }
 }

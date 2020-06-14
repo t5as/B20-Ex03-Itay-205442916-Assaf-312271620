@@ -19,9 +19,8 @@ namespace Ex03.GarageLogic
             m_FuelData.CurrentFuelAmountLitres = i_currentFuelAmountLitres;
         }*/
 
-        public NormalCar(string i_ownerName, string i_ownerPhoneNumber,
-                          string i_carModel, string i_licenseNumber) : base(i_ownerName,
-            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        public NormalCar(Vehicle i_vehicle) : base(i_vehicle.OwnerName,
+            i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
         {
 
         }
