@@ -19,8 +19,7 @@ namespace Ex03.GarageLogic
             m_FuelData.CurrentFuelAmountLitres = i_currentFuelAmountLitres;
         }*/
 
-        public NormalCar(Vehicle i_vehicle) : base(i_vehicle.OwnerName,
-            i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
+        public NormalCar(Vehicle i_vehicle) : base(i_vehicle)
         {
 
         }
@@ -44,6 +43,17 @@ namespace Ex03.GarageLogic
             dataToGet.Add("Please enter current amount of fuel (smaller than max: "
                 + k_maxFuelAmountLitres + ") : ", "float");
             return dataToGet;
+        }
+
+        public void setData(Dictionary<string, object> i_VehicleData)
+        {
+            this.NumberOfDoors = (eNumberOfDoors)i_VehicleData["NumberOfDoors"];
+            this.CarColor = (eCarColor)i_VehicleData["CarColor"];
+            this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
+            this.WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
+            m_FuelData.FuelType = (FuelVehicle.eFuelType)i_VehicleData["FuelType"];
+            m_FuelData.CurrentFuelAmountLitres = (float)i_VehicleData["CurrentFuelAmountLitres"];
+
         }
     }
 }

@@ -6,8 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class Truck : Vehicle
     {
-        private readonly bool r_IsDrivingHazardousMaterial;
-        private readonly float r_TrunkVolume;
+        private bool m_IsDrivingHazardousMaterial;
+        private float m_TrunkVolume;
         private readonly byte r_NumberOfWheels = 16;
         private static readonly byte r_MaxAirPressure = 28;
         private Wheel m_WheelData;
@@ -37,8 +37,8 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_WheelData.ToString() + "\n");
             vehicleStringData.Append(m_FuelData.ToString() + "\n");
-            vehicleStringData.Append("Trunk Volume: " + r_TrunkVolume + "\n");
-            vehicleStringData.Append("Driving hazardous materials? : " + r_IsDrivingHazardousMaterial);
+            vehicleStringData.Append("Trunk Volume: " + m_TrunkVolume + "\n");
+            vehicleStringData.Append("Driving hazardous materials? : " + m_IsDrivingHazardousMaterial);
             return string.Format(vehicleStringData.ToString());
         }
 
@@ -52,6 +52,13 @@ namespace Ex03.GarageLogic
                 "bool");
             dataToGet.Add("Please enter truck trunk volume: ", "float");
             return dataToGet;
+        }
+
+        public void setData(Dictionary<string, object> i_VehicleData)
+        {
+            
+            m_IsDrivingHazardousMaterial = (bool)i_VehicleData["isDrivingHazardousMaterial"];
+            m_TrunkVolume = (float)i_VehicleData["TrunkVolume"];         
         }
     }
 }

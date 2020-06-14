@@ -22,6 +22,14 @@ namespace Ex03.GarageLogic
             Octan96, 
             Octan95, 
             Soler
+        } 
+
+        public eFuelType FuelType
+        {
+            set
+            {
+                m_FuelType = value;
+            }
         }
 
         public float CurrentFuelAmountLitres

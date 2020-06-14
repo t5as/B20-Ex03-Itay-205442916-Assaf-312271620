@@ -6,8 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class Car : Vehicle
     {
-        private readonly eNumberOfDoors r_NumberOfDoors;
-        private readonly eCarColor r_CarColor;
+        private eNumberOfDoors m_NumberOfDoors;
+        private eCarColor m_CarColor;
         private readonly byte r_NumberOfWheels = 4;
         private static readonly byte r_MaxAirPressure = 32;
         private Wheel m_WheelData;
@@ -28,11 +28,18 @@ namespace Ex03.GarageLogic
             m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
         }*/
 
-        public Car(string i_ownerName, string i_ownerPhoneNumber,
-                          string i_carModel, string i_licenseNumber) : base(i_ownerName,
-            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        public Car(Vehicle i_vehicle) : base(i_vehicle.OwnerName,
+            i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
         {
+            m_WheelData = new Wheel(r_MaxAirPressure);
+        }
 
+        public Wheel WheelData
+        {
+            get
+            {
+                return m_WheelData;
+            }
         }
 
         public enum eCarColor
@@ -41,6 +48,14 @@ namespace Ex03.GarageLogic
             White,
             Black,
             Silver
+        } 
+
+        public eCarColor CarColor
+        {
+            set
+            {
+                m_CarColor = value;
+            }
         }
 
         public enum eNumberOfDoors
@@ -51,13 +66,21 @@ namespace Ex03.GarageLogic
             Five = 5
         }
 
+        public eNumberOfDoors NumberOfDoors
+        {
+            set
+            {
+                m_NumberOfDoors = value;
+            }
+        }
+
         public override string ToString()
         {
             StringBuilder vehicleStringData = new StringBuilder();
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_WheelData.ToString() + "\n");
-            vehicleStringData.Append("Number Of Doors: " + r_NumberOfDoors + "\n");
-            vehicleStringData.Append("Car Color: " + r_CarColor);
+            vehicleStringData.Append("Number Of Doors: " + m_NumberOfDoors + "\n");
+            vehicleStringData.Append("Car Color: " + m_CarColor);
             return string.Format(vehicleStringData.ToString());
         }
 
