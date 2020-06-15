@@ -19,10 +19,9 @@ namespace Ex03.GarageLogic
         {
             m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, r_MaxHoursOfBattery);
         }*/
-        public ElectricMotorcycle(Vehicle i_vehicle) : base(i_vehicle.OwnerName,
-            i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
+        public ElectricMotorcycle(Vehicle i_vehicle) : base(i_vehicle)
         {
-
+            m_ElectricData = new ElectricVehicle(r_MaxHoursOfBattery);
         }
 
 
@@ -47,12 +46,21 @@ namespace Ex03.GarageLogic
             return String.Format(vehicleStringData.ToString());
         }
 
-        public static Dictionary<string, string> dataFromUser()
+        public static Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string> dataToGet = Motorcycle.dataFromUser();
-            dataToGet.Add("Please enter battery hours left (smaller than max: "
-                + r_MaxHoursOfBattery + ") : ", "float");
+            Dictionary<string, string[]> dataToGet = Motorcycle.dataFromUser();
+            dataToGet.Add("NumberOfHoursLeft", new string[] {"Please enter battery hours left (smaller than max: "
+                + r_MaxHoursOfBattery + ") : ", "float" });
             return dataToGet;
+        }
+
+        public void setData(Dictionary<string, object> i_VehicleData)
+        {
+            this.EngineSize = (int)i_VehicleData["EngineSize"];
+            this.TypeOfLicense = (Motorcycle.eTypeOfLicense)i_VehicleData["TypeOfLicense"];
+            this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
+            this.WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
+            m_ElectricData.NumberOfHoursLeft = (float)i_VehicleData["NumberOfHoursLeft"];
         }
     }
 }

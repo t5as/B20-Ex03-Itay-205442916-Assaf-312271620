@@ -65,11 +65,11 @@ namespace Ex03.GarageLogic
             return string.Format(fuelData.ToString());
         }
 
-        public static Dictionary<string, string> fuelDataFromUser()
+        public static Dictionary<string, string[]> fuelDataFromUser()
         {
-            Dictionary<string, string> dataToGet = new Dictionary<string, string>();
-            dataToGet.Add("Please enter fuel type(Octan98, Octan96, " +
-                "Octan95, Soler): ", "enum: Octan98, Octan96, Octan95, Soler");
+            Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
+            dataToGet.Add("FuelType", new string[] {"Please enter fuel type(Octan98, Octan96, " +
+                "Octan95, Soler): ", "enum: Octan98, Octan96, Octan95, Soler" });
             return dataToGet;
         }
 

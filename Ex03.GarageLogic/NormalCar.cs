@@ -32,16 +32,16 @@ namespace Ex03.GarageLogic
             return string.Format(vehicleStringData.ToString());
         }
 
-        public static Dictionary<string, string> dataFromUser()
+        public static Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string> dataToGet = Car.dataFromUser();
-            Dictionary<string, string> fuelData = FuelVehicle.fuelDataFromUser(); 
+            Dictionary<string, string[]> dataToGet = Car.dataFromUser();
+            Dictionary<string, string[]> fuelData = FuelVehicle.fuelDataFromUser(); 
             foreach(var fuelProperty in fuelData)
             {
                 dataToGet.Add(fuelProperty.Key, fuelProperty.Value);
             }
-            dataToGet.Add("Please enter current amount of fuel (smaller than max: "
-                + k_maxFuelAmountLitres + ") : ", "float");
+            dataToGet.Add("CurrentFuelAmountLitres", new string[] {"Please enter current amount of fuel (smaller than max: "
+                + k_maxFuelAmountLitres + ") : ", "float" });
             return dataToGet;
         }
 

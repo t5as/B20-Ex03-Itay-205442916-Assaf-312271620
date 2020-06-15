@@ -84,16 +84,16 @@ namespace Ex03.GarageLogic
             return string.Format(vehicleStringData.ToString());
         }
 
-        public static Dictionary<string, string> dataFromUser()
+        public static Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string> dataToGet = Vehicle.dataFromUser();            
-            dataToGet.Add("Please enter number of doors (two, three, four, five): ",
-                "enum: two, three, four, five");
-            dataToGet.Add("Please enter car color (red, white, black or silver): ",
-                "enum: red, white, black, silver");
-            dataToGet.Add("Please enter wheels manufacturer name: ", "string");
-            dataToGet.Add("Please enter current air pressure in wheels (smaller than max: "
-                 + r_MaxAirPressure + "): ", "float");
+            Dictionary<string, string[]> dataToGet = Vehicle.dataFromUser();            
+            dataToGet.Add("NumberOfDoors", new string[] {"Please enter number of doors (two, three, four, five): ",
+                "enum: two, three, four, five" });
+            dataToGet.Add("CarColor", new string[] {"Please enter car color (red, white, black or silver): ",
+                "enum: red, white, black, silver" });
+            dataToGet.Add("ManufacturerName", new string[] { "Please enter wheels manufacturer name: ", "string" });
+            dataToGet.Add("CurrentAirPressure", new string[] {"Please enter current air pressure in wheels (smaller than max: "
+                 + r_MaxAirPressure + "): ", "float" });
             return dataToGet;
         }
     }

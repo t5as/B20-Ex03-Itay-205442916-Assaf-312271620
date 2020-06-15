@@ -9,10 +9,9 @@ namespace Ex03.GarageLogic
         private readonly float r_MaximalHoursOfBattery; 
         private float m_NumberOfHoursLeft;
         
-        public ElectricVehicle(float i_numberOfHoursLeft, float i_maximalHoursOfBattery)
+        public ElectricVehicle(float i_maximalHoursOfBattery)
         {
             r_MaximalHoursOfBattery = i_maximalHoursOfBattery;
-            m_NumberOfHoursLeft = i_numberOfHoursLeft;
         } 
 
         public void ChargeBattery(float i_numberOfHoursToCharge)
@@ -23,6 +22,14 @@ namespace Ex03.GarageLogic
             {
                 m_NumberOfHoursLeft = r_MaximalHoursOfBattery;
             }
+        }
+
+        public float NumberOfHoursLeft
+        {
+            set
+            {
+                m_NumberOfHoursLeft = value;
+            }            
         }
 
         public float GetEnergyStatus()

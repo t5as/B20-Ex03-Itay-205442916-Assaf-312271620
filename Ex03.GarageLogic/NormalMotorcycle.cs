@@ -19,8 +19,7 @@ namespace Ex03.GarageLogic
             m_FuelData.CurrentFuelAmountLitres = i_currentFuelAmountLitres; 
         }*/
 
-        public NormalMotorcycle(Vehicle i_vehicle) : base(i_vehicle.OwnerName,
-            i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
+        public NormalMotorcycle(Vehicle i_vehicle) : base(i_vehicle)
         {
 
         }
@@ -33,17 +32,28 @@ namespace Ex03.GarageLogic
             return String.Format(vehicleStringData.ToString());
         }
 
-        public static Dictionary<string, string> dataFromUser()
+        public static Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string> dataToGet = Motorcycle.dataFromUser();
-            Dictionary<string, string> fuelData = FuelVehicle.fuelDataFromUser();
+            Dictionary<string, string[]> dataToGet = Motorcycle.dataFromUser();
+            Dictionary<string, string[]> fuelData = FuelVehicle.fuelDataFromUser();
             foreach (var fuelProperty in fuelData)
             {
                 dataToGet.Add(fuelProperty.Key, fuelProperty.Value);
             }
-            dataToGet.Add("Please enter current amount of fuel (smaller than max: "
-                + k_maxFuelAmountLitres + ") : ", "float");
+            dataToGet.Add("CurrentFuelAmountLitres", new string[] {"Please enter current amount of fuel (smaller than max: "
+                + k_maxFuelAmountLitres + ") : ", "float" });
             return dataToGet;
+        }
+
+        public void setData(Dictionary<string, object> i_VehicleData)
+        {
+            this.EngineSize = (int)i_VehicleData["EngineSize"];
+            this.TypeOfLicense = (Motorcycle.eTypeOfLicense)i_VehicleData["TypeOfLicense"];
+            this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
+            this.WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
+            m_FuelData.FuelType = (FuelVehicle.eFuelType)i_VehicleData["FuelType"];
+            m_FuelData.CurrentFuelAmountLitres = (float)i_VehicleData["CurrentFuelAmountLitres"];
+
         }
     }
 }

@@ -6,8 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class Motorcycle : Vehicle
     {        
-        private readonly int r_EngineSize;
-        private readonly eTypeOfLicense r_TypeOfLicense;
+        private int m_EngineSize;
+        private eTypeOfLicense m_TypeOfLicense;
         private readonly byte r_NumberOfWheels = 2;
         private static readonly byte r_MaxAirPressure = 30;
         private Wheel m_WheelData;
@@ -23,9 +23,8 @@ namespace Ex03.GarageLogic
             m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
         }*/
 
-        public Motorcycle(string i_ownerName, string i_ownerPhoneNumber,
-                   string i_carModel, string i_licenseNumber) : base(i_ownerName,
-            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
+        public Motorcycle(Vehicle i_vehicle) : base(i_vehicle.OwnerName,
+            i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
         {
 
         }
@@ -36,6 +35,30 @@ namespace Ex03.GarageLogic
             A1,
             AA,
             B
+        } 
+
+        public eTypeOfLicense TypeOfLicense
+        {
+            set
+            {
+                m_TypeOfLicense = value;
+            }
+        }
+
+        public Wheel WheelData
+        {
+            get
+            {
+                return m_WheelData;
+            }
+        }
+
+        public int EngineSize
+        {
+            set
+            {
+                m_EngineSize = value;
+            }
         }
 
         public override string ToString()
@@ -43,21 +66,22 @@ namespace Ex03.GarageLogic
             StringBuilder vehicleStringData = new StringBuilder();
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_WheelData.ToString() + "\n");
-            vehicleStringData.Append("License Type: " + r_TypeOfLicense + "\n");
-            vehicleStringData.Append("Engine Size: " + r_EngineSize);
+            vehicleStringData.Append("License Type: " + m_TypeOfLicense + "\n");
+            vehicleStringData.Append("Engine Size: " + m_EngineSize);
             return string.Format(vehicleStringData.ToString());
         }
 
-        public static Dictionary<string, string> dataFromUser()
+        public static Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string> dataToGet = Vehicle.dataFromUser();
-            dataToGet.Add("Please enter integer representing engine size: ",
-                "int");
-            dataToGet.Add("Please enter license type (A, A1, AA or B): ",
-                "enum: A, A1, AA, B");
-            dataToGet.Add("Please enter wheels manufacturer name: ", "string");
-            dataToGet.Add("Please enter current air pressure in wheels (smaller than max: "
-                 + r_MaxAirPressure + "): ", "float");
+            Dictionary<string, string[]> dataToGet = Vehicle.dataFromUser();
+            dataToGet.Add("EngineSize", new string[] {
+                "Please enter integer representing engine size: ", "int" });
+            dataToGet.Add("TypeOfLicense", new string[] {
+            "Please enter license type (A, A1, AA or B): ", "enum: A, A1, AA, B" });
+            dataToGet.Add("ManufacturerName", new string[] {
+                "Please enter wheels manufacturer name: ", "string" });
+            dataToGet.Add("CurrentAirPressure", new string[] {"Please enter current air pressure in wheels (smaller than max: "
+                 + r_MaxAirPressure + "): ", "float" });
             return dataToGet;
         }
     }

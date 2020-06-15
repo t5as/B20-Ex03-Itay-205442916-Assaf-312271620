@@ -42,22 +42,23 @@ namespace Ex03.GarageLogic
             return string.Format(vehicleStringData.ToString());
         }
 
-        public static Dictionary<string, string> dataFromUser()
+        public static Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string> dataToGet = Vehicle.dataFromUser();
-            dataToGet.Add("Please enter wheels manufacturer name: ", "string");
-            dataToGet.Add("Please enter current air pressure in wheels (smaller than max: "
-                 + r_MaxAirPressure + "): ", "float");
-            dataToGet.Add("Please state if driving hazardous material (true, false): ",
-                "bool");
-            dataToGet.Add("Please enter truck trunk volume: ", "float");
+            Dictionary<string, string[]> dataToGet = Vehicle.dataFromUser();
+            dataToGet.Add("ManufacturerName", new string[] { "Please enter wheels manufacturer name: ", "string" });
+            dataToGet.Add("CurrentAirPressure", new string[] {"Please enter current air pressure in wheels (smaller than max: "
+                 + r_MaxAirPressure + "): ", "float" });
+            dataToGet.Add("IsDrivingHazardousMaterial", new string[] {"Please state if driving hazardous material (true, false): ",
+                "bool" });
+            dataToGet.Add("TrunkVolume", new string[] { "Please enter truck trunk volume: ", "float" });
             return dataToGet;
         }
 
         public void setData(Dictionary<string, object> i_VehicleData)
         {
-            
-            m_IsDrivingHazardousMaterial = (bool)i_VehicleData["isDrivingHazardousMaterial"];
+            m_WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
+            m_WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
+            m_IsDrivingHazardousMaterial = (bool)i_VehicleData["IsDrivingHazardousMaterial"];
             m_TrunkVolume = (float)i_VehicleData["TrunkVolume"];         
         }
     }

@@ -20,10 +20,9 @@ namespace Ex03.GarageLogic
             m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, r_MaxHoursOfBattery);
         }*/
 
-        public ElectricCar(Vehicle i_vehicle) : base(i_vehicle.OwnerName,
-            i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
+        public ElectricCar(Vehicle i_vehicle) : base(i_vehicle)
         {
-
+            m_ElectricData = new ElectricVehicle(r_MaxHoursOfBattery);
         }
 
         public void ChargeCar(float i_hoursToCharge)
@@ -47,12 +46,21 @@ namespace Ex03.GarageLogic
             return string.Format(vehicleStringData.ToString());
         }
 
-        public static Dictionary<string, string> dataFromUser()
+        public static Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string> dataToGet = Car.dataFromUser();           
-            dataToGet.Add("Please enter battery hours left (smaller than max: "
-                + r_MaxHoursOfBattery + ") : ", "float");
+            Dictionary<string, string[]> dataToGet = Car.dataFromUser();           
+            dataToGet.Add("NumberOfHoursLeft", new string[] {"Please enter battery hours left (smaller than max: "
+                + r_MaxHoursOfBattery + ") : ", "float" });
             return dataToGet;
+        }
+
+        public void setData(Dictionary<string, object> i_VehicleData)
+        {
+            this.NumberOfDoors = (eNumberOfDoors)i_VehicleData["NumberOfDoors"];
+            this.CarColor = (eCarColor)i_VehicleData["CarColor"];
+            this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
+            this.WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
+            m_ElectricData.NumberOfHoursLeft = (float)i_VehicleData["NumberOfHoursLeft"];
         }
     }
 }
