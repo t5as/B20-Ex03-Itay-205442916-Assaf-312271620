@@ -42,7 +42,7 @@ namespace Ex03.GarageLogic
             return string.Format(vehicleStringData.ToString());
         }
 
-        public static Dictionary<string, string[]> dataFromUser()
+        public Dictionary<string, string[]> dataFromUser()
         {
             Dictionary<string, string[]> dataToGet = Vehicle.dataFromUser();
             dataToGet.Add("ManufacturerName", new string[] { "Please enter wheels manufacturer name: ", "string" });

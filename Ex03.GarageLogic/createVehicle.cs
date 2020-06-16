@@ -6,14 +6,32 @@ namespace Ex03.GarageLogic
 {
     public class CreateVehicle
     {
-        private Dictionary<string, Object[]> vehicles = new Dictionary<string, Object[]>();
-        private Vehicle vehicle = null; 
+        private Dictionary<string, Dictionary<string, string[]>> vehicles = new Dictionary<string, Dictionary<string, string[]>>();
+        private Vehicle vehicle = null;
+        private NormalCar normalCar = null;
+        private ElectricCar electricCar = null;
+        private NormalMotorcycle normalMotorcycle = null;
+        private ElectricMotorcycle electricMotorcycle = null;
+        private Truck truck = null;
 
         public CreateVehicle(Vehicle i_vehicle)
         {
             vehicle = i_vehicle;
+            normalCar = new NormalCar(vehicle);
+            electricCar = new ElectricCar(vehicle);
+            normalMotorcycle = new NormalMotorcycle(vehicle);
+            electricMotorcycle = new ElectricMotorcycle(vehicle);
+            truck = new Truck(vehicle);
             CreateVehicles();
-        } 
+        }  
+
+        public NormalCar NormalCar
+        {
+            get
+            {
+                return normalCar;
+            }
+        }
 
         public Vehicle CreatedVehicle
         {
@@ -23,7 +41,7 @@ namespace Ex03.GarageLogic
             }
         }  
 
-        public Dictionary<string, object[]> VehiclesData
+        public Dictionary<string, Dictionary<string, string[]>> VehiclesData
         {
             get
             {
@@ -34,16 +52,11 @@ namespace Ex03.GarageLogic
         
         public void CreateVehicles()
         {
-            vehicles.Add("NormalCar",
-                new object[] { NormalCar.dataFromUser(), new NormalCar(vehicle)});
-            vehicles.Add("ElectricCar",  
-                new object[] { ElectricCar.dataFromUser(), new ElectricCar(vehicle)});
-            vehicles.Add("NormalMotorcycle",
-                new object[] { NormalMotorcycle.dataFromUser(), new NormalMotorcycle(vehicle)});
-            vehicles.Add("ElectricMotorcycle", 
-                new object[] { ElectricMotorcycle.dataFromUser(), new ElectricMotorcycle(vehicle)});
-            vehicles.Add("Truck", 
-                new object[] { Truck.dataFromUser(), new Truck(vehicle)});
+            vehicles.Add("NormalCar", normalCar.dataFromUser());
+            vehicles.Add("ElectricCar", electricCar.dataFromUser());
+            vehicles.Add("NormalMotorcycle", normalMotorcycle.dataFromUser());
+            vehicles.Add("ElectricMotorcycle", electricMotorcycle.dataFromUser());
+            vehicles.Add("Truck", truck.dataFromUser());
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Ex03.GarageLogic
             return String.Format(vehicleStringData.ToString());
         }
 
-        public static Dictionary<string, string[]> dataFromUser()
+        public Dictionary<string, string[]> dataFromUser()
         {
             Dictionary<string, string[]> dataToGet = Motorcycle.dataFromUser();
             Dictionary<string, string[]> fuelData = FuelVehicle.fuelDataFromUser();
