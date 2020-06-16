@@ -7,12 +7,32 @@ namespace Ex03.GarageLogic
     public class GarageLogic
     {
         private List<Vehicle> m_GarageVehicles = new List<Vehicle>();
-        private  Vehicle newVehicle = null;
         //CreateVehicle newVehicleCreator = new CreateVehicle("aabbb", "1111", "mazda", "12343");
 
         public void initializeNewVehicle(CreateVehicle i_createVehicle)
+        {           
+        } 
+
+        public Dictionary<string, Dictionary<string, string[]>> getVehicleRequiredData(Vehicle i_vehicle)
         {
-            newVehicle = i_createVehicle.CreatedVehicle;            
+            CreateVehicle newVehicleCreator = new CreateVehicle(i_vehicle);
+            Dictionary<string, Dictionary<string, string[]>> entranceData = newVehicleCreator.VehiclesData;
+            /*string[] keys = new string[entranceData.Keys.Count];
+            entranceData.Keys.CopyTo(keys, 0);
+            Dictionary<string, string[]> dic = entranceData[Console.getCarType(keys)];
+            foreach (KeyValuePair<string, string[]> vehiclePair in dic)
+            {
+                System.Console.WriteLine("The question to ask: " + vehiclePair.Value[0]);
+                System.Console.WriteLine("The type of answer: " + vehiclePair.Value[1]);
+            }*/
+            return entranceData;
+        } 
+
+        public void setVehicleData(Vehicle i_vehicle, Dictionary<string, object> i_setDataDictionary, string i_carType)
+        {
+            CreateVehicle newVehicleCreator = new CreateVehicle(i_vehicle);
+            newVehicleCreator.SetDataDictionary(i_setDataDictionary);
+            newVehicleCreator.updateVehicleData(i_carType);
         }
         
         
