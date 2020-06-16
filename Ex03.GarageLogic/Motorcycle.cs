@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
         public Motorcycle(Vehicle i_vehicle) : base(i_vehicle.OwnerName,
             i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
         {
-
+            m_WheelData = new Wheel(r_MaxAirPressure);
         }
 
         public enum eTypeOfLicense
@@ -42,6 +42,25 @@ namespace Ex03.GarageLogic
             set
             {
                 m_TypeOfLicense = value;
+            }
+        }
+
+        public eTypeOfLicense getTypeOfLicense(string i_typeOfLicense)
+        {
+            switch (i_typeOfLicense.ToLower())
+            {
+                case "a":
+                    return eTypeOfLicense.A;
+                    break;
+                case "a1":
+                    return eTypeOfLicense.A1;
+                    break;
+                case "aa":
+                    return eTypeOfLicense.AA;
+                    break;
+                default:
+                    return eTypeOfLicense.B;
+                    break;
             }
         }
 

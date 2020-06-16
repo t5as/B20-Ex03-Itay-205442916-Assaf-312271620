@@ -56,12 +56,19 @@ namespace Ex03.GarageLogic
 
         public string setData(Dictionary<string, object> i_VehicleData)
         {
-            this.EngineSize = (int)i_VehicleData["EngineSize"];
-            this.TypeOfLicense = (Motorcycle.eTypeOfLicense)i_VehicleData["TypeOfLicense"];
-            this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
-            this.WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
-            m_ElectricData.NumberOfHoursLeft = (float)i_VehicleData["NumberOfHoursLeft"];
-            return "Electric Motorcycle was updated with details";
+            try
+            {
+                this.EngineSize = (int)i_VehicleData["EngineSize"];
+                this.TypeOfLicense = this.getTypeOfLicense((string)i_VehicleData["TypeOfLicense"]);
+                this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
+                this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
+                m_ElectricData.NumberOfHoursLeft = float.Parse(i_VehicleData["NumberOfHoursLeft"].ToString());
+                return "Electric Motorcycle was updated with details";
+            }catch(KeyNotFoundException e)
+            {
+                return "Electric Motorcycle was not updated";
+            }
+            
         }
     }
 }

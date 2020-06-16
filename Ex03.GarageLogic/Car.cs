@@ -56,6 +56,25 @@ namespace Ex03.GarageLogic
             {
                 m_CarColor = value;
             }
+        } 
+
+        public eCarColor getCarColor(string i_carColor)
+        {
+            switch (i_carColor.ToLower())
+            {
+                case "red":
+                    return eCarColor.Red;
+                    break;
+                case "white":
+                    return eCarColor.White;
+                    break;
+                case "black":
+                    return eCarColor.Black;
+                    break;
+                default:
+                    return eCarColor.Silver;
+                    break;
+            }
         }
 
         public enum eNumberOfDoors
@@ -71,6 +90,25 @@ namespace Ex03.GarageLogic
             set
             {
                 m_NumberOfDoors = value;
+            }
+        }
+
+        public eNumberOfDoors getNumberOfDoors(string i_numberOfDoors)
+        {
+            switch (i_numberOfDoors.ToLower())
+            {
+                case "two":
+                    return eNumberOfDoors.Two;
+                    break;
+                case "three":
+                    return eNumberOfDoors.Three;
+                    break;
+                case "four":
+                    return eNumberOfDoors.Four;
+                    break;
+                default:
+                    return eNumberOfDoors.Five;
+                    break;
             }
         }
 

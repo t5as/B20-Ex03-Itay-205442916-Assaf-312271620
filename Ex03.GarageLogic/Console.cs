@@ -27,7 +27,7 @@ namespace Ex03.GarageLogic
                 System.Console.WriteLine("For " + vehicleType +
                     " press: " + Array.IndexOf(i_typesArray, vehicleType));
             }
-            return i_typesArray[2];
+            return i_typesArray[4];
         }
     }
 }

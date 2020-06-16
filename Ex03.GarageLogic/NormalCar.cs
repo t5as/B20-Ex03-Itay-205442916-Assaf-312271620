@@ -34,12 +34,7 @@ namespace Ex03.GarageLogic
 
         public Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string[]> dataToGet = Car.dataFromUser();
-            Dictionary<string, string[]> fuelData = FuelVehicle.fuelDataFromUser(); 
-            foreach(var fuelProperty in fuelData)
-            {
-                dataToGet.Add(fuelProperty.Key, fuelProperty.Value);
-            }
+            Dictionary<string, string[]> dataToGet = Car.dataFromUser();            
             dataToGet.Add("CurrentFuelAmountLitres", new string[] {"Please enter current amount of fuel (smaller than max: "
                 + k_maxFuelAmountLitres + ") : ", "float" });
             return dataToGet;
@@ -47,13 +42,19 @@ namespace Ex03.GarageLogic
 
         public object setData(Dictionary<string, object> i_VehicleData)
         {
-            this.NumberOfDoors = (eNumberOfDoors)i_VehicleData["NumberOfDoors"];
-            this.CarColor = (eCarColor)i_VehicleData["CarColor"];
-            this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
-            this.WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
-            m_FuelData.FuelType = (FuelVehicle.eFuelType)i_VehicleData["FuelType"];
-            m_FuelData.CurrentFuelAmountLitres = (float)i_VehicleData["CurrentFuelAmountLitres"];
-            return "Normal Car was updated with details";
+            try
+            {
+                this.NumberOfDoors = this.getNumberOfDoors((string)i_VehicleData["NumberOfDoors"]);
+                this.CarColor = this.getCarColor((string)i_VehicleData["CarColor"]);
+                this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
+                this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
+                m_FuelData.CurrentFuelAmountLitres = float.Parse(i_VehicleData["CurrentFuelAmountLitres"].ToString());
+                return "Normal Car was updated with details";
+            }catch(KeyNotFoundException e)
+            {
+                return "Normal Car wasnt updated";
+            }
+            
 
         }
     }

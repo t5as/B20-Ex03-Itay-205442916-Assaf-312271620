@@ -32,6 +32,25 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public eFuelType getFuelType(string i_fuelType)
+        {
+            switch (i_fuelType.ToLower())
+            {
+                case "octan98":
+                    return eFuelType.Octan98;
+                    break;
+                case "octan96":
+                    return eFuelType.Octan96;
+                    break;
+                case "octan95":
+                    return eFuelType.Octan95;
+                    break;
+                default:
+                    return eFuelType.Soler;
+                    break;
+            }
+        }
+
         public float CurrentFuelAmountLitres
         {
             set

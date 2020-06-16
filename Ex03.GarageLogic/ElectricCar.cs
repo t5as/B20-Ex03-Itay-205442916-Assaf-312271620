@@ -56,12 +56,20 @@ namespace Ex03.GarageLogic
 
         public string setData(Dictionary<string, object> i_VehicleData)
         {
-            this.NumberOfDoors = (eNumberOfDoors)i_VehicleData["NumberOfDoors"];
-            this.CarColor = (eCarColor)i_VehicleData["CarColor"];
-            this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
-            this.WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
-            m_ElectricData.NumberOfHoursLeft = (float)i_VehicleData["NumberOfHoursLeft"];
-            return "Electric Car was updated with details";
+
+            try
+            {
+                this.NumberOfDoors = this.getNumberOfDoors((string)i_VehicleData["NumberOfDoors"]);
+                this.CarColor = this.getCarColor((string)i_VehicleData["CarColor"]);
+                this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
+                this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
+                m_ElectricData.NumberOfHoursLeft = float.Parse(i_VehicleData["NumberOfHoursLeft"].ToString());
+                return "Electric Car was updated with details";
+            }catch(KeyNotFoundException e)
+            {
+                return "Electric Car was not updated";
+            }
+            
         }
     }
 }
