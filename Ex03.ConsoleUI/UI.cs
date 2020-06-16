@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Text;
+using Ex03.GarageLogic;
+using Console = System.Console;
 
 namespace Ex03.ConsoleUI
 {
-    class Class1
+    class UI
     {
         public List<object> ParseAnswers(string i_type, string i_answer)
         {
@@ -61,7 +61,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
             return byteAction;
         }
 
-        private static void initializeVehicle()
+        public static Ex03.GarageLogic.Vehicle InitializeVehicle()
         {
             string ownerFirstName = getString("first name");
             bool firstNameValid = IsValidName(ownerFirstName);
@@ -104,6 +104,9 @@ If you wish to see full vehicle data by it's license number - press 7"));
                 licenseNumber = getString("license number");
                 licenseNumberValid = IsValidNumber(licenseNumber, "license number");
             }
+            
+            Ex03.GarageLogic.Vehicle vehicle = new Vehicle(ownerName, ownerPhoneNumber, vehicleModel, licenseNumber);
+            return vehicle;
         }
 
         private static string getString(string i_Type)
@@ -179,5 +182,6 @@ If you wish to see full vehicle data by it's license number - press 7"));
         }
     }
 }
+
 
 
