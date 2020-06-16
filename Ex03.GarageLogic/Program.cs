@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class Program
+    /*class Program
     { 
         static void Main()
         {
@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
             setDataDictionary.Add("CurrentFuelAmountLitres", 12.64);
              System.Console.WriteLine(Console.getCarType(keys));
             newVehicleCreator.SetDataDictionary(setDataDictionary);
-            newVehicleCreator.updateVehicleData(Console.getCarType(keys));*/
+            newVehicleCreator.updateVehicleData(Console.getCarType(keys));
         }
-    }
+    }*/
 }
