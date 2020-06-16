@@ -180,6 +180,44 @@ If you wish to see full vehicle data by it's license number - press 7"));
 
             return v_ValidVehicleModel;
         }
+
+        public static string getCarType(string[] i_typesArray)
+        {
+            foreach (string vehicleType in i_typesArray)
+            {
+                Console.WriteLine(string.Format("For {0} press: {1}", vehicleType, System.Array.IndexOf(i_typesArray, vehicleType)));
+                
+            }
+
+            string strCarType = Console.ReadLine();
+            int carType = isValidCarType(strCarType, 0, i_typesArray.Length - 1);
+            while (carType == i_typesArray.Length)
+            {
+                strCarType = Console.ReadLine();
+                carType = isValidCarType(strCarType, 0, i_typesArray.Length - 1);
+            }
+            return i_typesArray[carType];
+        }
+
+        private static int isValidCarType(string i_CarType, int i_minValue, int i_maxValue)
+        {
+            int carType;
+            bool validCarType = int.TryParse(i_CarType, out carType);
+
+            if (validCarType == false || i_CarType.Length != 1)
+            {
+                Console.WriteLine("Invalid car type, please try again");
+                return i_maxValue + 1;
+            }
+
+            if (carType < i_minValue || carType > i_maxValue)
+            {
+                Console.WriteLine("Invalid game type, please try again");
+                return i_maxValue + 1; ;
+            }
+
+            return carType;
+        }
     }
 }
 
