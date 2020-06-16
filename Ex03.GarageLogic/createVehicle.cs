@@ -7,6 +7,8 @@ namespace Ex03.GarageLogic
     public class CreateVehicle
     {
         private Dictionary<string, Dictionary<string, string[]>> vehicles = new Dictionary<string, Dictionary<string, string[]>>();
+        private Dictionary<string, object> recievedDataFromUser = new Dictionary<string, object>();
+        private Dictionary<string, object> updateNewVehicleData = new Dictionary<string, object>();
         private Vehicle vehicle = null;
         private NormalCar normalCar = null;
         private ElectricCar electricCar = null;
@@ -22,7 +24,7 @@ namespace Ex03.GarageLogic
             normalMotorcycle = new NormalMotorcycle(vehicle);
             electricMotorcycle = new ElectricMotorcycle(vehicle);
             truck = new Truck(vehicle);
-            CreateVehicles();
+            getDataFromUser();
         }  
 
         public NormalCar NormalCar
@@ -47,16 +49,34 @@ namespace Ex03.GarageLogic
             {
                 return vehicles;
             }
+        } 
+
+        public void SetDataDictionary(Dictionary<string, object> i_inputData)
+        {
+            foreach(var inputData in i_inputData)
+            {
+                recievedDataFromUser.Add(inputData.Key, inputData.Value);
+            }
         }
 
         
-        public void CreateVehicles()
+        public void getDataFromUser()
         {
             vehicles.Add("NormalCar", normalCar.dataFromUser());
             vehicles.Add("ElectricCar", electricCar.dataFromUser());
             vehicles.Add("NormalMotorcycle", normalMotorcycle.dataFromUser());
             vehicles.Add("ElectricMotorcycle", electricMotorcycle.dataFromUser());
             vehicles.Add("Truck", truck.dataFromUser());
+        } 
+
+        public void updateVehicleData(string i_vehicleToUpdate)
+        {
+            updateNewVehicleData.Add("NormalCar", normalCar.setData(recievedDataFromUser));
+            updateNewVehicleData.Add("ElectricCar", electricCar.setData(recievedDataFromUser));
+            updateNewVehicleData.Add("NormalMotorcycle", normalMotorcycle.setData(recievedDataFromUser));
+            updateNewVehicleData.Add("ElectricMotorcycle", electricMotorcycle.setData(recievedDataFromUser));
+            updateNewVehicleData.Add("Truck", truck.setData(recievedDataFromUser));
+            System.Console.WriteLine(updateNewVehicleData[i_vehicleToUpdate]);
         }
     }
 }

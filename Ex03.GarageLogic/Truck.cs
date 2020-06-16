@@ -54,12 +54,13 @@ namespace Ex03.GarageLogic
             return dataToGet;
         }
 
-        public void setData(Dictionary<string, object> i_VehicleData)
+        public string setData(Dictionary<string, object> i_VehicleData)
         {
             m_WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
             m_WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
             m_IsDrivingHazardousMaterial = (bool)i_VehicleData["IsDrivingHazardousMaterial"];
-            m_TrunkVolume = (float)i_VehicleData["TrunkVolume"];         
+            m_TrunkVolume = (float)i_VehicleData["TrunkVolume"];
+            return "Truck was updated with details";
         }
     }
 }

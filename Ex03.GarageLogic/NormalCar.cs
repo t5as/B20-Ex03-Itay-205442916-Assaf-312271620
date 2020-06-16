@@ -45,7 +45,7 @@ namespace Ex03.GarageLogic
             return dataToGet;
         }
 
-        public void setData(Dictionary<string, object> i_VehicleData)
+        public object setData(Dictionary<string, object> i_VehicleData)
         {
             this.NumberOfDoors = (eNumberOfDoors)i_VehicleData["NumberOfDoors"];
             this.CarColor = (eCarColor)i_VehicleData["CarColor"];
@@ -53,6 +53,7 @@ namespace Ex03.GarageLogic
             this.WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
             m_FuelData.FuelType = (FuelVehicle.eFuelType)i_VehicleData["FuelType"];
             m_FuelData.CurrentFuelAmountLitres = (float)i_VehicleData["CurrentFuelAmountLitres"];
+            return "Normal Car was updated with details";
 
         }
     }

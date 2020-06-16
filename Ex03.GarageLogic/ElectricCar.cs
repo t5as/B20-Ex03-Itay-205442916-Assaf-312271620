@@ -54,13 +54,14 @@ namespace Ex03.GarageLogic
             return dataToGet;
         }
 
-        public void setData(Dictionary<string, object> i_VehicleData)
+        public string setData(Dictionary<string, object> i_VehicleData)
         {
             this.NumberOfDoors = (eNumberOfDoors)i_VehicleData["NumberOfDoors"];
             this.CarColor = (eCarColor)i_VehicleData["CarColor"];
             this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
             this.WheelData.CurrentAirPressure = (float)i_VehicleData["CurrentAirPressure"];
             m_ElectricData.NumberOfHoursLeft = (float)i_VehicleData["NumberOfHoursLeft"];
+            return "Electric Car was updated with details";
         }
     }
 }
