@@ -100,7 +100,7 @@ namespace Ex03.GarageLogic
 
         public static List<string> getVehicleStates()
         {
-            List<string> vehicleStates = new List<string>;
+            List<string> vehicleStates = new List<string>();
             foreach(eVehicleState vehicleState in Enum.GetValues(typeof(eVehicleState)))
             {
                 vehicleStates.Add(vehicleState.ToString());

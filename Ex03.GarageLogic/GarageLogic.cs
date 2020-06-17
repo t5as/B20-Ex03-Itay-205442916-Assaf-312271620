@@ -74,16 +74,11 @@ namespace Ex03.GarageLogic
         }
 
 
-        public string vehicleStates()
+        public string[] getVehicleStates()
         {
-            int vehicleStateValue = 0;
-            StringBuilder vehicleStateQuestionToUser = new StringBuilder(); 
-            foreach(string vehicleState in Vehicle.getVehicleStates())
-            {
-                vehicleStateQuestionToUser.Append(String.Format("For {0} Press {1}", vehicleState, vehicleStateValue));
-                vehicleStateValue++;
-            }
-            return vehicleStateValue.ToString();
+            return new string[] {"Please enter vehicle state (inrepair, fixed or payed): ",
+                "enum: inrepair, fixed, payed" };
+            
         }
 
         public string UpdateVehicleState(string i_licenseNumber, 
@@ -93,8 +88,13 @@ namespace Ex03.GarageLogic
             if(vehicle != null)
             {
                 vehicle.VehicleStatus = vehicle.getVehicleState(i_stringnewVehicleState);
+                return "Vehicle state was updated successfully";
             }
-            return "Vehicle state was updated successfully";
+            else
+            {
+                return "Vehicle was not found";
+            }
+            
         } 
 
         public void DisplayVehicleData(string i_licenseNumber)
