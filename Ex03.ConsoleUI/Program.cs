@@ -8,8 +8,7 @@ namespace Ex03.ConsoleUI
     {
         static void Main()
         {
-            UI.startAction();
+            UI.run();
         }
-
     }
 }

@@ -14,6 +14,5 @@ namespace Ex03.GarageLogic
             ElectricMotorcycle,
             Truck    
         } 
-        
     }
 }

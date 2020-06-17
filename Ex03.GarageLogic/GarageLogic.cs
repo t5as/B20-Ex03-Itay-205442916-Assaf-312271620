@@ -38,8 +38,6 @@ namespace Ex03.GarageLogic
             //
         }
         
-        
-
         public Vehicle SearchVehicle(string i_licenseNumber)
         {
             foreach(Vehicle vehicle in m_GarageVehicles)
@@ -66,6 +64,7 @@ namespace Ex03.GarageLogic
                 {
                     vehicleLicenses.Append(vehicle.LicenseNumber + "\n");
                 }
+
                 return vehicleLicenses.ToString();
             }           
         } 
@@ -87,16 +86,15 @@ namespace Ex03.GarageLogic
                         vehicleLicenses.Append(vehicle.LicenseNumber + "\n");
                     }
                 }
+
                 return vehicleLicenses.ToString();
             }            
         }
-
 
         public string[] getVehicleStates()
         {
             return new string[] {"Please enter vehicle state (inrepair, fixed or payed): ",
                 "enum: inrepair, fixed, payed" };
-            
         }
 
         public string[] getFuelTypes()
