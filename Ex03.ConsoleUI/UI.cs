@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using Ex03.GarageLogic;
 using Console = System.Console;
@@ -7,36 +8,24 @@ namespace Ex03.ConsoleUI
 {
     class UI
     {
-        public static object ParseAnswer(string i_type, string i_answer)
-        {
-            object answer;
-            if (i_type == "int") answer = int.Parse(i_answer);
-            else if (i_type == "byte") answer = byte.Parse(i_answer);
-            else if (i_type == "float") answer = float.Parse(i_answer);
-            else if (i_type == "bool") answer = bool.Parse(i_answer);
-            //else if (i_type.Trim().Substring(0, i_type.IndexOf(':') - 1) == "enum") answer = 
-            else answer = i_answer;
 
-            return answer;
-        }
-
-        public List<object> ParseAnswers(string i_type, string i_answer)
+        public static void startAction()
         {
-            List<object> answers = new List<object>();
-            if (i_type == "int") answers.Add(int.Parse(i_answer));
-            else if (i_type == "byte") answers.Add(byte.Parse(i_answer));
-            else if (i_type == "float") answers.Add(float.Parse(i_answer));
-            else if (i_type == "bool") answers.Add(bool.Parse(i_answer));
-            else if (i_type == "string") answers.Add(i_answer);
-            //else if (i_type.Trim().Substring(0,i_type.IndexOf(':') - 1) == "enum")
-            return answers;
-        }
+            string stringAction = getAction();
+            byte action = isValidAction(stringAction);
+            while(action == 0)
+            {
+                stringAction = getAction();
+                action = isValidAction(stringAction);
+            }
 
-        public static string[] ParseEnum(string i_enum)
-        {
-            int indexOfColon = i_enum.IndexOf(':');
-            string[] enumString = i_enum.Trim().Substring(indexOfColon + 1, i_enum.Length).Split(',');
-            return enumString;
+            if(action == 1) EnterNewVehicle();
+            if(action == 2) EnterNewVehicle();
+            if(action == 3) EnterNewVehicle();
+            if(action == 4) EnterNewVehicle();
+            if(action == 5) EnterNewVehicle();
+            if(action == 6) EnterNewVehicle();
+            if(action == 7) EnterNewVehicle();
         }
 
         private static string getAction()
@@ -75,7 +64,33 @@ If you wish to see full vehicle data by it's license number - press 7"));
             return byteAction;
         }
 
-        public static Ex03.GarageLogic.Vehicle InitializeVehicle()
+        public static void EnterNewVehicle()
+        {
+            Vehicle vehicle = InitializeVehicle();
+            GarageLogic.GarageLogic garage = new GarageLogic.GarageLogic();
+            Dictionary<string, Dictionary<string, string[]>> vehiclesQuestionsDictionary = garage.getVehicleRequiredData(vehicle);
+            string[] carTypes = new string[vehiclesQuestionsDictionary.Keys.Count];
+            vehiclesQuestionsDictionary.Keys.CopyTo(carTypes, 0);
+            Dictionary<string, string[]> questionsForUser = vehiclesQuestionsDictionary[GetCarType(carTypes)];
+            Dictionary<string, object> setDataDictionary = new Dictionary<string, object>();
+            foreach (KeyValuePair<string, string[]> vehiclePair in questionsForUser)
+            {
+                Console.WriteLine(vehiclePair.Value[0]);
+                Console.WriteLine("The type of answer: " + vehiclePair.Value[1]);
+                string answer = Console.ReadLine();
+                object validAnswer = ParseAnswer(vehiclePair.Value[1], answer);
+                while (validAnswer == null)
+                {
+                    Console.WriteLine("Invalid type - {0} should be {1}", vehiclePair.Key, vehiclePair.Value[1]);
+                    Console.WriteLine(vehiclePair.Value[0]);
+                    answer = Console.ReadLine();
+                    validAnswer = UI.ParseAnswer(vehiclePair.Value[1], answer);
+                }
+                setDataDictionary.Add(vehiclePair.Key, validAnswer);
+            }
+        }
+
+        public static Vehicle InitializeVehicle()
         {
             string ownerFirstName = getString("first name");
             bool firstNameValid = IsValidName(ownerFirstName);
@@ -242,6 +257,50 @@ If you wish to see full vehicle data by it's license number - press 7"));
             }
 
             return carType;
+        }
+
+        public static object ParseAnswer(string i_type, string i_answer)
+        {
+            object answer = null;
+            int indexOfColon = i_type.IndexOf(':');
+
+            if (i_type == "int")
+            {
+                if (int.TryParse(i_answer, out _)) answer = int.Parse(i_answer);
+            }
+            else if (i_type == "byte")
+            {
+                if (byte.TryParse(i_answer, out _)) answer = byte.Parse(i_answer);
+            }
+            else if (i_type == "float")
+            {
+                if (float.TryParse(i_answer, out _)) answer = float.Parse(i_answer);
+            }
+            else if (i_type == "bool")
+            {
+                if (bool.TryParse(i_answer, out _)) answer = bool.Parse(i_answer);
+            }
+            else if (indexOfColon != -1)
+            {
+                if (i_type.Trim().Substring(0, i_type.IndexOf(':')) == "enum") answer = ParseEnum(i_type, i_answer);
+            }
+            else answer = i_answer;
+
+            return answer;
+        }
+
+        public static object ParseEnum(string i_enum, string i_answer)
+        {
+            int indexOfColon = i_enum.IndexOf(':');
+            string enumWithoutSpaces = i_enum.Replace(" ", string.Empty);
+            string[] enumString = enumWithoutSpaces.Substring(indexOfColon + 1, enumWithoutSpaces.Length - (indexOfColon + 1)).Split(',');
+
+            foreach (string value in enumString)
+            {
+                if (value.ToLower().Equals(i_answer.ToLower())) return i_answer;
+            }
+
+            return null;
         }
     }
 }
