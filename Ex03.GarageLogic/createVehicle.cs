@@ -9,12 +9,13 @@ namespace Ex03.GarageLogic
         private Dictionary<string, Dictionary<string, string[]>> vehicles = new Dictionary<string, Dictionary<string, string[]>>();
         private Dictionary<string, object> recievedDataFromUser = new Dictionary<string, object>();
         private Dictionary<string, object> updateNewVehicleData = new Dictionary<string, object>();
+        private static string vehicleToDisplay;
         private Vehicle vehicle = null;
-        private NormalCar normalCar = null;
-        private ElectricCar electricCar = null;
-        private NormalMotorcycle normalMotorcycle = null;
-        private ElectricMotorcycle electricMotorcycle = null;
-        private Truck truck = null;
+        private static NormalCar normalCar = null;
+        private static ElectricCar electricCar = null;
+        private static NormalMotorcycle normalMotorcycle = null;
+        private static ElectricMotorcycle electricMotorcycle = null;
+        private static Truck truck = null;
 
         public CreateVehicle(Vehicle i_vehicle)
         {
@@ -26,6 +27,30 @@ namespace Ex03.GarageLogic
             truck = new Truck(vehicle);
             getDataFromUser();
         }  
+        
+        public static object getVehicle()
+        {
+            if(vehicleToDisplay.ToLower() == "normalcar")
+            {
+                return normalCar;
+            } 
+            else if(vehicleToDisplay.ToLower() == "electriccar")
+            {
+                return electricCar;
+            }
+            else if (vehicleToDisplay.ToLower() == "normalmotorcycle")
+            {
+                return normalMotorcycle;
+            }
+            else if (vehicleToDisplay.ToLower() == "electricmotorcycle")
+            {
+                return electricMotorcycle;
+            }
+            else
+            {
+                return truck;
+            }
+        }
 
         public NormalCar NormalCar
         {
@@ -71,6 +96,7 @@ namespace Ex03.GarageLogic
 
         public void updateVehicleData(string i_vehicleToUpdate)
         {
+            vehicleToDisplay = i_vehicleToUpdate;
             updateNewVehicleData.Add("NormalCar", normalCar.setData(recievedDataFromUser));
             updateNewVehicleData.Add("ElectricCar", electricCar.setData(recievedDataFromUser));
             updateNewVehicleData.Add("NormalMotorcycle", normalMotorcycle.setData(recievedDataFromUser));

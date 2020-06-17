@@ -37,7 +37,7 @@ namespace Ex03.GarageLogic
             System.Console.WriteLine("test");
             m_GarageVehicles.Add(i_vehicle);
             
-            return "Vehicle was added successfully:  " + m_GarageVehicles.Count;
+            return "Vehicle was added successfully";
         }
         
         public Vehicle SearchVehicle(string i_licenseNumber)
@@ -180,7 +180,8 @@ namespace Ex03.GarageLogic
             Vehicle vehicle = SearchVehicle(i_licenseNumber);
             if(vehicle != null)
             {
-                return vehicle.ToString();
+                
+                return CreateVehicle.getVehicle().ToString();
             }
             else
             {
