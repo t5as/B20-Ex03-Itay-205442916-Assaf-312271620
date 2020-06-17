@@ -64,10 +64,10 @@ namespace Ex03.GarageLogic
                 this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
                 this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
                 m_FuelData.CurrentFuelAmountLitres = float.Parse(i_VehicleData["CurrentFuelAmountLitres"].ToString());
-                return "Normal Car was updated with details";
+                return "";
             }catch(KeyNotFoundException e)
             {
-                return "Normal Car wasnt updated";
+                return "";
             }
             
 

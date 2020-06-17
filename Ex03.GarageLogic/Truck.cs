@@ -75,7 +75,7 @@ namespace Ex03.GarageLogic
             return dataToGet;
         }
 
-        public string setData(Dictionary<string, object> i_VehicleData)
+        public object setData(Dictionary<string, object> i_VehicleData)
         {
             try
             {
@@ -84,11 +84,11 @@ namespace Ex03.GarageLogic
                 m_IsDrivingHazardousMaterial = (bool)i_VehicleData["IsDrivingHazardousMaterial"];
                 m_TrunkVolume = float.Parse(i_VehicleData["TrunkVolume"].ToString());
                 m_FuelData.CurrentFuelAmountLitres = float.Parse(i_VehicleData["CurrentFuelAmountLitres"].ToString());
-                return "Truck was updated with details";
+                return "";
             }
             catch(KeyNotFoundException e)
             {
-                return "Truck was not updated with details";
+                return "";
             }
         }
     }

@@ -66,7 +66,7 @@ namespace Ex03.GarageLogic
             return dataToGet;
         }
 
-        public string setData(Dictionary<string, object> i_VehicleData)
+        public object setData(Dictionary<string, object> i_VehicleData)
         {
 
             try
@@ -76,10 +76,11 @@ namespace Ex03.GarageLogic
                 this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
                 this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
                 m_ElectricData.NumberOfHoursLeft = float.Parse(i_VehicleData["NumberOfHoursLeft"].ToString());
-                return "Electric Car was updated with details";
+                return "";
+               
             }catch(KeyNotFoundException e)
             {
-                return "Electric Car was not updated";
+                return "";
             }
             
         }
