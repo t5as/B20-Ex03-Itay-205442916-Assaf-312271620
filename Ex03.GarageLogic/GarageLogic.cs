@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
     public class GarageLogic
     {
         private List<Vehicle> m_GarageVehicles = new List<Vehicle>();
-        //CreateVehicle newVehicleCreator = new CreateVehicle("aabbb", "1111", "mazda", "12343");
+        // CreateVehicle newVehicleCreator = new CreateVehicle("aabbb", "1111", "mazda", "12343");
 
         public void initializeNewVehicle(CreateVehicle i_createVehicle)
         {           
@@ -25,6 +25,7 @@ namespace Ex03.GarageLogic
                 System.Console.WriteLine("The question to ask: " + vehiclePair.Value[0]);
                 System.Console.WriteLine("The type of answer: " + vehiclePair.Value[1]);
             }*/
+            
             return entranceData;
         } 
 
@@ -34,8 +35,8 @@ namespace Ex03.GarageLogic
             newVehicleCreator.SetDataDictionary(i_setDataDictionary);
             newVehicleCreator.updateVehicleData(i_carType);
             m_GarageVehicles.Add(i_vehicle);
-            return "Vehicle was added successfully:  " + m_GarageVehicles.Count; 
             
+            return "Vehicle was added successfully:  " + m_GarageVehicles.Count;
         }
         
         public Vehicle SearchVehicle(string i_licenseNumber)
@@ -93,31 +94,26 @@ namespace Ex03.GarageLogic
 
         public string[] getVehicleStates()
         {
-            return new string[] {"Please enter vehicle state (inrepair, fixed or payed): ",
-                "enum: inrepair, fixed, payed" };
+            return new string[] { "Please enter vehicle state (inrepair, fixed or payed): ", "enum: inrepair, fixed, payed" };
         }
 
         public string[] getFuelTypes()
         {
-            return new string[] {"Please enter fuel type(Octan98, Octan96, " +
-                "Octan95, Soler): ", "enum: Octan98, Octan96, Octan95, Soler" };
-
+            return new string[] { "Please enter fuel type(Octan98, Octan96, " + "Octan95, Soler): ", "enum: Octan98, Octan96, Octan95, Soler" };
         }
 
-        public string UpdateVehicleState(string i_licenseNumber, 
-            string i_stringnewVehicleState)
+        public string UpdateVehicleState(string i_licenseNumber, string i_stringNewVehicleState)
         {
             Vehicle vehicle = SearchVehicle(i_licenseNumber); 
             if(vehicle != null)
             {
-                vehicle.VehicleStatus = Vehicle.getVehicleState(i_stringnewVehicleState);
+                vehicle.VehicleStatus = Vehicle.getVehicleState(i_stringNewVehicleState);
                 return "Vehicle state was updated successfully";
             }
             else
             {
                 return "Vehicle was not found";
             }
-            
         }  
 
         public string inflateVehicleWheels(string i_licenseNumber)
@@ -134,8 +130,7 @@ namespace Ex03.GarageLogic
             }
         } 
 
-        public string chargeElectricVehicle(string i_licenseNumber,
-            float i_numberOfMinutes)
+        public string chargeElectricVehicle(string i_licenseNumber, float i_numberOfMinutes)
         {
             Vehicle vehicle = SearchVehicle(i_licenseNumber); 
             if(vehicle != null)
@@ -157,8 +152,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public string fuelNormalVehicle(string i_licenseNumber, string i_fuelType,
-            float i_litresToAdd)
+        public string fuelNormalVehicle(string i_licenseNumber, string i_fuelType, float i_litresToAdd)
         {
             Vehicle vehicle = SearchVehicle(i_licenseNumber);
             if (vehicle != null)
@@ -191,10 +185,7 @@ namespace Ex03.GarageLogic
             {
                 return "Vehicle was not found";
             }
-            
-            
         } 
-
 
         /*public Vehicle createVehicle(string i_carType)
         {
