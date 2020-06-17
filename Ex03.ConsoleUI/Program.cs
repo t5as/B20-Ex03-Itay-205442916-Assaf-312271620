@@ -21,7 +21,14 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine(vehiclePair.Value[0]);
                 Console.WriteLine("The type of answer: " + vehiclePair.Value[1]);
                 string answer = Console.ReadLine();
-                setDataDictionary.Add(vehiclePair.Key, UI.ParseAnswer(vehiclePair.Value[1], answer));
+                object validAnswer = UI.ParseAnswer(vehiclePair.Value[1], answer);
+                while (validAnswer == null)
+                {
+                    Console.WriteLine(vehiclePair.Value[0]);
+                    answer = Console.ReadLine();
+                    validAnswer = UI.ParseAnswer(vehiclePair.Value[1], answer);
+                }
+                setDataDictionary.Add(vehiclePair.Key, validAnswer);
             }
             
             foreach (KeyValuePair<string, object> vehiclePair in setDataDictionary)
