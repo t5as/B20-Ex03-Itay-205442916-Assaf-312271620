@@ -101,7 +101,7 @@ namespace Ex03.GarageLogic
         public string[] getFuelTypes()
         {
             return new string[] {"Please enter fuel type(Octan98, Octan96, " +
-                "Octan95, Soler): ", "enum: Octan98, Octan96, Octan95, Soler" });
+                "Octan95, Soler): ", "enum: Octan98, Octan96, Octan95, Soler" };
 
         }
 
