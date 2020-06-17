@@ -22,7 +22,7 @@ namespace Ex03.GarageLogic
             return dataToGet;
         }
 
-        public Motorcycle(Vehicle i_vehicle) : base(i_vehicle.OwnerName, i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
+        public Motorcycle(Vehicle i_vehicle) : base(i_vehicle.OwnerName, i_vehicle.OwnerPhoneNumber, i_vehicle.VehicleModel, i_vehicle.LicenseNumber)
         {
             m_WheelData = new Wheel(r_MaxAirPressure);
         }

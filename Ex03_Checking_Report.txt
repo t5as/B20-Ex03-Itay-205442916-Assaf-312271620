@@ -1,0 +1,10 @@
+==========================Exercise Checking Report==========================
+Exercise No...........: 3
+First Student Details.: 205442916- Itay Neuberger
+Second Student Details: 312271620- Assaf Shwartz
+Delivery Date.........: 17 - June - 2020
+Delivered In Delay....: No
+Delay Reason..........: X 
+Visual Studio Version.: 2017
+Comments..............: X 
+========================End Exercise Checking Report========================

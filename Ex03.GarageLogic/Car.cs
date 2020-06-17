@@ -17,7 +17,8 @@ namespace Ex03.GarageLogic
             Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
             dataToGet.Add(
                 "NumberOfDoors",
-                new string[] {
+                new string[] 
+                    {
                                      "Please enter number of doors (two, three, four, five): ",
                                      "enum: two, three, four, five"
                                  });
@@ -40,7 +41,7 @@ namespace Ex03.GarageLogic
         public Car(Vehicle i_vehicle) : base(
             i_vehicle.OwnerName,
             i_vehicle.OwnerPhoneNumber, 
-            i_vehicle.CarModel, 
+            i_vehicle.VehicleModel, 
             i_vehicle.LicenseNumber)
         {
             m_WheelData = new Wheel(r_MaxAirPressure);
