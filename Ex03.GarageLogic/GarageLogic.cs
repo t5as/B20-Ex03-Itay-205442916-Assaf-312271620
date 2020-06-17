@@ -35,7 +35,7 @@ namespace Ex03.GarageLogic
             newVehicleCreator.updateVehicleData(i_carType);
             m_GarageVehicles.Add(i_vehicle);
             return "Vehicle was added successfully:  " + m_GarageVehicles.Count; 
-            //
+            
         }
         
         public Vehicle SearchVehicle(string i_licenseNumber)
