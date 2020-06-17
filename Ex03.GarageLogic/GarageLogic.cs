@@ -28,11 +28,13 @@ namespace Ex03.GarageLogic
             return entranceData;
         } 
 
-        public void setVehicleData(Vehicle i_vehicle, Dictionary<string, object> i_setDataDictionary, string i_carType)
+        public string setVehicleData(Vehicle i_vehicle, Dictionary<string, object> i_setDataDictionary, string i_carType)
         {
             CreateVehicle newVehicleCreator = new CreateVehicle(i_vehicle);
             newVehicleCreator.SetDataDictionary(i_setDataDictionary);
             newVehicleCreator.updateVehicleData(i_carType);
+            m_GarageVehicles.Add(i_vehicle);
+            return "Vehicle was added successfully";
         }
         
         

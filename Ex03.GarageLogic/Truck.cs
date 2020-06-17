@@ -11,7 +11,8 @@ namespace Ex03.GarageLogic
         private readonly byte r_NumberOfWheels = 16;
         private static readonly byte r_MaxAirPressure = 28;
         private Wheel m_WheelData;
-        private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Soler, 120);
+        private static float r_MaxFuelAmountLitres = 120;
+        private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Soler, r_MaxFuelAmountLitres);
 
         /*public Truck(string i_ownerName, string i_ownerPhoneNumber,
                    string i_carModel, string i_licenseNumber, bool i_isDrivingHazardousMaterial,
@@ -45,6 +46,21 @@ namespace Ex03.GarageLogic
         public override void inflateWheels()
         {
             m_WheelData.setAirPressureTomax();
+        }
+
+        public override void fillUp(string i_fuelType, float i_litresToAdd)
+        {
+            if(m_FuelData.getFuelType(i_fuelType) == m_FuelData.FuelType)
+            {
+                try
+                {
+                    m_FuelData.Refuel(i_litresToAdd);
+                } 
+                catch(ValueOutOfRangeException e)
+                {
+                    throw new ValueOutOfRangeException(e, m_FuelData.CurrentFuelAmountLitres, 0, r_MaxFuelAmountLitres);
+                }
+            }
         }
 
         public Dictionary<string, string[]> dataFromUser()

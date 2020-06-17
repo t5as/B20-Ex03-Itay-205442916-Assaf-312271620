@@ -30,6 +30,10 @@ namespace Ex03.GarageLogic
             {
                 m_FuelType = value;
             }
+            get
+            {
+                return m_FuelType;
+            }
         }
 
         public eFuelType getFuelType(string i_fuelType)
@@ -62,6 +66,10 @@ namespace Ex03.GarageLogic
                     m_CurrentFuelAmountLitres = r_MaxFuelAmountLitres;
                 }
             }
+            get
+            {
+                return m_CurrentFuelAmountLitres;
+            }
         }
 
         private string FuelStatus
@@ -92,28 +100,19 @@ namespace Ex03.GarageLogic
             return dataToGet;
         }
 
-        public void Refuel(float i_litresToAdd, eFuelType i_fuelType)
+        public void Refuel(float i_litresToAdd)
         {
             try
             {
-                if (i_fuelType == m_FuelType)
-                {
-                    m_CurrentFuelAmountLitres += i_litresToAdd;
-                }
-
-                if (m_CurrentFuelAmountLitres > r_MaxFuelAmountLitres)
-                {
-                    m_CurrentFuelAmountLitres = r_MaxFuelAmountLitres;
-                }
+                m_CurrentFuelAmountLitres += i_litresToAdd;
             }
             catch (ArgumentException e)
             {
                 ArgumentException argumentException = new ArgumentException(string.Format("{0} is not the correct fuel type", i_fuelType), e);
             }
-            catch (Exception e)
+            catch (ValueOutOfRangeException e)
             {
-                ValueOutOfRangeException valueOutOfRangeException = new ValueOutOfRangeException(e, i_litresToAdd, 0f, r_MaxFuelAmountLitres);
-                throw valueOutOfRangeException;
+                throw new ValueOutOfRangeException(e, m_CurrentFuelAmountLitres, 0, r_MaxFuelAmountLitres);
             }
         } 
 
