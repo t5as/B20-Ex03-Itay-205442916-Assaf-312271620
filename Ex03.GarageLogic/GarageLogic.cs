@@ -62,12 +62,13 @@ namespace Ex03.GarageLogic
             return vehicleLicenses.ToString();
         } 
 
-        public string DisplayVehiclesLicenses(Vehicle.eVehicleState i_vehicleState)
+        public string DisplayVehiclesLicenses(string i_vehicleState)
         {
             StringBuilder vehicleLicenses = new StringBuilder();
+            Vehicle.eVehicleState vehicleState = Vehicle.getVehicleState(i_vehicleState);
             foreach (Vehicle vehicle in m_GarageVehicles)
             {
-                if(vehicle.VehicleStatus == i_vehicleState)
+                if(vehicle.VehicleStatus == vehicleState)
                 {
                     vehicleLicenses.Append(vehicle.LicenseNumber + "\n");
                 }
@@ -89,7 +90,7 @@ namespace Ex03.GarageLogic
             Vehicle vehicle = SearchVehicle(i_licenseNumber); 
             if(vehicle != null)
             {
-                vehicle.VehicleStatus = vehicle.getVehicleState(i_stringnewVehicleState);
+                vehicle.VehicleStatus = Vehicle.getVehicleState(i_stringnewVehicleState);
                 return "Vehicle state was updated successfully";
             }
             else

@@ -82,7 +82,7 @@ namespace Ex03.GarageLogic
             Payed
         }
 
-        public eVehicleState getVehicleState(string i_vehicleState)
+        public static eVehicleState getVehicleState(string i_vehicleState)
         {
             switch (i_vehicleState.ToLower())
             {
