@@ -25,16 +25,15 @@ namespace Ex03.GarageLogic
         }
 
 
-        public void ChargeMotorcycle(float i_hoursToCharge)
+        public override void fillUp(float i_numberOfMinutesToAdd)
         {
             try
             {
-                m_ElectricData.ChargeBattery(i_hoursToCharge);
+                m_ElectricData.ChargeBattery(i_numberOfMinutesToAdd);
             }
-            catch (Exception e)
+            catch(ValueOutOfRangeException e)
             {
-                ValueOutOfRangeException valueOutOfRangeException = new ValueOutOfRangeException(e, i_hoursToCharge, 0f, r_MaxHoursOfBattery);
-                throw valueOutOfRangeException;
+                throw new ValueOutOfRangeException(e, m_ElectricData.NumberOfHoursLeft, 0, r_MaxHoursOfBattery);
             }
         }
 

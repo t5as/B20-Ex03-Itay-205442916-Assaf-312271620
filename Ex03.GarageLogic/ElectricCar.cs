@@ -46,6 +46,18 @@ namespace Ex03.GarageLogic
             return string.Format(vehicleStringData.ToString());
         }
 
+        public override void fillUp(float i_numberOfMinutesToAdd)
+        {
+            try
+            {
+                m_ElectricData.ChargeBattery(i_numberOfMinutesToAdd);
+            }
+            catch (ValueOutOfRangeException e)
+            {
+                throw new ValueOutOfRangeException(e, m_ElectricData.NumberOfHoursLeft, 0, r_MaxHoursOfBattery);
+            }
+        }
+
         public Dictionary<string, string[]> dataFromUser()
         {
             Dictionary<string, string[]> dataToGet = Car.dataFromUser();           

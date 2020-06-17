@@ -6,8 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class NormalMotorcycle : Motorcycle
     {
-        private static readonly float k_maxFuelAmountLitres = 7;
-        private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Octan95, 7);
+        private static readonly float k_maxFuelAmountLitres = 7;        
+        private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Octan95, k_maxFuelAmountLitres);
 
         /*public NormalMotorcycle(string i_ownerName, string i_ownerPhoneNumber,
             string i_carModel, string i_licenseNumber, int i_engineSize,
@@ -30,7 +30,22 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_FuelData.ToString());
             return String.Format(vehicleStringData.ToString());
-        } 
+        }
+
+        public override void fillUp(string i_fuelType, float i_litresToAdd)
+        {
+            if (m_FuelData.getFuelType(i_fuelType) == m_FuelData.FuelType)
+            {
+                try
+                {
+                    m_FuelData.Refuel(i_litresToAdd);
+                }
+                catch (ValueOutOfRangeException e)
+                {
+                    throw new ValueOutOfRangeException(e, m_FuelData.CurrentFuelAmountLitres, 0, k_maxFuelAmountLitres);
+                }
+            }
+        }
 
 
         public Dictionary<string, string[]> dataFromUser()

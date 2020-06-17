@@ -112,6 +112,52 @@ namespace Ex03.GarageLogic
             {
                 return "Vehicle was not found";
             }
+        } 
+
+        public string chargeElectricVehicle(string i_licenseNumber,
+            float i_numberOfMinutes)
+        {
+            Vehicle vehicle = SearchVehicle(i_licenseNumber); 
+            if(vehicle != null)
+            {
+                try
+                {
+                    vehicle.fillUp(i_numberOfMinutes);
+                    return "Vehicle was successfully charged";
+                }
+                catch(ValueOutOfRangeException e)
+                {
+                    throw new ValueOutOfRangeException(e, 0, 0, 1);
+                    return "Could not charge vehicle";
+                }
+            }
+            else
+            {
+                return "Vehicle was not found";
+            }
+        }
+
+        public string fuelNormalVehicle(string i_licenseNumber, string i_fuelType,
+            float i_litresToAdd)
+        {
+            Vehicle vehicle = SearchVehicle(i_licenseNumber);
+            if (vehicle != null)
+            {
+                try
+                {
+                    vehicle.fillUp(i_fuelType, i_litresToAdd);
+                    return "Vehicle was successfully fueled";
+                }
+                catch (ValueOutOfRangeException e)
+                {
+                    throw new ValueOutOfRangeException(e, 0, 0, 1);
+                    return "Could not fuel vehicle";
+                }
+            }
+            else
+            {
+                return "Vehicle was not found";
+            }
         }
 
         public string DisplayVehicleData(string i_licenseNumber)

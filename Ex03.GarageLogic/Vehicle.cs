@@ -116,6 +116,11 @@ namespace Ex03.GarageLogic
         public virtual void fillUp(string FuelType, float i_litresToAdd)
         {
 
+        } 
+
+        public virtual void fillUp(float i_numberOfMinutesToAdd)
+        {
+
         }
 
         /*public static Dictionary<string, string[]> dataFromUser()
