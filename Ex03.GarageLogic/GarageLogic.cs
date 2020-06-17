@@ -97,10 +97,19 @@ namespace Ex03.GarageLogic
             
         } 
 
-        public void DisplayVehicleData(string i_licenseNumber)
+        public string DisplayVehicleData(string i_licenseNumber)
         {
             Vehicle vehicle = SearchVehicle(i_licenseNumber);
-            System.Console.WriteLine(vehicle.ToString());
+            if(vehicle != null)
+            {
+                return vehicle.ToString();
+            }
+            else
+            {
+                return "Vehicle was not found";
+            }
+            
+            
         } 
 
         public void ChargeVehicle(string i_licenseNumber, uint i_numberOfMinutesCharge)
