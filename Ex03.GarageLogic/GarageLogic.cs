@@ -34,7 +34,7 @@ namespace Ex03.GarageLogic
             newVehicleCreator.SetDataDictionary(i_setDataDictionary);
             newVehicleCreator.updateVehicleData(i_carType);
             m_GarageVehicles.Add(i_vehicle);
-            return "Vehicle was added successfully";
+            return "Vehicle was added successfully:  " + m_GarageVehicles.Count;
         }
         
         
