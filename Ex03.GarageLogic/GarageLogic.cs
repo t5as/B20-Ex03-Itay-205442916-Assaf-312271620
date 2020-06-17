@@ -175,21 +175,6 @@ namespace Ex03.GarageLogic
             
         } 
 
-        public void ChargeVehicle(string i_licenseNumber, uint i_numberOfMinutesCharge)
-        {
-            Vehicle vehicle = SearchVehicle(i_licenseNumber);
-            float hoursToCharge = i_numberOfMinutesCharge / 60;
-            if (vehicle is ElectricCar)
-            {
-                ElectricCar electricCar = vehicle as ElectricCar;                
-                electricCar.ChargeCar(hoursToCharge);
-            }
-            else if(vehicle is ElectricMotorcycle)
-            {
-                ElectricMotorcycle electricMotor = vehicle as ElectricMotorcycle;
-                electricMotor.ChargeMotorcycle(hoursToCharge);
-            }
-        }
 
         /*public Vehicle createVehicle(string i_carType)
         {
