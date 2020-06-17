@@ -50,12 +50,14 @@ namespace Ex03.GarageLogic
             return null;
         } 
         
-        public void DisplayVehiclesLicenses()
+        public string DisplayVehiclesLicenses()
         {
-            foreach(Vehicle vehicle in m_GarageVehicles)
+            StringBuilder vehicleLicenses = new StringBuilder();
+            foreach (Vehicle vehicle in m_GarageVehicles)
             {
-                System.Console.WriteLine(vehicle.LicenseNumber);
+                vehicleLicenses.Append(vehicle.LicenseNumber + "\n");
             }
+            return vehicleLicenses.ToString();
         } 
 
         public void DisplayVehiclesLicenses(Vehicle.eVehicleState i_vehicleState)
