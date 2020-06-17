@@ -106,6 +106,11 @@ namespace Ex03.GarageLogic
                 vehicleStates.Add(vehicleState.ToString());
             }
             return vehicleStates;
+        } 
+
+        public virtual void inflateWheels()
+        {
+
         }
 
         /*public static Dictionary<string, string[]> dataFromUser()

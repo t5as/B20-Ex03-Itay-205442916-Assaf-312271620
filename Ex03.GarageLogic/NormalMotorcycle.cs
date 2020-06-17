@@ -30,7 +30,8 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_FuelData.ToString());
             return String.Format(vehicleStringData.ToString());
-        }
+        } 
+
 
         public Dictionary<string, string[]> dataFromUser()
         {

@@ -52,22 +52,9 @@ namespace Ex03.GarageLogic
         }
 
 
-        public void InflateWheel(float i_amountOfAirToAdd)
+        public void setAirPressureTomax()
         {
-            try
-            {
-                m_CurrentAirPressure += i_amountOfAirToAdd;
-
-                if (m_CurrentAirPressure > r_MaxAirPressure)
-                {
-                    m_CurrentAirPressure = r_MaxAirPressure;
-                }
-            }
-            catch (Exception e)
-            {
-                ValueOutOfRangeException valueOutOfRangeException = new ValueOutOfRangeException(e, i_amountOfAirToAdd, 0f, r_MaxAirPressure);
-                throw valueOutOfRangeException;
-            }
+            m_CurrentAirPressure = r_MaxAirPressure;
         }
     }
 }

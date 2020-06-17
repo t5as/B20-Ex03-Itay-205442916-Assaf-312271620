@@ -95,7 +95,21 @@ namespace Ex03.GarageLogic
                 return "Vehicle was not found";
             }
             
-        } 
+        }  
+
+        public string inflateVehicleWheels(string i_licenseNumber)
+        {
+            Vehicle vehicle = SearchVehicle(i_licenseNumber);
+            if (vehicle != null)
+            {
+                vehicle.inflateWheels();
+                return "Wheels are at maximum air pressure";
+            }
+            else
+            {
+                return "Vehicle was not found";
+            }
+        }
 
         public string DisplayVehicleData(string i_licenseNumber)
         {

@@ -90,6 +90,11 @@ namespace Ex03.GarageLogic
             return string.Format(vehicleStringData.ToString());
         }
 
+        public override void inflateWheels()
+        {
+            m_WheelData.setAirPressureTomax();
+        }
+
         public static Dictionary<string, string[]> dataFromUser()
         {
             Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
