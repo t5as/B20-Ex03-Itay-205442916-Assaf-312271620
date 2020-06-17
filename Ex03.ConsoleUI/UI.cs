@@ -8,7 +8,6 @@ namespace Ex03.ConsoleUI
 {
     class UI
     {
-
         public static void startAction()
         {
             string stringAction = getAction();
@@ -19,13 +18,121 @@ namespace Ex03.ConsoleUI
                 action = isValidAction(stringAction);
             }
 
-            if(action == 1) EnterNewVehicle();
-            if(action == 2) EnterNewVehicle();
-            if(action == 3) EnterNewVehicle();
-            if(action == 4) EnterNewVehicle();
-            if(action == 5) EnterNewVehicle();
-            if(action == 6) EnterNewVehicle();
-            if(action == 7) EnterNewVehicle();
+            GarageLogic.GarageLogic gl = new GarageLogic.GarageLogic();
+
+            if (action == 1) EnterNewVehicle();
+            else if(action == 2)
+            {
+                string withOrWithoutFilter = getWithOrWithoutFilter();
+                byte byteWithOrWithoutFilter = isValidFilter(withOrWithoutFilter);
+                
+                while(byteWithOrWithoutFilter == 0)
+                {
+                    withOrWithoutFilter = getWithOrWithoutFilter();
+                    byteWithOrWithoutFilter = isValidFilter(withOrWithoutFilter);
+                }
+
+                if(byteWithOrWithoutFilter == 1)
+                {
+                    string[] states = gl.getVehicleStates();
+                    Console.WriteLine(states[0]);
+                    string state = Console.ReadLine();
+                    object validState = ParseAnswer(states[1], state);
+
+                    while (validState == null)
+                    {
+                        Console.WriteLine("Invalid type - {0} should be {1}", state, states[1]);
+                        Console.WriteLine(states[0]);
+                        state = Console.ReadLine();
+                        validState = UI.ParseAnswer(states[1], state);
+                    }
+
+                    gl.DisplayVehiclesLicenses(state);
+                }
+                else if(byteWithOrWithoutFilter == 2)
+                {
+                    gl.DisplayVehiclesLicenses();
+                }
+            }
+            else if(action == 3)
+            {
+                string licenseNumber = getString("license number");
+                bool licenseNumberValid = isValidNumber(licenseNumber, "license number");
+                while (!licenseNumberValid)
+                {
+                    licenseNumber = getString("license number");
+                    licenseNumberValid = isValidNumber(licenseNumber, "license number");
+                }
+
+                string[] states = gl.getVehicleStates();
+                Console.WriteLine(states[0]);
+                string state = Console.ReadLine();
+                object validState = ParseAnswer(states[1], state);
+
+                while (validState == null)
+                {
+                    Console.WriteLine("Invalid type - {0} should be {1}", state, states[1]);
+                    Console.WriteLine(states[0]);
+                    state = Console.ReadLine();
+                    validState = UI.ParseAnswer(states[1], state);
+                }
+
+                gl.UpdateVehicleState(licenseNumber, state);
+            }
+            else if(action == 4)
+            {
+                string licenseNumber = getString("license number");
+                bool licenseNumberValid = isValidNumber(licenseNumber, "license number");
+                while (!licenseNumberValid)
+                {
+                    licenseNumber = getString("license number");
+                    licenseNumberValid = isValidNumber(licenseNumber, "license number");
+                }
+                
+                
+            }
+            else if(action == 5)
+            {
+                
+            }
+            else if(action == 6)
+            {
+                
+            }
+            else if(action == 7)
+            {
+                
+            }
+        }
+
+        private static string getWithOrWithoutFilter()
+        {
+            Console.WriteLine(
+                string.Format(
+                    @"If you wish to view vehicles in the garage and filter them by status - press 1
+If you wish to view all vehicles in the garage without filter - press 2"));
+            string withOrWithoutFilter = Console.ReadLine();
+
+            return withOrWithoutFilter;
+        }
+
+        private static byte isValidFilter(string i_withOrWithoutFilter)
+        {
+            if (i_withOrWithoutFilter.Length != 1)
+            {
+                Console.WriteLine("Invalid action, please try again");
+                return 0;
+            }
+
+            byte byteWithOrWithoutFilter = byte.Parse(i_withOrWithoutFilter);
+
+            if (byteWithOrWithoutFilter < 1 || byteWithOrWithoutFilter > 2)
+            {
+                Console.WriteLine("Invalid option, please try again");
+                return 0;
+            }
+
+            return byteWithOrWithoutFilter;
         }
 
         private static string getAction()
@@ -304,6 +411,3 @@ If you wish to see full vehicle data by it's license number - press 7"));
         }
     }
 }
-
-
-
