@@ -9,20 +9,23 @@ namespace Ex03.ConsoleUI
 {
     public class UI
     {
-        public static void run()
+        public static void Run()
         {
             Console.WriteLine("Welcome To the garage!");
-            startAction();
+            GarageLogic.GarageLogic garage = new GarageLogic.GarageLogic();
+            StartAction(garage);
             string answer = getAnswer();
             byte byteAnswer = isValidAnswer(answer);
+
             while(byteAnswer == 0)
             {
                 answer = getAnswer();
                 byteAnswer = isValidAnswer(answer);
             } 
+
             while(byteAnswer == 1)
             {
-                startAction();
+                StartAction(garage);
                 answer = getAnswer();
                 byteAnswer = isValidAnswer(answer);
                 while (byteAnswer == 0)
@@ -43,15 +46,15 @@ namespace Ex03.ConsoleUI
             return answer;
         }
 
-        private static byte isValidAnswer(string i_answer)
+        private static byte isValidAnswer(string i_Answer)
         {
-            if (i_answer.Length != 1)
+            if (i_Answer.Length != 1)
             {
                 Console.WriteLine("Invalid answer, please try again");
                 return 0;
             }
 
-            byte byteAnswer = byte.Parse(i_answer);
+            byte byteAnswer = byte.Parse(i_Answer);
 
             if (byteAnswer < 1 || byteAnswer > 2)
             {
@@ -62,21 +65,20 @@ namespace Ex03.ConsoleUI
             return byteAnswer;
         }
 
-        public static void startAction()
+        public static void StartAction(GarageLogic.GarageLogic i_Garage)
         {
             string stringAction = getAction();
             byte action = isValidAction(stringAction);
+
             while(action == 0)
             {
                 stringAction = getAction();
                 action = isValidAction(stringAction);
             }
 
-            GarageLogic.GarageLogic gl = new GarageLogic.GarageLogic();
-
             if(action == 1)
             {
-                EnterNewVehicle();
+                EnterNewVehicle(i_Garage);
             }
             else if (action == 2)
             {
@@ -91,7 +93,7 @@ namespace Ex03.ConsoleUI
 
                 if (byteWithOrWithoutFilter == 1)
                 {
-                    string[] states = gl.getVehicleStates();
+                    string[] states = i_Garage.getVehicleStates();
                     Console.WriteLine(states[0]);
                     string state = Console.ReadLine();
                     object validState = ParseAnswer(states[1], state);
@@ -104,17 +106,18 @@ namespace Ex03.ConsoleUI
                         validState = UI.ParseAnswer(states[1], state);
                     }
 
-                    Console.WriteLine(gl.DisplayVehiclesLicenses(state));
+                    Console.WriteLine(i_Garage.DisplayVehiclesLicenses(state));
                 }
                 else if (byteWithOrWithoutFilter == 2)
                 {
-                    Console.WriteLine(gl.DisplayVehiclesLicenses());
+                    Console.WriteLine(i_Garage.DisplayVehiclesLicenses());
                 }
             }
             else
             {
                 string licenseNumber = getString("license number");
                 bool licenseNumberValid = isValidNumber(licenseNumber, "license number");
+
                 while (!licenseNumberValid)
                 {
                     licenseNumber = getString("license number");
@@ -123,7 +126,7 @@ namespace Ex03.ConsoleUI
 
                 if(action == 3)
                 {
-                    string[] states = gl.getVehicleStates();
+                    string[] states = i_Garage.getVehicleStates();
                     Console.WriteLine(states[0]);
                     string state = Console.ReadLine();
                     object validState = ParseAnswer(states[1], state);
@@ -136,18 +139,19 @@ namespace Ex03.ConsoleUI
                         validState = UI.ParseAnswer(states[1], state);
                     }
 
-                    Console.WriteLine(gl.UpdateVehicleState(licenseNumber, state));
+                    Console.WriteLine(i_Garage.UpdateVehicleState(licenseNumber, state));
                 }
                 else if(action == 4)
                 {
-                    Console.WriteLine(gl.inflateVehicleWheels(licenseNumber));
+                    Console.WriteLine(i_Garage.inflateVehicleWheels(licenseNumber));
                 }
                 else if(action == 5)
                 {
-                    string[] fuelTypes = gl.getFuelTypes();
+                    string[] fuelTypes = i_Garage.getFuelTypes();
                     Console.WriteLine(fuelTypes[0]);
                     string fuelType = Console.ReadLine();
                     object validFuelType = ParseAnswer(fuelTypes[1], fuelType);
+
                     while (validFuelType == null)
                     {
                         Console.WriteLine("Invalid type - {0} should be {1}", fuelType, fuelTypes[1]);
@@ -158,6 +162,7 @@ namespace Ex03.ConsoleUI
 
                     string fuelAmount = getString("fuel amount");
                     object fuelAmountValid = ParseAnswer("float", fuelAmount);
+
                     while (fuelAmountValid == null)
                     {
                         Console.WriteLine("Invalid type - {0} should be {1}", fuelAmount, "float");
@@ -167,7 +172,7 @@ namespace Ex03.ConsoleUI
 
                     try
                     {
-                        Console.WriteLine(gl.fuelNormalVehicle(licenseNumber, fuelType, (float)fuelAmountValid));
+                        Console.WriteLine(i_Garage.fuelNormalVehicle(licenseNumber, fuelType, (float)fuelAmountValid));
                     }
                     catch(Exception e)
                     {
@@ -178,6 +183,7 @@ namespace Ex03.ConsoleUI
                 {
                     string minutesToCharge = getString("minutes to charge");
                     object minutesToChargeValid = ParseAnswer("float", minutesToCharge);
+
                     while (minutesToChargeValid == null)
                     {
                         Console.WriteLine("Invalid type - {0} should be {1}", minutesToCharge, "float");
@@ -187,7 +193,7 @@ namespace Ex03.ConsoleUI
 
                     try
                     {
-                        Console.WriteLine(gl.chargeElectricVehicle(licenseNumber, (float)minutesToChargeValid));
+                        Console.WriteLine(i_Garage.chargeElectricVehicle(licenseNumber, (float)minutesToChargeValid));
                     }
                     catch (Exception e)
                     {
@@ -196,7 +202,7 @@ namespace Ex03.ConsoleUI
                 }
                 else if(action == 7)
                 {
-                    Console.WriteLine(gl.DisplayVehicleData(licenseNumber));
+                    Console.WriteLine(i_Garage.DisplayVehicleData(licenseNumber));
                 }
             }
         }
@@ -212,15 +218,15 @@ If you wish to view all vehicles in the garage without filter - press 2"));
             return withOrWithoutFilter;
         }
 
-        private static byte isValidFilter(string i_withOrWithoutFilter)
+        private static byte isValidFilter(string i_WithOrWithoutFilter)
         {
-            if (i_withOrWithoutFilter.Length != 1)
+            if (i_WithOrWithoutFilter.Length != 1)
             {
                 Console.WriteLine("Invalid action, please try again");
                 return 0;
             }
 
-            byte byteWithOrWithoutFilter = byte.Parse(i_withOrWithoutFilter);
+            byte byteWithOrWithoutFilter = byte.Parse(i_WithOrWithoutFilter);
 
             if (byteWithOrWithoutFilter < 1 || byteWithOrWithoutFilter > 2)
             {
@@ -248,15 +254,15 @@ If you wish to see full vehicle data by it's license number - press 7"));
             return action;
         }
 
-        private static byte isValidAction(string i_action)
+        private static byte isValidAction(string i_Action)
         {
-            if (i_action.Length != 1)
+            if (i_Action.Length != 1)
             {
                 Console.WriteLine("Invalid action, please try again");
                 return 0;
             }
 
-            byte byteAction = byte.Parse(i_action);
+            byte byteAction = byte.Parse(i_Action);
 
             if (byteAction < 1 || byteAction > 7)
             {
@@ -267,22 +273,23 @@ If you wish to see full vehicle data by it's license number - press 7"));
             return byteAction;
         }
 
-        public static void EnterNewVehicle()
+        public static void EnterNewVehicle(GarageLogic.GarageLogic i_Garage)
         {
             Vehicle vehicle = InitializeVehicle();
-            GarageLogic.GarageLogic garage = new GarageLogic.GarageLogic();
-            Dictionary<string, Dictionary<string, string[]>> vehiclesQuestionsDictionary = garage.getVehicleRequiredData(vehicle);
+            Dictionary<string, Dictionary<string, string[]>> vehiclesQuestionsDictionary = i_Garage.getVehicleRequiredData(vehicle);
             string[] carTypes = new string[vehiclesQuestionsDictionary.Keys.Count];
             vehiclesQuestionsDictionary.Keys.CopyTo(carTypes, 0);
             string carType = GetCarType(carTypes);
             Dictionary<string, string[]> questionsForUser = vehiclesQuestionsDictionary[carType];
             Dictionary<string, object> setDataDictionary = new Dictionary<string, object>();
+            
             foreach (KeyValuePair<string, string[]> vehiclePair in questionsForUser)
             {
                 Console.WriteLine(vehiclePair.Value[0]);
                 Console.WriteLine("The type of answer: " + vehiclePair.Value[1]);
                 string answer = Console.ReadLine();
                 object validAnswer = ParseAnswer(vehiclePair.Value[1], answer);
+                
                 while (validAnswer == null)
                 {
                     Console.WriteLine("Invalid type - {0} should be {1}", vehiclePair.Key, vehiclePair.Value[1]);
@@ -294,13 +301,14 @@ If you wish to see full vehicle data by it's license number - press 7"));
                 setDataDictionary.Add(vehiclePair.Key, validAnswer);
             }
 
-            garage.setVehicleData(vehicle, setDataDictionary, carType);
+            Console.WriteLine(i_Garage.setVehicleData(vehicle, setDataDictionary, carType));
         }
 
         public static Vehicle InitializeVehicle()
         {
             string ownerFirstName = getString("first name");
             bool firstNameValid = IsValidName(ownerFirstName);
+            
             while (!firstNameValid)
             {
                 ownerFirstName = getString("first name");
@@ -309,6 +317,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
 
             string ownerSurname = getString("surname");
             bool surnameValid = IsValidName(ownerSurname);
+            
             while (!surnameValid)
             {
                 ownerSurname = getString("surname");
@@ -319,6 +328,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
 
             string ownerPhoneNumber = getString("phone number");
             bool phoneNumberValid = isValidNumber(ownerPhoneNumber, "phone number");
+            
             while (!phoneNumberValid)
             {
                 ownerPhoneNumber = getString("phone number");
@@ -327,6 +337,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
 
             string vehicleModel = getString("vehicle model");
             bool vehicleModelValid = isValidVehicleModel(vehicleModel);
+           
             while (!vehicleModelValid)
             {
                 vehicleModel = getString("vehicle model");
@@ -335,6 +346,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
 
             string licenseNumber = getString("license number");
             bool licenseNumberValid = isValidNumber(licenseNumber, "license number");
+            
             while (!licenseNumberValid)
             {
                 licenseNumber = getString("license number");
@@ -415,11 +427,11 @@ If you wish to see full vehicle data by it's license number - press 7"));
             return v_ValidNumber;
         }
 
-        private static bool isValidVehicleModel(string i_vehicleModel)
+        private static bool isValidVehicleModel(string i_VehicleModel)
         {
             const bool v_ValidVehicleModel = true;
 
-            if (i_vehicleModel.Length < 1)
+            if (i_VehicleModel.Length < 1)
             {
                 Console.WriteLine("Invalid vehicle model - Vehicle model should not be empty");
                 return !v_ValidVehicleModel;
@@ -428,103 +440,104 @@ If you wish to see full vehicle data by it's license number - press 7"));
             return v_ValidVehicleModel;
         }
 
-        public static string GetCarType(string[] i_typesArray)
+        public static string GetCarType(string[] i_TypesArray)
         {
-            foreach (string vehicleType in i_typesArray)
+            foreach (string vehicleType in i_TypesArray)
             {
-                Console.WriteLine(string.Format("For {0} press: {1}", vehicleType, System.Array.IndexOf(i_typesArray, vehicleType)));
+                Console.WriteLine(string.Format("For {0} press: {1}", vehicleType, System.Array.IndexOf(i_TypesArray, vehicleType)));
             }
 
             string strCarType = Console.ReadLine();
-            int carType = isValidCarType(strCarType, 0, i_typesArray.Length - 1);
-            while (carType == i_typesArray.Length)
+            int carType = isValidCarType(strCarType, 0, i_TypesArray.Length - 1);
+
+            while (carType == i_TypesArray.Length)
             {
                 strCarType = Console.ReadLine();
-                carType = isValidCarType(strCarType, 0, i_typesArray.Length - 1);
+                carType = isValidCarType(strCarType, 0, i_TypesArray.Length - 1);
             }
 
-            return i_typesArray[carType];
+            return i_TypesArray[carType];
         }
 
-        private static int isValidCarType(string i_carType, int i_minValue, int i_maxValue)
+        private static int isValidCarType(string i_CarType, int i_MinValue, int i_MaxValue)
         {
             int carType;
-            bool validCarType = int.TryParse(i_carType, out carType);
+            bool validCarType = int.TryParse(i_CarType, out carType);
 
-            if (validCarType == false || i_carType.Length != 1)
+            if (validCarType == false || i_CarType.Length != 1)
             {
                 Console.WriteLine("Invalid car type, please try again");
-                return i_maxValue + 1;
+                return i_MaxValue + 1;
             }
 
-            if (carType < i_minValue || carType > i_maxValue)
+            if (carType < i_MinValue || carType > i_MaxValue)
             {
                 Console.WriteLine("Invalid car type, please try again");
-                return i_maxValue + 1;
+                return i_MaxValue + 1;
             }
 
             return carType;
         }
 
-        public static object ParseAnswer(string i_type, string i_answer)
+        public static object ParseAnswer(string i_Type, string i_Answer)
         {
             object answer = null;
-            int indexOfColon = i_type.IndexOf(':');
+            int indexOfColon = i_Type.IndexOf(':');
 
-            if (i_type == "int")
+            if (i_Type == "int")
             {
-                if(int.TryParse(i_answer, out _))
+                if(int.TryParse(i_Answer, out _))
                 {
-                    answer = int.Parse(i_answer);
+                    answer = int.Parse(i_Answer);
                 }
             }
-            else if (i_type == "byte")
+            else if (i_Type == "byte")
             {
-                if(byte.TryParse(i_answer, out _))
+                if(byte.TryParse(i_Answer, out _))
                 {
-                    answer = byte.Parse(i_answer);
+                    answer = byte.Parse(i_Answer);
                 }
             }
-            else if (i_type == "float")
+            else if (i_Type == "float")
             {
-                if(float.TryParse(i_answer, out _))
+                if(float.TryParse(i_Answer, out _))
                 {
-                    answer = float.Parse(i_answer);
+                    answer = float.Parse(i_Answer);
                 }
             }
-            else if (i_type == "bool")
+            else if (i_Type == "bool")
             {
-                if(bool.TryParse(i_answer, out _))
+                if(bool.TryParse(i_Answer, out _))
                 {
-                    answer = bool.Parse(i_answer);
+                    answer = bool.Parse(i_Answer);
                 }
             }
             else if (indexOfColon != -1)
             {
-                if(i_type.Trim().Substring(0, i_type.IndexOf(':')) == "enum")
+                if(i_Type.Trim().Substring(0, i_Type.IndexOf(':')) == "enum")
                 {
-                    answer = ParseEnum(i_type, i_answer);
+                    answer = ParseEnum(i_Type, i_Answer);
                 }
             }
             else
             {
-                answer = i_answer;
+                answer = i_Answer;
             }
 
             return answer;
         }
 
-        public static object ParseEnum(string i_enum, string i_answer)
+        public static object ParseEnum(string i_Enum, string i_Answer)
         {
-            int indexOfColon = i_enum.IndexOf(':');
-            string enumWithoutSpaces = i_enum.Replace(" ", string.Empty);
+            int indexOfColon = i_Enum.IndexOf(':');
+            string enumWithoutSpaces = i_Enum.Replace(" ", string.Empty);
             string[] enumString = enumWithoutSpaces.Substring(indexOfColon + 1, enumWithoutSpaces.Length - (indexOfColon + 1)).Split(',');
 
             foreach (string value in enumString)
             {
-                if(value.ToLower().Equals(i_answer.ToLower()))
+                if(value.ToLower().Equals(i_Answer.ToLower()))
                 {
-                    return i_answer;
+                    return i_Answer;
                 }
             }
 

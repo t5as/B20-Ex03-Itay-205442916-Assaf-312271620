@@ -8,7 +8,7 @@ namespace Ex03.ConsoleUI
     {
         static void Main()
         {
-            UI.run();
+            UI.Run();
         }
     }
 }
