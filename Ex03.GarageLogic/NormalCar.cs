@@ -59,8 +59,8 @@ namespace Ex03.GarageLogic
         {
             try
             {
-                this.NumberOfDoors = this.getNumberOfDoors((string)i_VehicleData["NumberOfDoors"]);
-                this.CarColor = this.getCarColor((string)i_VehicleData["CarColor"]);
+                this.NumberOfDoors = this.GetNumberOfDoors((string)i_VehicleData["NumberOfDoors"]);
+                this.CarColor = this.GetCarColor((string)i_VehicleData["CarColor"]);
                 this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
                 this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
                 m_FuelData.CurrentFuelAmountLitres = float.Parse(i_VehicleData["CurrentFuelAmountLitres"].ToString());

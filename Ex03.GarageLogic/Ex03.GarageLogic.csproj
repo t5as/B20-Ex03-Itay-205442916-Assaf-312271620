@@ -35,8 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
-    <Compile Include="Console.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="CreateVehicle.cs" />
     <Compile Include="ElectricCar.cs" />

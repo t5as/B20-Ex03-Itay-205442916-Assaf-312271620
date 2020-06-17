@@ -6,9 +6,9 @@ namespace Ex03.GarageLogic
 {
     public class Truck : Vehicle
     {
-        private readonly byte r_NumberOfWheels = 16;
-        private static float r_MaxFuelAmountLitres = 120;
         private static readonly byte r_MaxAirPressure = 28;
+        private static float r_MaxFuelAmountLitres = 120;
+        private readonly byte r_NumberOfWheels = 16;
         private bool m_IsDrivingHazardousMaterial;
         private float m_TrunkVolume;
         private Wheel m_WheelData;
@@ -82,11 +82,12 @@ namespace Ex03.GarageLogic
                 m_IsDrivingHazardousMaterial = (bool)i_VehicleData["IsDrivingHazardousMaterial"];
                 m_TrunkVolume = float.Parse(i_VehicleData["TrunkVolume"].ToString());
                 m_FuelData.CurrentFuelAmountLitres = float.Parse(i_VehicleData["CurrentFuelAmountLitres"].ToString());
-                return "";
+                
+                return string.Empty;
             }
             catch(KeyNotFoundException e)
             {
-                return "";
+                return string.Empty;
             }
         }
     }

@@ -12,22 +12,6 @@ namespace Ex03.GarageLogic
         private eCarColor m_CarColor;
         private Wheel m_WheelData;
 
-        /*public Car(
-            string i_ownerName, 
-            string i_ownerPhoneNumber,
-            string i_carModel, 
-            string i_licenseNumber, 
-            eNumberOfDoors i_numberOfDoors,
-            eCarColor i_carColor, 
-            string i_manufacturerName,
-            float i_currentAirPressure) : 
-            base(i_ownerName, i_ownerPhoneNumber, i_carModel, i_licenseNumber)
-        {
-            r_NumberOfDoors = i_numberOfDoors;
-            r_CarColor = i_carColor;
-            m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
-        }*/
-
         public Car(Vehicle i_vehicle) : base(
             i_vehicle.OwnerName,
             i_vehicle.OwnerPhoneNumber, 
@@ -61,9 +45,9 @@ namespace Ex03.GarageLogic
             }
         } 
 
-        public eCarColor getCarColor(string i_carColor)
+        public eCarColor GetCarColor(string i_CarColor)
         {
-            switch (i_carColor.ToLower())
+            switch (i_CarColor.ToLower())
             {
                 case "red":
                     return eCarColor.Red;
@@ -96,9 +80,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public eNumberOfDoors getNumberOfDoors(string i_numberOfDoors)
+        public eNumberOfDoors GetNumberOfDoors(string i_NumberOfDoors)
         {
-            switch (i_numberOfDoors.ToLower())
+            switch (i_NumberOfDoors.ToLower())
             {
                 case "two":
                     return eNumberOfDoors.Two;
@@ -135,7 +119,8 @@ namespace Ex03.GarageLogic
             Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
             dataToGet.Add(
                 "NumberOfDoors", 
-                new string[] {"Please enter number of doors (two, three, four, five): ",
+                new string[] { 
+                                     "Please enter number of doors (two, three, four, five): ",
                 "enum: two, three, four, five"
             });
             dataToGet.Add(

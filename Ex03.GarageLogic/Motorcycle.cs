@@ -12,16 +12,6 @@ namespace Ex03.GarageLogic
         private eTypeOfLicense m_TypeOfLicense;
         private Wheel m_WheelData;
 
-        /*public Motorcycle(string i_ownerName, string i_ownerPhoneNumber,
-            string i_carModel, string i_licenseNumber, int i_engineSize,
-            eTypeOfLicense i_typeOfLicense, string i_manufacturerName,
-            float i_currentAirPressure) : base(i_ownerName,
-                i_ownerPhoneNumber, i_carModel, i_licenseNumber)
-        {
-            r_EngineSize = i_engineSize;
-            r_TypeOfLicense = i_typeOfLicense;
-            m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
-        }*/
 
         public Motorcycle(Vehicle i_vehicle) : base(i_vehicle.OwnerName, i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
         {
