@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public class Car : Vehicle
     {
-        private static readonly byte r_MaxAirPressure = 32;
+        private static readonly float r_MaxAirPressure = 32;
         private readonly byte r_NumberOfWheels = 4;
         private eNumberOfDoors m_NumberOfDoors;
         private eCarColor m_CarColor;

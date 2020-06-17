@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public class Truck : Vehicle
     {
-        private static readonly byte r_MaxAirPressure = 28;
+        private static readonly float r_MaxAirPressure = 28;
         private static float r_MaxFuelAmountLitres = 120;
         private readonly byte r_NumberOfWheels = 16;
         private bool m_IsDrivingHazardousMaterial;

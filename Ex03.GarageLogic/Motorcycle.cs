@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public class Motorcycle : Vehicle
     {
-        private static readonly byte r_MaxAirPressure = 30;
+        private static readonly float r_MaxAirPressure = 30;
         private readonly byte r_NumberOfWheels = 2;
         private int m_EngineSize;
         private eTypeOfLicense m_TypeOfLicense;
