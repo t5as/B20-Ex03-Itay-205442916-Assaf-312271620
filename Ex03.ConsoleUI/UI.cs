@@ -7,6 +7,19 @@ namespace Ex03.ConsoleUI
 {
     class UI
     {
+        public static object ParseAnswer(string i_type, string i_answer)
+        {
+            object answer;
+            if (i_type == "int") answer = int.Parse(i_answer);
+            else if (i_type == "byte") answer = byte.Parse(i_answer);
+            else if (i_type == "float") answer = float.Parse(i_answer);
+            else if (i_type == "bool") answer = bool.Parse(i_answer);
+            //else if (i_type.Trim().Substring(0, i_type.IndexOf(':') - 1) == "enum") answer = 
+            else answer = i_answer;
+
+            return answer;
+        }
+
         public List<object> ParseAnswers(string i_type, string i_answer)
         {
             List<object> answers = new List<object>();
@@ -15,10 +28,11 @@ namespace Ex03.ConsoleUI
             else if (i_type == "float") answers.Add(float.Parse(i_answer));
             else if (i_type == "bool") answers.Add(bool.Parse(i_answer));
             else if (i_type == "string") answers.Add(i_answer);
+            //else if (i_type.Trim().Substring(0,i_type.IndexOf(':') - 1) == "enum")
             return answers;
         }
 
-        public static string[] ParseEnums(string i_enum)
+        public static string[] ParseEnum(string i_enum)
         {
             int indexOfColon = i_enum.IndexOf(':');
             string[] enumString = i_enum.Trim().Substring(indexOfColon + 1, i_enum.Length).Split(',');
@@ -82,27 +96,27 @@ If you wish to see full vehicle data by it's license number - press 7"));
             string ownerName = string.Format("{0} {1}", ownerFirstName, ownerSurname);
 
             string ownerPhoneNumber = getString("phone number");
-            bool phoneNumberValid = IsValidNumber(ownerPhoneNumber, "phone number");
+            bool phoneNumberValid = isValidNumber(ownerPhoneNumber, "phone number");
             while (!phoneNumberValid)
             {
                 ownerPhoneNumber = getString("phone number");
-                phoneNumberValid = IsValidNumber(ownerPhoneNumber, "phone number");
+                phoneNumberValid = isValidNumber(ownerPhoneNumber, "phone number");
             }
 
             string vehicleModel = getString("vehicle model");
-            bool vehicleModelValid = IsValidVehicleModel(vehicleModel);
+            bool vehicleModelValid = isValidVehicleModel(vehicleModel);
             while (!vehicleModelValid)
             {
                 vehicleModel = getString("vehicle model");
-                vehicleModelValid = IsValidVehicleModel(vehicleModel);
+                vehicleModelValid = isValidVehicleModel(vehicleModel);
             }
 
             string licenseNumber = getString("license number");
-            bool licenseNumberValid = IsValidNumber(licenseNumber, "license number");
-            while (!vehicleModelValid)
+            bool licenseNumberValid = isValidNumber(licenseNumber, "license number");
+            while (!licenseNumberValid)
             {
                 licenseNumber = getString("license number");
-                licenseNumberValid = IsValidNumber(licenseNumber, "license number");
+                licenseNumberValid = isValidNumber(licenseNumber, "license number");
             }
             
             Ex03.GarageLogic.Vehicle vehicle = new Vehicle(ownerName, ownerPhoneNumber, vehicleModel, licenseNumber);
@@ -111,7 +125,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
 
         private static string getString(string i_Type)
         {
-            Console.WriteLine("Please enter {0}", i_Type);
+            Console.WriteLine("Please enter {0}:", i_Type);
             string str = Console.ReadLine();
             return str;
         }
@@ -157,31 +171,42 @@ If you wish to see full vehicle data by it's license number - press 7"));
             return v_ValidName;
         }
 
-        public static bool IsValidNumber(string i_StrNumber, string i_Type)
+        private static bool isValidNumber(string i_StrNumber, string i_Type)
         {
-            int number;
-            bool isNumeric = int.TryParse(i_StrNumber, out number);
-            if (isNumeric == false)
+            const bool v_ValidNumber = true;
+
+            if (i_StrNumber.Length < 1)
             {
-                Console.WriteLine("Invalid {0} - Phone number should contain only digits", i_Type);
+                Console.WriteLine("Invalid {0} - {0} should not be empty", i_Type);
+                return !v_ValidNumber;
             }
-            return isNumeric;
+
+            foreach (char digit in i_StrNumber)
+            {
+                if(!char.IsDigit(digit))
+                {
+                    Console.WriteLine("Invalid {0} - {0} should contain digits only", i_Type);
+                    return !v_ValidNumber;
+                }
+            }
+
+            return v_ValidNumber;
         }
 
-        private static bool IsValidVehicleModel(string i_VehicleModel)
+        private static bool isValidVehicleModel(string i_vehicleModel)
         {
             const bool v_ValidVehicleModel = true;
 
-            if (i_VehicleModel.Length < 1)
+            if (i_vehicleModel.Length < 1)
             {
-                Console.WriteLine("Invalid vehicle model - Vehicle model should not be empty string");
+                Console.WriteLine("Invalid vehicle model - Vehicle model should not be empty");
                 return !v_ValidVehicleModel;
             }
 
             return v_ValidVehicleModel;
         }
 
-        public static string getCarType(string[] i_typesArray)
+        public static string GetCarType(string[] i_typesArray)
         {
             foreach (string vehicleType in i_typesArray)
             {
@@ -199,12 +224,12 @@ If you wish to see full vehicle data by it's license number - press 7"));
             return i_typesArray[carType];
         }
 
-        private static int isValidCarType(string i_CarType, int i_minValue, int i_maxValue)
+        private static int isValidCarType(string i_carType, int i_minValue, int i_maxValue)
         {
             int carType;
-            bool validCarType = int.TryParse(i_CarType, out carType);
+            bool validCarType = int.TryParse(i_carType, out carType);
 
-            if (validCarType == false || i_CarType.Length != 1)
+            if (validCarType == false || i_carType.Length != 1)
             {
                 Console.WriteLine("Invalid car type, please try again");
                 return i_maxValue + 1;
@@ -212,7 +237,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
 
             if (carType < i_minValue || carType > i_maxValue)
             {
-                Console.WriteLine("Invalid game type, please try again");
+                Console.WriteLine("Invalid car type, please try again");
                 return i_maxValue + 1; ;
             }
 
