@@ -92,7 +92,7 @@ namespace Ex03.GarageLogic
 
         public static Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string[]> dataToGet = Vehicle.dataFromUser();
+            Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
             dataToGet.Add("EngineSize", new string[] {
                 "Please enter integer representing engine size: ", "int" });
             dataToGet.Add("TypeOfLicense", new string[] {

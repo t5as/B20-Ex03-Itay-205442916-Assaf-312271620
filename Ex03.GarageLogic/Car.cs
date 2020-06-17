@@ -124,7 +124,7 @@ namespace Ex03.GarageLogic
 
         public static Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string[]> dataToGet = Vehicle.dataFromUser();            
+            Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
             dataToGet.Add("NumberOfDoors", new string[] {"Please enter number of doors (two, three, four, five): ",
                 "enum: two, three, four, five" });
             dataToGet.Add("CarColor", new string[] {"Please enter car color (red, white, black or silver): ",

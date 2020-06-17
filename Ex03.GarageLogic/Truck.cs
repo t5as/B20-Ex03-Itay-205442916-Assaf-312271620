@@ -44,7 +44,7 @@ namespace Ex03.GarageLogic
 
         public Dictionary<string, string[]> dataFromUser()
         {
-            Dictionary<string, string[]> dataToGet = Vehicle.dataFromUser();
+            Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
             dataToGet.Add("ManufacturerName", new string[] { "Please enter wheels manufacturer name: ", "string" });
             dataToGet.Add("CurrentAirPressure", new string[] {"Please enter current air pressure in wheels (smaller than max: "
                  + r_MaxAirPressure + "): ", "float" });

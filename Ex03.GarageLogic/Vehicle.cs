@@ -82,7 +82,7 @@ namespace Ex03.GarageLogic
             Payed
         }
 
-        public static Dictionary<string, string[]> dataFromUser()
+        /*public static Dictionary<string, string[]> dataFromUser()
         {
             Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
             dataToGet.Add("OwnerName", new string[] { "Please enter vehicle owner name: ", "string" });
@@ -90,7 +90,7 @@ namespace Ex03.GarageLogic
             dataToGet.Add("VehicleModel", new string[] { "Please enter vehicle model: ", "string" });
             dataToGet.Add("LicenseNumber", new string[] { "Please enter vehicle license number: ", "string" });
             return dataToGet;
-        } 
+        } */
 
     }
 }
