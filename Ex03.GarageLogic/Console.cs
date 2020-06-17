@@ -16,8 +16,8 @@ namespace Ex03.GarageLogic
             string model = "mazda";
             System.Console.WriteLine("please enter license number: ");
             string license = "1122294";
+            
             return new Vehicle(ownername, phone, model, license);
-
         } 
 
         public static string getCarType(string[] i_typesArray)

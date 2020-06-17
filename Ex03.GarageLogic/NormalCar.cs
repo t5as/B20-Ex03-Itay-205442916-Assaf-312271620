@@ -21,7 +21,6 @@ namespace Ex03.GarageLogic
 
         public NormalCar(Vehicle i_vehicle) : base(i_vehicle)
         {
-
         }
 
         public override string ToString()
@@ -29,6 +28,7 @@ namespace Ex03.GarageLogic
             StringBuilder vehicleStringData = new StringBuilder();
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_FuelData.ToString());
+
             return string.Format(vehicleStringData.ToString());
         }
 
@@ -50,8 +50,8 @@ namespace Ex03.GarageLogic
         public Dictionary<string, string[]> dataFromUser()
         {
             Dictionary<string, string[]> dataToGet = Car.dataFromUser();            
-            dataToGet.Add("CurrentFuelAmountLitres", new string[] {"Please enter current amount of fuel (smaller than max: "
-                + k_maxFuelAmountLitres + ") : ", "float" });
+            dataToGet.Add("CurrentFuelAmountLitres", new string[] { "Please enter current amount of fuel (smaller than max: " + k_maxFuelAmountLitres + ") : ", "float" });
+            
             return dataToGet;
         }
 
@@ -64,13 +64,13 @@ namespace Ex03.GarageLogic
                 this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
                 this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
                 m_FuelData.CurrentFuelAmountLitres = float.Parse(i_VehicleData["CurrentFuelAmountLitres"].ToString());
-                return "";
-            }catch(KeyNotFoundException e)
-            {
-                return "";
+                
+                return "Normal Car was updated with details";
             }
-            
-
+            catch(KeyNotFoundException e)
+            {
+                return "Normal Car wasnt updated";
+            }
         }
     }
 }

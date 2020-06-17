@@ -24,7 +24,6 @@ namespace Ex03.GarageLogic
             m_ElectricData = new ElectricVehicle(r_MaxHoursOfBattery);
         }
 
-
         public override void fillUp(float i_numberOfMinutesToAdd)
         {
             try
@@ -42,18 +41,20 @@ namespace Ex03.GarageLogic
             StringBuilder vehicleStringData = new StringBuilder();
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_ElectricData.ToString());             
-            return String.Format(vehicleStringData.ToString());
+            return string.Format(vehicleStringData.ToString());
         }
 
         public Dictionary<string, string[]> dataFromUser()
         {
             Dictionary<string, string[]> dataToGet = Motorcycle.dataFromUser();
-            dataToGet.Add("NumberOfHoursLeft", new string[] {"Please enter battery hours left (smaller than max: "
-                + r_MaxHoursOfBattery + ") : ", "float" });
+            dataToGet.Add(
+                "NumberOfHoursLeft", 
+                new string[] { "Please enter battery hours left (smaller than max: " + r_MaxHoursOfBattery + ") : ", 
+                                 "float" });
             return dataToGet;
         }
 
-        public object setData(Dictionary<string, object> i_VehicleData)
+        public string setData(Dictionary<string, object> i_VehicleData)
         {
             try
             {
@@ -62,12 +63,13 @@ namespace Ex03.GarageLogic
                 this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
                 this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
                 m_ElectricData.NumberOfHoursLeft = float.Parse(i_VehicleData["NumberOfHoursLeft"].ToString());
-                return "";
-            }catch(KeyNotFoundException e)
-            {
-                return "";
+                
+                return "Electric Motorcycle was updated with details";
             }
-            
+            catch(KeyNotFoundException e)
+            {
+                return "Electric Motorcycle was not updated";
+            }
         }
     }
 }

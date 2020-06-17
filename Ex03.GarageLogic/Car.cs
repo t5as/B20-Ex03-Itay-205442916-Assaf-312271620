@@ -145,15 +145,10 @@ namespace Ex03.GarageLogic
             });
             dataToGet.Add(
                 "ManufacturerName", 
-                new string[]
-                    {
-                        "Please enter wheels manufacturer name: ", 
-                        "string" 
-                    });
+                new string[] { "Please enter wheels manufacturer name: ", "string" });
             dataToGet.Add(
                 "CurrentAirPressure", 
-                new string[] {"Please enter current air pressure in wheels (smaller than max: "
-                 + r_MaxAirPressure + "): ", "float" });
+                new string[] { "Please enter current air pressure in wheels (smaller than max: " + r_MaxAirPressure + "): ", "float" });
             return dataToGet;
         }
     }

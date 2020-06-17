@@ -12,15 +12,13 @@ namespace Ex03.GarageLogic
         public ElectricVehicle(float i_maximalHoursOfBattery)
         {
             r_MaximalHoursOfBattery = i_maximalHoursOfBattery;
-        } 
-        
-  
+        }
+
         public void ChargeBattery(float i_numberOfMinutesToCharge)
         {
             try
             {
-                m_NumberOfHoursLeft += (i_numberOfMinutesToCharge / 60);
-
+                m_NumberOfHoursLeft += i_numberOfMinutesToCharge / 60;
             }
             catch (ValueOutOfRangeException e)
             {
@@ -30,13 +28,14 @@ namespace Ex03.GarageLogic
 
         public float NumberOfHoursLeft
         {
-            set
-            {
-                m_NumberOfHoursLeft = value;
-            }
             get
             {
                 return m_NumberOfHoursLeft;
+            }
+
+            set
+            {
+                m_NumberOfHoursLeft = value;
             }
         }
 

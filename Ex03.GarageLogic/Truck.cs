@@ -6,12 +6,12 @@ namespace Ex03.GarageLogic
 {
     public class Truck : Vehicle
     {
+        private readonly byte r_NumberOfWheels = 16;
+        private static float r_MaxFuelAmountLitres = 120;
+        private static readonly byte r_MaxAirPressure = 28;
         private bool m_IsDrivingHazardousMaterial;
         private float m_TrunkVolume;
-        private readonly byte r_NumberOfWheels = 16;
-        private static readonly byte r_MaxAirPressure = 28;
         private Wheel m_WheelData;
-        private static float r_MaxFuelAmountLitres = 120;
         private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Soler, r_MaxFuelAmountLitres);
 
         /*public Truck(string i_ownerName, string i_ownerPhoneNumber,
@@ -26,8 +26,7 @@ namespace Ex03.GarageLogic
             m_FuelData.CurrentFuelAmountLitres = i_currentFuelAmountLitres;
         }*/
 
-        public Truck(Vehicle i_vehicle) : base(i_vehicle.OwnerName,
-            i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
+        public Truck(Vehicle i_vehicle) : base(i_vehicle.OwnerName, i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
         {
             m_WheelData = new Wheel(r_MaxAirPressure);
         }
@@ -67,11 +66,10 @@ namespace Ex03.GarageLogic
         {
             Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
             dataToGet.Add("ManufacturerName", new string[] { "Please enter wheels manufacturer name: ", "string" });
-            dataToGet.Add("CurrentAirPressure", new string[] {"Please enter current air pressure in wheels (smaller than max: "
-                 + r_MaxAirPressure + "): ", "float" });
-            dataToGet.Add("IsDrivingHazardousMaterial", new string[] {"Please state if driving hazardous material (true, false): ",
-                "bool" });
+            dataToGet.Add("CurrentAirPressure", new string[] { "Please enter current air pressure in wheels (smaller than max: " + r_MaxAirPressure + "): ", "float" });
+            dataToGet.Add("IsDrivingHazardousMaterial", new string[] { "Please state if driving hazardous material (true, false): ", "bool" });
             dataToGet.Add("TrunkVolume", new string[] { "Please enter truck trunk volume: ", "float" });
+
             return dataToGet;
         }
 

@@ -61,14 +61,16 @@ namespace Ex03.GarageLogic
         public Dictionary<string, string[]> dataFromUser()
         {
             Dictionary<string, string[]> dataToGet = Car.dataFromUser();           
-            dataToGet.Add("NumberOfHoursLeft", new string[] {"Please enter battery hours left (smaller than max: "
-                + r_MaxHoursOfBattery + ") : ", "float" });
+            dataToGet.Add(
+                "NumberOfHoursLeft", 
+                new string[] {"Please enter battery hours left (smaller than max: " + r_MaxHoursOfBattery + ") : ", 
+                                     "float"
+                                 });
             return dataToGet;
         }
 
-        public object setData(Dictionary<string, object> i_VehicleData)
+        public string setData(Dictionary<string, object> i_VehicleData)
         {
-
             try
             {
                 this.NumberOfDoors = this.getNumberOfDoors((string)i_VehicleData["NumberOfDoors"]);
@@ -76,13 +78,12 @@ namespace Ex03.GarageLogic
                 this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
                 this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
                 m_ElectricData.NumberOfHoursLeft = float.Parse(i_VehicleData["NumberOfHoursLeft"].ToString());
-                return "";
-               
-            }catch(KeyNotFoundException e)
-            {
-                return "";
+                return "Electric Car was updated with details";
             }
-            
+            catch(KeyNotFoundException e)
+            {
+                return "Electric Car was not updated";
+            }
         }
     }
 }

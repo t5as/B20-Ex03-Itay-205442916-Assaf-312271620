@@ -21,7 +21,6 @@ namespace Ex03.GarageLogic
 
         public NormalMotorcycle(Vehicle i_vehicle) : base(i_vehicle)
         {
-
         }
 
         public override string ToString()
@@ -29,7 +28,8 @@ namespace Ex03.GarageLogic
             StringBuilder vehicleStringData = new StringBuilder();
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_FuelData.ToString());
-            return String.Format(vehicleStringData.ToString());
+
+            return string.Format(vehicleStringData.ToString());
         }
 
         public override void fillUp(string i_fuelType, float i_litresToAdd)
@@ -47,16 +47,15 @@ namespace Ex03.GarageLogic
             }
         }
 
-
         public Dictionary<string, string[]> dataFromUser()
         {
             Dictionary<string, string[]> dataToGet = Motorcycle.dataFromUser();            
-            dataToGet.Add("CurrentFuelAmountLitres", new string[] {"Please enter current amount of fuel (smaller than max: "
-                + k_maxFuelAmountLitres + ") : ", "float" });
+            dataToGet.Add("CurrentFuelAmountLitres", new string[] { "Please enter current amount of fuel (smaller than max: " + k_maxFuelAmountLitres + ") : ", "float" });
+            
             return dataToGet;
         }
 
-        public object setData(Dictionary<string, object> i_VehicleData)
+        public string setData(Dictionary<string, object> i_VehicleData)
         {
             try
             {
@@ -65,13 +64,13 @@ namespace Ex03.GarageLogic
                 this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
                 this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());                
                 m_FuelData.CurrentFuelAmountLitres = float.Parse(i_VehicleData["CurrentFuelAmountLitres"].ToString());
-                return "";
-            }catch(KeyNotFoundException e)
-            {
-                return "";
+                
+                return "Normal Motorcycle was updated with details";
             }
-            
+            catch(KeyNotFoundException e)
+            {
+                return "Normal motorcycle was not updated";
+            }
         }
     }
-    
 }

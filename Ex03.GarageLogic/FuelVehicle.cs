@@ -26,13 +26,14 @@ namespace Ex03.GarageLogic
 
         public eFuelType FuelType
         {
-            set
-            {
-                m_FuelType = value;
-            }
             get
             {
                 return m_FuelType;
+            }
+            
+            set
+            {
+                m_FuelType = value;
             }
         }
 
@@ -61,6 +62,7 @@ namespace Ex03.GarageLogic
             {
                 return m_CurrentFuelAmountLitres;
             }
+            
             set
             {
                 m_CurrentFuelAmountLitres = value;
@@ -97,8 +99,10 @@ namespace Ex03.GarageLogic
             Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
             dataToGet.Add(
                 "FuelType", 
-                new string[] {"Please enter fuel type(Octan98, Octan96, " +
-                "Octan95, Soler): ", "enum: Octan98, Octan96, Octan95, Soler" });
+                new string[] { 
+                                 "Please enter fuel type(Octan98, Octan96, " + "Octan95, Soler): ", 
+                                 "enum: Octan98, Octan96, Octan95, Soler"
+                             });
             return dataToGet;
         }
 
