@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 using Ex03.GarageLogic;
@@ -21,18 +22,18 @@ namespace Ex03.ConsoleUI
             GarageLogic.GarageLogic gl = new GarageLogic.GarageLogic();
 
             if (action == 1) EnterNewVehicle();
-            else if(action == 2)
+            else if (action == 2)
             {
                 string withOrWithoutFilter = getWithOrWithoutFilter();
                 byte byteWithOrWithoutFilter = isValidFilter(withOrWithoutFilter);
-                
-                while(byteWithOrWithoutFilter == 0)
+
+                while (byteWithOrWithoutFilter == 0)
                 {
                     withOrWithoutFilter = getWithOrWithoutFilter();
                     byteWithOrWithoutFilter = isValidFilter(withOrWithoutFilter);
                 }
 
-                if(byteWithOrWithoutFilter == 1)
+                if (byteWithOrWithoutFilter == 1)
                 {
                     string[] states = gl.getVehicleStates();
                     Console.WriteLine(states[0]);
@@ -47,14 +48,14 @@ namespace Ex03.ConsoleUI
                         validState = UI.ParseAnswer(states[1], state);
                     }
 
-                    gl.DisplayVehiclesLicenses(state);
+                    Console.WriteLine(gl.DisplayVehiclesLicenses(state));
                 }
-                else if(byteWithOrWithoutFilter == 2)
+                else if (byteWithOrWithoutFilter == 2)
                 {
-                    gl.DisplayVehiclesLicenses();
+                    Console.WriteLine(gl.DisplayVehiclesLicenses());
                 }
             }
-            else if(action == 3)
+            else
             {
                 string licenseNumber = getString("license number");
                 bool licenseNumberValid = isValidNumber(licenseNumber, "license number");
@@ -64,44 +65,84 @@ namespace Ex03.ConsoleUI
                     licenseNumberValid = isValidNumber(licenseNumber, "license number");
                 }
 
-                string[] states = gl.getVehicleStates();
-                Console.WriteLine(states[0]);
-                string state = Console.ReadLine();
-                object validState = ParseAnswer(states[1], state);
-
-                while (validState == null)
+                
+                if(action == 3)
                 {
-                    Console.WriteLine("Invalid type - {0} should be {1}", state, states[1]);
+                    string[] states = gl.getVehicleStates();
                     Console.WriteLine(states[0]);
-                    state = Console.ReadLine();
-                    validState = UI.ParseAnswer(states[1], state);
-                }
+                    string state = Console.ReadLine();
+                    object validState = ParseAnswer(states[1], state);
 
-                gl.UpdateVehicleState(licenseNumber, state);
-            }
-            else if(action == 4)
-            {
-                string licenseNumber = getString("license number");
-                bool licenseNumberValid = isValidNumber(licenseNumber, "license number");
-                while (!licenseNumberValid)
-                {
-                    licenseNumber = getString("license number");
-                    licenseNumberValid = isValidNumber(licenseNumber, "license number");
+                    while(validState == null)
+                    {
+                        Console.WriteLine("Invalid type - {0} should be {1}", state, states[1]);
+                        Console.WriteLine(states[0]);
+                        state = Console.ReadLine();
+                        validState = UI.ParseAnswer(states[1], state);
+                    }
+
+                    Console.WriteLine(gl.UpdateVehicleState(licenseNumber, state));
                 }
-                
-                
-            }
-            else if(action == 5)
-            {
-                
-            }
-            else if(action == 6)
-            {
-                
-            }
-            else if(action == 7)
-            {
-                
+                else if(action == 4)
+                {
+                    Console.WriteLine(gl.inflateVehicleWheels(licenseNumber));
+                }
+                else if(action == 5)
+                {
+                    string[] fuelTypes = gl.getFuelTypes();
+                    Console.WriteLine(fuelTypes[0]);
+                    string fuelType = Console.ReadLine();
+                    object validFuelType = ParseAnswer(fuelTypes[1], fuelType);
+                    while (validFuelType == null)
+                    {
+                        Console.WriteLine("Invalid type - {0} should be {1}", fuelType, fuelTypes[1]);
+                        Console.WriteLine(fuelTypes[0]);
+                        fuelType = Console.ReadLine();
+                        validFuelType = ParseAnswer(fuelTypes[1], fuelType);
+                    }
+
+                    string fuelAmount = getString("fuel amount");
+                    object fuelAmountValid = ParseAnswer("float", fuelAmount);
+                    while (fuelAmountValid == null)
+                    {
+                        Console.WriteLine("Invalid type - {0} should be {1}", fuelAmount, "float");
+                        fuelAmount = getString("fuel amount");
+                        fuelAmountValid = ParseAnswer("float", fuelAmount);
+                    }
+
+                    try
+                    {
+                        Console.WriteLine(gl.fuelNormalVehicle(licenseNumber, fuelType, (float)fuelAmountValid));
+                    }
+                    catch(Exception e)
+                    {
+                        e.ToString();
+                    }
+                }
+                else if(action == 6)
+                {
+                    string minutesToCharge = getString("minutes to charge");
+                    object minutesToChargeValid = ParseAnswer("float", minutesToCharge);
+                    while (minutesToChargeValid == null)
+                    {
+                        Console.WriteLine("Invalid type - {0} should be {1}", minutesToCharge, "float");
+                        minutesToCharge = getString("minutes to charge");
+                        minutesToChargeValid = ParseAnswer("float", minutesToCharge);
+                    }
+
+                    try
+                    {
+                        Console.WriteLine(gl.chargeElectricVehicle(licenseNumber, (float)minutesToChargeValid));
+                    }
+                    catch (Exception e)
+                    {
+                        e.ToString();
+                    }
+                }
+                else if(action == 7)
+                {
+                    Console.WriteLine(gl.DisplayVehicleData(licenseNumber));
+                }
             }
         }
 
