@@ -105,22 +105,20 @@ namespace Ex03.GarageLogic
             {
                 vehicleStates.Add(vehicleState.ToString());
             }
+
             return vehicleStates;
         } 
 
         public virtual void inflateWheels()
         {
-
         } 
 
         public virtual void fillUp(string FuelType, float i_litresToAdd)
         {
-
         } 
 
         public virtual void fillUp(float i_numberOfMinutesToAdd)
         {
-
         }
 
         /*public static Dictionary<string, string[]> dataFromUser()
@@ -132,6 +130,5 @@ namespace Ex03.GarageLogic
             dataToGet.Add("LicenseNumber", new string[] { "Please enter vehicle license number: ", "string" });
             return dataToGet;
         } */
-
     }
 }

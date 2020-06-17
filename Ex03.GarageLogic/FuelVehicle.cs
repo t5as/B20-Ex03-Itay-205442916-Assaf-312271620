@@ -57,6 +57,10 @@ namespace Ex03.GarageLogic
 
         public float CurrentFuelAmountLitres
         {
+            get
+            {
+                return m_CurrentFuelAmountLitres;
+            }
             set
             {
                 m_CurrentFuelAmountLitres = value;
@@ -65,10 +69,6 @@ namespace Ex03.GarageLogic
                 {
                     m_CurrentFuelAmountLitres = r_MaxFuelAmountLitres;
                 }
-            }
-            get
-            {
-                return m_CurrentFuelAmountLitres;
             }
         }
 
@@ -95,7 +95,9 @@ namespace Ex03.GarageLogic
         public static Dictionary<string, string[]> fuelDataFromUser()
         {
             Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
-            dataToGet.Add("FuelType", new string[] {"Please enter fuel type(Octan98, Octan96, " +
+            dataToGet.Add(
+                "FuelType", 
+                new string[] {"Please enter fuel type(Octan98, Octan96, " +
                 "Octan95, Soler): ", "enum: Octan98, Octan96, Octan95, Soler" });
             return dataToGet;
         }

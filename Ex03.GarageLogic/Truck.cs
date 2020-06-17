@@ -85,11 +85,11 @@ namespace Ex03.GarageLogic
                 m_TrunkVolume = float.Parse(i_VehicleData["TrunkVolume"].ToString());
                 m_FuelData.CurrentFuelAmountLitres = float.Parse(i_VehicleData["CurrentFuelAmountLitres"].ToString());
                 return "Truck was updated with details";
-            }catch(KeyNotFoundException e)
+            }
+            catch(KeyNotFoundException e)
             {
                 return "Truck was not updated with details";
             }
-            
         }
     }
 }

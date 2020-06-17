@@ -7,8 +7,61 @@ using Console = System.Console;
 
 namespace Ex03.ConsoleUI
 {
-    class UI
+    public class UI
     {
+        public static void run()
+        {
+            Console.WriteLine("Welcome To the garage!");
+            startAction();
+            string answer = getAnswer();
+            byte byteAnswer = isValidAnswer(answer);
+            while(byteAnswer == 0)
+            {
+                answer = getAnswer();
+                byteAnswer = isValidAnswer(answer);
+            } 
+            while(byteAnswer == 1)
+            {
+                startAction();
+                answer = getAnswer();
+                byteAnswer = isValidAnswer(answer);
+                while (byteAnswer == 0)
+                {
+                    answer = getAnswer();
+                    byteAnswer = isValidAnswer(answer);
+                }
+            }
+
+            Console.WriteLine("Have a nice day!");
+        }
+
+        private static string getAnswer()
+        {
+            Console.WriteLine("If you want to continue - press 1, to exit - press 2");
+            string answer = Console.ReadLine();
+
+            return answer;
+        }
+
+        private static byte isValidAnswer(string i_answer)
+        {
+            if (i_answer.Length != 1)
+            {
+                Console.WriteLine("Invalid answer, please try again");
+                return 0;
+            }
+
+            byte byteAnswer = byte.Parse(i_answer);
+
+            if (byteAnswer < 1 || byteAnswer > 2)
+            {
+                Console.WriteLine("Invalid answer, please try again");
+                return 0;
+            }
+
+            return byteAnswer;
+        }
+
         public static void startAction()
         {
             string stringAction = getAction();
@@ -21,7 +74,10 @@ namespace Ex03.ConsoleUI
 
             GarageLogic.GarageLogic gl = new GarageLogic.GarageLogic();
 
-            if (action == 1) EnterNewVehicle();
+            if(action == 1)
+            {
+                EnterNewVehicle();
+            }
             else if (action == 2)
             {
                 string withOrWithoutFilter = getWithOrWithoutFilter();
@@ -65,7 +121,6 @@ namespace Ex03.ConsoleUI
                     licenseNumberValid = isValidNumber(licenseNumber, "license number");
                 }
 
-                
                 if(action == 3)
                 {
                     string[] states = gl.getVehicleStates();
@@ -219,7 +274,8 @@ If you wish to see full vehicle data by it's license number - press 7"));
             Dictionary<string, Dictionary<string, string[]>> vehiclesQuestionsDictionary = garage.getVehicleRequiredData(vehicle);
             string[] carTypes = new string[vehiclesQuestionsDictionary.Keys.Count];
             vehiclesQuestionsDictionary.Keys.CopyTo(carTypes, 0);
-            Dictionary<string, string[]> questionsForUser = vehiclesQuestionsDictionary[GetCarType(carTypes)];
+            string carType = GetCarType(carTypes);
+            Dictionary<string, string[]> questionsForUser = vehiclesQuestionsDictionary[carType];
             Dictionary<string, object> setDataDictionary = new Dictionary<string, object>();
             foreach (KeyValuePair<string, string[]> vehiclePair in questionsForUser)
             {
@@ -234,8 +290,11 @@ If you wish to see full vehicle data by it's license number - press 7"));
                     answer = Console.ReadLine();
                     validAnswer = UI.ParseAnswer(vehiclePair.Value[1], answer);
                 }
+
                 setDataDictionary.Add(vehiclePair.Key, validAnswer);
             }
+
+            garage.setVehicleData(vehicle, setDataDictionary, carType);
         }
 
         public static Vehicle InitializeVehicle()
@@ -374,7 +433,6 @@ If you wish to see full vehicle data by it's license number - press 7"));
             foreach (string vehicleType in i_typesArray)
             {
                 Console.WriteLine(string.Format("For {0} press: {1}", vehicleType, System.Array.IndexOf(i_typesArray, vehicleType)));
-                
             }
 
             string strCarType = Console.ReadLine();
@@ -384,6 +442,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
                 strCarType = Console.ReadLine();
                 carType = isValidCarType(strCarType, 0, i_typesArray.Length - 1);
             }
+
             return i_typesArray[carType];
         }
 
@@ -401,7 +460,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
             if (carType < i_minValue || carType > i_maxValue)
             {
                 Console.WriteLine("Invalid car type, please try again");
-                return i_maxValue + 1; ;
+                return i_maxValue + 1;
             }
 
             return carType;
@@ -414,25 +473,43 @@ If you wish to see full vehicle data by it's license number - press 7"));
 
             if (i_type == "int")
             {
-                if (int.TryParse(i_answer, out _)) answer = int.Parse(i_answer);
+                if(int.TryParse(i_answer, out _))
+                {
+                    answer = int.Parse(i_answer);
+                }
             }
             else if (i_type == "byte")
             {
-                if (byte.TryParse(i_answer, out _)) answer = byte.Parse(i_answer);
+                if(byte.TryParse(i_answer, out _))
+                {
+                    answer = byte.Parse(i_answer);
+                }
             }
             else if (i_type == "float")
             {
-                if (float.TryParse(i_answer, out _)) answer = float.Parse(i_answer);
+                if(float.TryParse(i_answer, out _))
+                {
+                    answer = float.Parse(i_answer);
+                }
             }
             else if (i_type == "bool")
             {
-                if (bool.TryParse(i_answer, out _)) answer = bool.Parse(i_answer);
+                if(bool.TryParse(i_answer, out _))
+                {
+                    answer = bool.Parse(i_answer);
+                }
             }
             else if (indexOfColon != -1)
             {
-                if (i_type.Trim().Substring(0, i_type.IndexOf(':')) == "enum") answer = ParseEnum(i_type, i_answer);
+                if(i_type.Trim().Substring(0, i_type.IndexOf(':')) == "enum")
+                {
+                    answer = ParseEnum(i_type, i_answer);
+                }
             }
-            else answer = i_answer;
+            else
+            {
+                answer = i_answer;
+            }
 
             return answer;
         }
@@ -445,7 +522,10 @@ If you wish to see full vehicle data by it's license number - press 7"));
 
             foreach (string value in enumString)
             {
-                if (value.ToLower().Equals(i_answer.ToLower())) return i_answer;
+                if(value.ToLower().Equals(i_answer.ToLower()))
+                {
+                    return i_answer;
+                }
             }
 
             return null;
