@@ -10,9 +10,9 @@ namespace Ex03.GarageLogic
         private string m_ManufacturerName;
         private float m_CurrentAirPressure; 
 
-        public Wheel(float i_maxAirPressure)
+        public Wheel(float i_MaxAirPressure)
         {
-            r_MaxAirPressure = i_maxAirPressure;
+            r_MaxAirPressure = i_MaxAirPressure;
         }
 
         public string ManufacturerName
@@ -39,6 +39,7 @@ namespace Ex03.GarageLogic
                 airPressureData.Append(m_CurrentAirPressure);
                 airPressureData.Append(" / ");
                 airPressureData.Append(r_MaxAirPressure);
+
                 return string.Format(airPressureData.ToString());
             }
         }
@@ -48,6 +49,7 @@ namespace Ex03.GarageLogic
             StringBuilder wheelData = new StringBuilder();
             wheelData.Append("Wheel Manufacturer: " + m_ManufacturerName + "\n");
             wheelData.Append("Wheels air pressure: " + AirPressureStatus);
+
             return string.Format(wheelData.ToString());
         }
 

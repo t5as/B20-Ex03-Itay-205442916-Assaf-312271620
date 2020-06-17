@@ -136,7 +136,7 @@ namespace Ex03.GarageLogic
             return string.Format(vehicleStringData.ToString());
         }
 
-        public override void inflateWheels()
+        public override void InflateWheels()
         {
             m_WheelData.SetAirPressureToMax();
         }

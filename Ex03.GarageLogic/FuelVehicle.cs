@@ -10,10 +10,10 @@ namespace Ex03.GarageLogic
         private eFuelType m_FuelType;
         private float m_CurrentFuelAmountLitres;
         
-        public FuelVehicle(eFuelType i_fuelType, float i_maxFuelAmountLitres)
+        public FuelVehicle(eFuelType i_FuelType, float i_MaxFuelAmountLitres)
         {
-            m_FuelType = i_fuelType;            
-            r_MaxFuelAmountLitres = i_maxFuelAmountLitres;
+            m_FuelType = i_FuelType;            
+            r_MaxFuelAmountLitres = i_MaxFuelAmountLitres;
         }
         
         public enum eFuelType
@@ -37,9 +37,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public eFuelType getFuelType(string i_fuelType)
+        public eFuelType GetFuelType(string i_FuelType)
         {
-            switch (i_fuelType.ToLower())
+            switch (i_FuelType.ToLower())
             {
                 case "octan98":
                     return eFuelType.Octan98;
@@ -82,6 +82,7 @@ namespace Ex03.GarageLogic
                 fuelStatus.Append(m_CurrentFuelAmountLitres);
                 fuelStatus.Append(" / ");
                 fuelStatus.Append(r_MaxFuelAmountLitres);
+
                 return string.Format(fuelStatus.ToString());
             }
         }
@@ -91,14 +92,15 @@ namespace Ex03.GarageLogic
             StringBuilder fuelData = new StringBuilder();
             fuelData.Append("Fuel Type: " + m_FuelType + "\n");
             fuelData.Append("Fuel tank status: " + FuelStatus);
+
             return string.Format(fuelData.ToString());
         }
 
-        public void Refuel(float i_litresToAdd)
+        public void Refuel(float i_LitresToAdd)
         {
             try
             {
-                m_CurrentFuelAmountLitres += i_litresToAdd;
+                m_CurrentFuelAmountLitres += i_LitresToAdd;
             }
             catch (ArgumentException e)
             {

@@ -9,16 +9,16 @@ namespace Ex03.GarageLogic
         private static readonly float r_MaxHoursOfBattery = 1.2f;
         private ElectricVehicle m_ElectricData;
 
-        public ElectricMotorcycle(Vehicle i_vehicle) : base(i_vehicle)
+        public ElectricMotorcycle(Vehicle i_Vehicle) : base(i_Vehicle)
         {
             m_ElectricData = new ElectricVehicle(r_MaxHoursOfBattery);
         }
 
-        public override void fillUp(float i_numberOfMinutesToAdd)
+        public override void FillUp(float i_NumberOfMinutesToAdd)
         {
             try
             {
-                m_ElectricData.ChargeBattery(i_numberOfMinutesToAdd);
+                m_ElectricData.ChargeBattery(i_NumberOfMinutesToAdd);
             }
             catch(ValueOutOfRangeException e)
             {
@@ -30,13 +30,14 @@ namespace Ex03.GarageLogic
         {
             StringBuilder vehicleStringData = new StringBuilder();
             vehicleStringData.Append(base.ToString() + "\n");
-            vehicleStringData.Append(m_ElectricData.ToString());             
+            vehicleStringData.Append(m_ElectricData.ToString());  
+            
             return string.Format(vehicleStringData.ToString());
         }
 
-        public Dictionary<string, string[]> dataFromUser()
+        public Dictionary<string, string[]> DataFromUser()
         {
-            Dictionary<string, string[]> dataToGet = Motorcycle.dataFromUser();
+            Dictionary<string, string[]> dataToGet = Motorcycle.DataFromUser();
             dataToGet.Add(
                 "NumberOfHoursLeft", 
                 new string[] 
@@ -44,15 +45,16 @@ namespace Ex03.GarageLogic
                         "Please enter battery hours left (smaller than max: " + r_MaxHoursOfBattery + ") : ", 
                                  "float"
                     });
+            
             return dataToGet;
         }
 
-        public string setData(Dictionary<string, object> i_VehicleData)
+        public string SetData(Dictionary<string, object> i_VehicleData)
         {
             try
             {
                 this.EngineSize = (int)i_VehicleData["EngineSize"];
-                this.TypeOfLicense = this.getTypeOfLicense((string)i_VehicleData["TypeOfLicense"]);
+                this.TypeOfLicense = this.GetTypeOfLicense((string)i_VehicleData["TypeOfLicense"]);
                 this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
                 this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
                 m_ElectricData.NumberOfHoursLeft = float.Parse(i_VehicleData["NumberOfHoursLeft"].ToString());

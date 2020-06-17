@@ -12,17 +12,18 @@ namespace Ex03.GarageLogic
         private eTypeOfLicense m_TypeOfLicense;
         private Wheel m_WheelData;
 
-        public static Dictionary<string, string[]> dataFromUser()
+        public static Dictionary<string, string[]> DataFromUser()
         {
             Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
             dataToGet.Add("EngineSize", new string[] { "Please enter integer representing engine size: ", "int" });
             dataToGet.Add("TypeOfLicense", new string[] { "Please enter license type (A, A1, AA or B): ", "enum: A, A1, AA, B" });
             dataToGet.Add("ManufacturerName", new string[] { "Please enter wheels manufacturer name: ", "string" });
             dataToGet.Add("CurrentAirPressure", new string[] { "Please enter current air pressure in wheels (smaller than max: " + r_MaxAirPressure + "): ", "float" });
+            
             return dataToGet;
         }
 
-        public Motorcycle(Vehicle i_vehicle) : base(i_vehicle.OwnerName, i_vehicle.OwnerPhoneNumber, i_vehicle.VehicleModel, i_vehicle.LicenseNumber)
+        public Motorcycle(Vehicle i_Vehicle) : base(i_Vehicle.OwnerName, i_Vehicle.OwnerPhoneNumber, i_Vehicle.VehicleModel, i_Vehicle.LicenseNumber)
         {
             m_WheelData = new Wheel(r_MaxAirPressure);
         }
@@ -43,9 +44,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public eTypeOfLicense getTypeOfLicense(string i_typeOfLicense)
+        public eTypeOfLicense GetTypeOfLicense(string i_TypeOfLicense)
         {
-            switch (i_typeOfLicense.ToLower())
+            switch (i_TypeOfLicense.ToLower())
             {
                 case "a":
                     return eTypeOfLicense.A;
@@ -85,10 +86,11 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(m_WheelData.ToString() + "\n");
             vehicleStringData.Append("License Type: " + m_TypeOfLicense + "\n");
             vehicleStringData.Append("Engine Size: " + m_EngineSize);
+
             return string.Format(vehicleStringData.ToString());
         }
 
-        public override void inflateWheels()
+        public override void InflateWheels()
         {
             m_WheelData.SetAirPressureToMax();
         }

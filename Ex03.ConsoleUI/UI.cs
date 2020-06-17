@@ -93,7 +93,7 @@ namespace Ex03.ConsoleUI
 
                 if (byteWithOrWithoutFilter == 1)
                 {
-                    string[] states = i_Garage.getVehicleStates();
+                    string[] states = i_Garage.GetVehicleStates();
                     Console.WriteLine(states[0]);
                     string state = Console.ReadLine();
                     object validState = ParseAnswer(states[1], state);
@@ -126,7 +126,7 @@ namespace Ex03.ConsoleUI
 
                 if(action == 3)
                 {
-                    string[] states = i_Garage.getVehicleStates();
+                    string[] states = i_Garage.GetVehicleStates();
                     Console.WriteLine(states[0]);
                     string state = Console.ReadLine();
                     object validState = ParseAnswer(states[1], state);
@@ -143,11 +143,11 @@ namespace Ex03.ConsoleUI
                 }
                 else if(action == 4)
                 {
-                    Console.WriteLine(i_Garage.inflateVehicleWheels(licenseNumber));
+                    Console.WriteLine(i_Garage.InflateVehicleWheels(licenseNumber));
                 }
                 else if(action == 5)
                 {
-                    string[] fuelTypes = i_Garage.getFuelTypes();
+                    string[] fuelTypes = i_Garage.GetFuelTypes();
                     Console.WriteLine(fuelTypes[0]);
                     string fuelType = Console.ReadLine();
                     object validFuelType = ParseAnswer(fuelTypes[1], fuelType);
@@ -172,7 +172,7 @@ namespace Ex03.ConsoleUI
 
                     try
                     {
-                        Console.WriteLine(i_Garage.fuelNormalVehicle(licenseNumber, fuelType, (float)fuelAmountValid));
+                        Console.WriteLine(i_Garage.FuelNormalVehicle(licenseNumber, fuelType, (float)fuelAmountValid));
                     }
                     catch(Exception e)
                     {
@@ -193,7 +193,7 @@ namespace Ex03.ConsoleUI
 
                     try
                     {
-                        Console.WriteLine(i_Garage.chargeElectricVehicle(licenseNumber, (float)minutesToChargeValid));
+                        Console.WriteLine(i_Garage.ChargeElectricVehicle(licenseNumber, (float)minutesToChargeValid));
                     }
                     catch (Exception e)
                     {
@@ -276,7 +276,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
         public static void EnterNewVehicle(GarageLogic.GarageLogic i_Garage)
         {
             Vehicle vehicle = InitializeVehicle();
-            Dictionary<string, Dictionary<string, string[]>> vehiclesQuestionsDictionary = i_Garage.getVehicleRequiredData(vehicle);
+            Dictionary<string, Dictionary<string, string[]>> vehiclesQuestionsDictionary = i_Garage.GetVehicleRequiredData(vehicle);
             string[] carTypes = new string[vehiclesQuestionsDictionary.Keys.Count];
             vehiclesQuestionsDictionary.Keys.CopyTo(carTypes, 0);
             string carType = GetCarType(carTypes);
@@ -301,7 +301,7 @@ If you wish to see full vehicle data by it's license number - press 7"));
                 setDataDictionary.Add(vehiclePair.Key, validAnswer);
             }
 
-            Console.WriteLine(i_Garage.setVehicleData(vehicle, setDataDictionary, carType));
+            Console.WriteLine(i_Garage.SetVehicleData(vehicle, setDataDictionary, carType));
         }
 
         public static Vehicle InitializeVehicle()

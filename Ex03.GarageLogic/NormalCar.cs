@@ -6,10 +6,10 @@ namespace Ex03.GarageLogic
 {
     public class NormalCar : Car
     {
-        private static readonly float k_maxFuelAmountLitres = 60; 
-        private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Octan96, k_maxFuelAmountLitres);
+        private static readonly float k_MaxFuelAmountLitres = 60; 
+        private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Octan96, k_MaxFuelAmountLitres);
 
-        public NormalCar(Vehicle i_vehicle) : base(i_vehicle)
+        public NormalCar(Vehicle i_Vehicle) : base(i_Vehicle)
         {
         }
 
@@ -22,30 +22,30 @@ namespace Ex03.GarageLogic
             return string.Format(vehicleStringData.ToString());
         }
 
-        public override void fillUp(string i_fuelType, float i_litresToAdd)
+        public override void FillUp(string i_FuelType, float i_LitresToAdd)
         {
-            if (m_FuelData.getFuelType(i_fuelType) == m_FuelData.FuelType)
+            if (m_FuelData.GetFuelType(i_FuelType) == m_FuelData.FuelType)
             {
                 try
                 {
-                    m_FuelData.Refuel(i_litresToAdd);
+                    m_FuelData.Refuel(i_LitresToAdd);
                 }
                 catch (ValueOutOfRangeException e)
                 {
-                    throw new ValueOutOfRangeException(e, m_FuelData.CurrentFuelAmountLitres, 0, k_maxFuelAmountLitres);
+                    throw new ValueOutOfRangeException(e, m_FuelData.CurrentFuelAmountLitres, 0, k_MaxFuelAmountLitres);
                 }
             }
         }
 
-        public Dictionary<string, string[]> dataFromUser()
+        public Dictionary<string, string[]> DataFromUser()
         {
             Dictionary<string, string[]> dataToGet = Car.dataFromUser();            
-            dataToGet.Add("CurrentFuelAmountLitres", new string[] { "Please enter current amount of fuel (smaller than max: " + k_maxFuelAmountLitres + ") : ", "float" });
+            dataToGet.Add("CurrentFuelAmountLitres", new string[] { "Please enter current amount of fuel (smaller than max: " + k_MaxFuelAmountLitres + ") : ", "float" });
             
             return dataToGet;
         }
 
-        public object setData(Dictionary<string, object> i_VehicleData)
+        public object SetData(Dictionary<string, object> i_VehicleData)
         {
             try
             {

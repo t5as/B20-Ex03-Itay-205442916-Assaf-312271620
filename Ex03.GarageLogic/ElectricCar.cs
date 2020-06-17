@@ -9,20 +9,20 @@ namespace Ex03.GarageLogic
         private static readonly float r_MaxHoursOfBattery = 2.1f;
         private ElectricVehicle m_ElectricData;
 
-        public ElectricCar(Vehicle i_vehicle) : base(i_vehicle)
+        public ElectricCar(Vehicle i_Vehicle) : base(i_Vehicle)
         {
             m_ElectricData = new ElectricVehicle(r_MaxHoursOfBattery);
         }
 
-        public void ChargeCar(float i_hoursToCharge)
+        public void ChargeCar(float i_HoursToCharge)
         {
             try
             {
-                m_ElectricData.ChargeBattery(i_hoursToCharge);
+                m_ElectricData.ChargeBattery(i_HoursToCharge);
             }
             catch(Exception e)
             {
-                ValueOutOfRangeException valueOutOfRangeException = new ValueOutOfRangeException(e, i_hoursToCharge, 0f, r_MaxHoursOfBattery);
+                ValueOutOfRangeException valueOutOfRangeException = new ValueOutOfRangeException(e, i_HoursToCharge, 0f, r_MaxHoursOfBattery);
                 throw valueOutOfRangeException;
             }
         }
@@ -32,14 +32,15 @@ namespace Ex03.GarageLogic
             StringBuilder vehicleStringData = new StringBuilder();
             vehicleStringData.Append(base.ToString() + "\n");
             vehicleStringData.Append(m_ElectricData.ToString());
+
             return string.Format(vehicleStringData.ToString());
         }
 
-        public override void fillUp(float i_numberOfMinutesToAdd)
+        public override void FillUp(float i_NumberOfMinutesToAdd)
         {
             try
             {
-                m_ElectricData.ChargeBattery(i_numberOfMinutesToAdd);
+                m_ElectricData.ChargeBattery(i_NumberOfMinutesToAdd);
             }
             catch (ValueOutOfRangeException e)
             {
@@ -47,7 +48,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public Dictionary<string, string[]> dataFromUser()
+        public Dictionary<string, string[]> DataFromUser()
         {
             Dictionary<string, string[]> dataToGet = Car.dataFromUser();           
             dataToGet.Add(
@@ -57,10 +58,11 @@ namespace Ex03.GarageLogic
                         "Please enter battery hours left (smaller than max: " + r_MaxHoursOfBattery + ") : ", 
                                      "float"
                                  });
+            
             return dataToGet;
         }
 
-        public string setData(Dictionary<string, object> i_VehicleData)
+        public string SetData(Dictionary<string, object> i_VehicleData)
         {
             try
             {
@@ -69,6 +71,7 @@ namespace Ex03.GarageLogic
                 this.WheelData.ManufacturerName = (string)i_VehicleData["ManufacturerName"];
                 this.WheelData.CurrentAirPressure = float.Parse(i_VehicleData["CurrentAirPressure"].ToString());
                 m_ElectricData.NumberOfHoursLeft = float.Parse(i_VehicleData["NumberOfHoursLeft"].ToString());
+                
                 return "Electric Car was updated with details";
             }
             catch(KeyNotFoundException e)

@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
         private Wheel m_WheelData;
         private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Soler, r_MaxFuelAmountLitres);
 
-        public Truck(Vehicle i_vehicle) : base(i_vehicle.OwnerName, i_vehicle.OwnerPhoneNumber, i_vehicle.VehicleModel, i_vehicle.LicenseNumber)
+        public Truck(Vehicle i_Vehicle) : base(i_Vehicle.OwnerName, i_Vehicle.OwnerPhoneNumber, i_Vehicle.VehicleModel, i_Vehicle.LicenseNumber)
         {
             m_WheelData = new Wheel(r_MaxAirPressure);
         }
@@ -27,21 +27,22 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(m_FuelData.ToString() + "\n");
             vehicleStringData.Append("Trunk Volume: " + m_TrunkVolume + "\n");
             vehicleStringData.Append("Driving hazardous materials? : " + m_IsDrivingHazardousMaterial);
+
             return string.Format(vehicleStringData.ToString());
         }
 
-        public override void inflateWheels()
+        public override void InflateWheels()
         {
             m_WheelData.SetAirPressureToMax();
         }
 
-        public override void fillUp(string i_fuelType, float i_litresToAdd)
+        public override void FillUp(string i_FuelType, float i_LitresToAdd)
         {
-            if(m_FuelData.getFuelType(i_fuelType) == m_FuelData.FuelType)
+            if(m_FuelData.GetFuelType(i_FuelType) == m_FuelData.FuelType)
             {
                 try
                 {
-                    m_FuelData.Refuel(i_litresToAdd);
+                    m_FuelData.Refuel(i_LitresToAdd);
                 } 
                 catch(ValueOutOfRangeException e)
                 {
@@ -50,7 +51,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public Dictionary<string, string[]> dataFromUser()
+        public Dictionary<string, string[]> DataFromUser()
         {
             Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
             dataToGet.Add("ManufacturerName", new string[] { "Please enter wheels manufacturer name: ", "string" });
@@ -61,7 +62,7 @@ namespace Ex03.GarageLogic
             return dataToGet;
         }
 
-        public object setData(Dictionary<string, object> i_VehicleData)
+        public object SetData(Dictionary<string, object> i_VehicleData)
         {
             try
             {

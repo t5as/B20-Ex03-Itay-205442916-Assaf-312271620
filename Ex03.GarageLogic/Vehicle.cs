@@ -12,9 +12,9 @@ namespace Ex03.GarageLogic
         private string m_LicenseNumber; 
         private eVehicleState m_VehicleState = eVehicleState.InRepair;
 
-        public static eVehicleState getVehicleState(string i_vehicleState)
+        public static eVehicleState GetVehicleState(string i_VehicleState)
         {
-            switch (i_vehicleState.ToLower())
+            switch (i_VehicleState.ToLower())
             {
                 case "inrepair":
                     return eVehicleState.InRepair;
@@ -28,12 +28,12 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public Vehicle(string i_ownerName, string i_ownerPhoneNumber, string i_vehicleModel, string i_licenseNumber)
+        public Vehicle(string i_OwnerName, string i_OwnerPhoneNumber, string i_VehicleModel, string i_LicenseNumber)
         {
-            m_OwnerName = i_ownerName;
-            m_OwnerPhoneNumber = i_ownerPhoneNumber;
-            m_VehicleModel = i_vehicleModel;
-            m_LicenseNumber = i_licenseNumber;
+            m_OwnerName = i_OwnerName;
+            m_OwnerPhoneNumber = i_OwnerPhoneNumber;
+            m_VehicleModel = i_VehicleModel;
+            m_LicenseNumber = i_LicenseNumber;
         }
 
         public string OwnerName
@@ -88,6 +88,7 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append("Vehicle Model: " + m_VehicleModel + "\n");
             vehicleStringData.Append("Vehicle Owner Name: " + m_OwnerName + "\n");
             vehicleStringData.Append("Vehicle State: " + m_VehicleState);
+
             return vehicleStringData.ToString();
         }
 
@@ -98,15 +99,15 @@ namespace Ex03.GarageLogic
             Payed
         }
 
-        public virtual void inflateWheels()
+        public virtual void InflateWheels()
         {
         } 
 
-        public virtual void fillUp(string FuelType, float i_litresToAdd)
+        public virtual void FillUp(string i_FuelType, float i_LitresToAdd)
         {
         } 
 
-        public virtual void fillUp(float i_numberOfMinutesToAdd)
+        public virtual void FillUp(float i_NumberOfMinutesToAdd)
         {
         }
     }
