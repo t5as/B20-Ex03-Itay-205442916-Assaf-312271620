@@ -82,6 +82,32 @@ namespace Ex03.GarageLogic
             Payed
         }
 
+        public eVehicleState getVehicleState(string i_vehicleState)
+        {
+            switch (i_vehicleState.ToLower())
+            {
+                case "inrepair":
+                    return eVehicleState.InRepair;
+                    break;
+                case "fixed":
+                    return eVehicleState.Fixed;
+                    break;
+                default:
+                    return eVehicleState.Payed;
+                    break;
+            }
+        } 
+
+        public static List<string> getVehicleStates()
+        {
+            List<string> vehicleStates = new List<string>;
+            foreach(eVehicleState vehicleState in Enum.GetValues(typeof(eVehicleState)))
+            {
+                vehicleStates.Add(vehicleState.ToString());
+            }
+            return vehicleStates;
+        }
+
         /*public static Dictionary<string, string[]> dataFromUser()
         {
             Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();

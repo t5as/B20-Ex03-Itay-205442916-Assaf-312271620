@@ -60,22 +60,41 @@ namespace Ex03.GarageLogic
             return vehicleLicenses.ToString();
         } 
 
-        public void DisplayVehiclesLicenses(Vehicle.eVehicleState i_vehicleState)
+        public string DisplayVehiclesLicenses(Vehicle.eVehicleState i_vehicleState)
         {
-            foreach(Vehicle vehicle in m_GarageVehicles)
+            StringBuilder vehicleLicenses = new StringBuilder();
+            foreach (Vehicle vehicle in m_GarageVehicles)
             {
                 if(vehicle.VehicleStatus == i_vehicleState)
                 {
-                    System.Console.WriteLine(vehicle.LicenseNumber);
+                    vehicleLicenses.Append(vehicle.LicenseNumber + "\n");
                 }
             }
-        } 
+            return vehicleLicenses.ToString();
+        }
 
-        public void UpdateVehicleState(string i_licenseNumber, 
-            Vehicle.eVehicleState i_newVehicleState)
+
+        public string vehicleStates()
         {
-            Vehicle vehicle = SearchVehicle(i_licenseNumber);
-            vehicle.VehicleStatus = i_newVehicleState;
+            int vehicleStateValue = 0;
+            StringBuilder vehicleStateQuestionToUser = new StringBuilder(); 
+            foreach(string vehicleState in Vehicle.getVehicleStates())
+            {
+                vehicleStateQuestionToUser.Append(String.Format("For {0} Press {1}", vehicleState, vehicleStateValue));
+                vehicleStateValue++;
+            }
+            return vehicleStateValue.ToString();
+        }
+
+        public string UpdateVehicleState(string i_licenseNumber, 
+            string i_stringnewVehicleState)
+        {
+            Vehicle vehicle = SearchVehicle(i_licenseNumber); 
+            if(vehicle != null)
+            {
+                vehicle.VehicleStatus = vehicle.getVehicleState(i_stringnewVehicleState);
+            }
+            return "Vehicle state was updated successfully";
         } 
 
         public void DisplayVehicleData(string i_licenseNumber)
