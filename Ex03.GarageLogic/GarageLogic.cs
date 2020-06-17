@@ -54,26 +54,40 @@ namespace Ex03.GarageLogic
         
         public string DisplayVehiclesLicenses()
         {
-            StringBuilder vehicleLicenses = new StringBuilder();
-            foreach (Vehicle vehicle in m_GarageVehicles)
+            if(m_GarageVehicles.Count == 0)
             {
-                vehicleLicenses.Append(vehicle.LicenseNumber + "\n");
+                return "There are no existing vehicles";
             }
-            return vehicleLicenses.ToString();
+            else
+            {
+                StringBuilder vehicleLicenses = new StringBuilder();
+                foreach (Vehicle vehicle in m_GarageVehicles)
+                {
+                    vehicleLicenses.Append(vehicle.LicenseNumber + "\n");
+                }
+                return vehicleLicenses.ToString();
+            }           
         } 
 
         public string DisplayVehiclesLicenses(string i_vehicleState)
         {
-            StringBuilder vehicleLicenses = new StringBuilder();
-            Vehicle.eVehicleState vehicleState = Vehicle.getVehicleState(i_vehicleState);
-            foreach (Vehicle vehicle in m_GarageVehicles)
+            if (m_GarageVehicles.Count == 0)
             {
-                if(vehicle.VehicleStatus == vehicleState)
-                {
-                    vehicleLicenses.Append(vehicle.LicenseNumber + "\n");
-                }
+                return "There are no existing vehicles";
             }
-            return vehicleLicenses.ToString();
+            else
+            {
+                StringBuilder vehicleLicenses = new StringBuilder();
+                Vehicle.eVehicleState vehicleState = Vehicle.getVehicleState(i_vehicleState);
+                foreach (Vehicle vehicle in m_GarageVehicles)
+                {
+                    if (vehicle.VehicleStatus == vehicleState)
+                    {
+                        vehicleLicenses.Append(vehicle.LicenseNumber + "\n");
+                    }
+                }
+                return vehicleLicenses.ToString();
+            }            
         }
 
 
