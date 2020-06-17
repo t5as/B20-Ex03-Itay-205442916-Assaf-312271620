@@ -51,7 +51,7 @@ namespace Ex03.GarageLogic
             return string.Format(wheelData.ToString());
         }
 
-        public void setAirPressureTomax()
+        public void SetAirPressureToMax()
         {
             m_CurrentAirPressure = r_MaxAirPressure;
         }

@@ -9,16 +9,6 @@ namespace Ex03.GarageLogic
         private static readonly float r_MaxHoursOfBattery = 1.2f;
         private ElectricVehicle m_ElectricData;
 
-        /*public ElectricMotorcycle(
-            string i_ownerName, string i_ownerPhoneNumber,
-            string i_carModel, string i_licenseNumber, int i_engineSize,
-            eTypeOfLicense i_typeOfLicense, string i_manufacturerName,
-            float i_currentAirPressure, float i_numberOfHoursLeft) : 
-            base(i_ownerName, i_ownerPhoneNumber, i_carModel, i_licenseNumber,
-                i_engineSize, i_typeOfLicense, i_manufacturerName, i_currentAirPressure)
-        {
-            m_ElectricData = new ElectricVehicle(i_numberOfHoursLeft, r_MaxHoursOfBattery);
-        }*/
         public ElectricMotorcycle(Vehicle i_vehicle) : base(i_vehicle)
         {
             m_ElectricData = new ElectricVehicle(r_MaxHoursOfBattery);
@@ -49,8 +39,11 @@ namespace Ex03.GarageLogic
             Dictionary<string, string[]> dataToGet = Motorcycle.dataFromUser();
             dataToGet.Add(
                 "NumberOfHoursLeft", 
-                new string[] { "Please enter battery hours left (smaller than max: " + r_MaxHoursOfBattery + ") : ", 
-                                 "float" });
+                new string[] 
+                    { 
+                        "Please enter battery hours left (smaller than max: " + r_MaxHoursOfBattery + ") : ", 
+                                 "float"
+                    });
             return dataToGet;
         }
 

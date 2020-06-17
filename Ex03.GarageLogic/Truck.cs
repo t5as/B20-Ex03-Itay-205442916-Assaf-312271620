@@ -14,18 +14,6 @@ namespace Ex03.GarageLogic
         private Wheel m_WheelData;
         private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Soler, r_MaxFuelAmountLitres);
 
-        /*public Truck(string i_ownerName, string i_ownerPhoneNumber,
-                   string i_carModel, string i_licenseNumber, bool i_isDrivingHazardousMaterial,
-                   float i_TrunkVolume, string i_manufacturerName,
-                   float i_currentAirPressure, float i_currentFuelAmountLitres) : base(i_ownerName,
-            i_ownerPhoneNumber, i_carModel, i_licenseNumber)
-        {
-            r_IsDrivingHazardousMaterial = i_isDrivingHazardousMaterial;
-            r_TrunkVolume = i_TrunkVolume;
-            m_WheelData = new Wheel(i_manufacturerName, i_currentAirPressure, r_MaxAirPressure);
-            m_FuelData.CurrentFuelAmountLitres = i_currentFuelAmountLitres;
-        }*/
-
         public Truck(Vehicle i_vehicle) : base(i_vehicle.OwnerName, i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
         {
             m_WheelData = new Wheel(r_MaxAirPressure);
@@ -44,7 +32,7 @@ namespace Ex03.GarageLogic
 
         public override void inflateWheels()
         {
-            m_WheelData.setAirPressureTomax();
+            m_WheelData.SetAirPressureToMax();
         }
 
         public override void fillUp(string i_fuelType, float i_litresToAdd)

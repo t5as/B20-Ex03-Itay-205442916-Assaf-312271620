@@ -6,17 +6,17 @@ namespace Ex03.GarageLogic
 {
     public class CreateVehicle
     {
-        private Dictionary<string, Dictionary<string, string[]>> vehicles = new Dictionary<string, Dictionary<string, string[]>>();
-        private Dictionary<string, object> recievedDataFromUser = new Dictionary<string, object>();
-        private Dictionary<string, object> updateNewVehicleData = new Dictionary<string, object>();
-        private static string vehicleToDisplay;
-        private Vehicle vehicle = null;
+        private static string vehicleToDisplay; 
         private static NormalCar normalCar = null;
         private static ElectricCar electricCar = null;
         private static NormalMotorcycle normalMotorcycle = null;
         private static ElectricMotorcycle electricMotorcycle = null;
         private static Truck truck = null;
-
+        private Dictionary<string, Dictionary<string, string[]>> vehicles = new Dictionary<string, Dictionary<string, string[]>>();
+        private Dictionary<string, object> recievedDataFromUser = new Dictionary<string, object>();
+        private Dictionary<string, object> updateNewVehicleData = new Dictionary<string, object>();
+        private Vehicle vehicle = null;
+        
         public CreateVehicle(Vehicle i_vehicle)
         {
             vehicle = i_vehicle;
@@ -84,7 +84,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-        
         public void getDataFromUser()
         {
             vehicles.Add("NormalCar", normalCar.dataFromUser());

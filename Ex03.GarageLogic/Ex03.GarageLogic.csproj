@@ -47,7 +47,6 @@
     <Compile Include="NormalMotorcycle.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="Vehicle.cs" />
-    <Compile Include="VehiclesList.cs" />
     <Compile Include="Wheel.cs" />
   </ItemGroup>
   <ItemGroup>

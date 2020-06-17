@@ -9,16 +9,6 @@ namespace Ex03.GarageLogic
         private static readonly float k_maxFuelAmountLitres = 7;        
         private FuelVehicle m_FuelData = new FuelVehicle(FuelVehicle.eFuelType.Octan95, k_maxFuelAmountLitres);
 
-        /*public NormalMotorcycle(string i_ownerName, string i_ownerPhoneNumber,
-            string i_carModel, string i_licenseNumber, int i_engineSize,
-            eTypeOfLicense i_typeOfLicense, string i_manufacturerName,
-            float i_currentAirPressure, float i_currentFuelAmountLitres) : base(
-                i_ownerName, i_ownerPhoneNumber, i_carModel, i_licenseNumber, 
-                i_engineSize, i_typeOfLicense, i_manufacturerName, i_currentAirPressure)
-        {
-            m_FuelData.CurrentFuelAmountLitres = i_currentFuelAmountLitres; 
-        }*/
-
         public NormalMotorcycle(Vehicle i_vehicle) : base(i_vehicle)
         {
         }

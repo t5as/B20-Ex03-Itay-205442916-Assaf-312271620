@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Ex03.ConsoleUI
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
             UI.Run();
         }

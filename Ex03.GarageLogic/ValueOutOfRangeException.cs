@@ -9,16 +9,6 @@ namespace Ex03.GarageLogic
         private float m_MinValue;
         private float m_MaxValue;
         
-        public float MinValue
-        {
-            get { return m_MinValue; }
-        }
-
-        public float MaxValue
-        {
-            get { return m_MaxValue; }
-        }
-
         public ValueOutOfRangeException(
             Exception i_innerException,
             float i_currentValue,

@@ -7,7 +7,6 @@ namespace Ex03.GarageLogic
     public class GarageLogic
     {
         private List<Vehicle> m_GarageVehicles = new List<Vehicle>();
-        // CreateVehicle newVehicleCreator = new CreateVehicle("aabbb", "1111", "mazda", "12343");
 
         public void initializeNewVehicle(CreateVehicle i_createVehicle)
         {           
@@ -17,14 +16,6 @@ namespace Ex03.GarageLogic
         {
             CreateVehicle newVehicleCreator = new CreateVehicle(i_vehicle);
             Dictionary<string, Dictionary<string, string[]>> entranceData = newVehicleCreator.VehiclesData;
-            /*string[] keys = new string[entranceData.Keys.Count];
-            entranceData.Keys.CopyTo(keys, 0);
-            Dictionary<string, string[]> dic = entranceData[Console.getCarType(keys)];
-            foreach (KeyValuePair<string, string[]> vehiclePair in dic)
-            {
-                System.Console.WriteLine("The question to ask: " + vehiclePair.Value[0]);
-                System.Console.WriteLine("The type of answer: " + vehiclePair.Value[1]);
-            }*/
             
             return entranceData;
         } 
@@ -180,7 +171,6 @@ namespace Ex03.GarageLogic
             Vehicle vehicle = SearchVehicle(i_licenseNumber);
             if(vehicle != null)
             {
-                
                 return CreateVehicle.getVehicle().ToString();
             }
             else
@@ -188,14 +178,5 @@ namespace Ex03.GarageLogic
                 return "Vehicle was not found";
             }
         } 
-
-        /*public Vehicle createVehicle(string i_carType)
-        {
-            Vehicle vehicle = null;
-            if (i_carType == "electric car")
-            {
-                vehicle = CreateVehicle.CreateElectricCar()
-            }
-        }*/
     }
 }

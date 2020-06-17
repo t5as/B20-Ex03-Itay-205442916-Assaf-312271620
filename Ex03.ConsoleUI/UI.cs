@@ -7,7 +7,7 @@ using Console = System.Console;
 
 namespace Ex03.ConsoleUI
 {
-    public class UI
+    internal class UI
     {
         public static void Run()
         {

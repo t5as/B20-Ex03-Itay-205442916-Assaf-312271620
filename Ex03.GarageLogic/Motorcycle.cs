@@ -6,12 +6,21 @@ namespace Ex03.GarageLogic
 {
     public class Motorcycle : Vehicle
     {
-        private readonly byte r_NumberOfWheels = 2;
         private static readonly byte r_MaxAirPressure = 30;
+        private readonly byte r_NumberOfWheels = 2;
         private int m_EngineSize;
         private eTypeOfLicense m_TypeOfLicense;
         private Wheel m_WheelData;
 
+        public static Dictionary<string, string[]> dataFromUser()
+        {
+            Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
+            dataToGet.Add("EngineSize", new string[] { "Please enter integer representing engine size: ", "int" });
+            dataToGet.Add("TypeOfLicense", new string[] { "Please enter license type (A, A1, AA or B): ", "enum: A, A1, AA, B" });
+            dataToGet.Add("ManufacturerName", new string[] { "Please enter wheels manufacturer name: ", "string" });
+            dataToGet.Add("CurrentAirPressure", new string[] { "Please enter current air pressure in wheels (smaller than max: " + r_MaxAirPressure + "): ", "float" });
+            return dataToGet;
+        }
 
         public Motorcycle(Vehicle i_vehicle) : base(i_vehicle.OwnerName, i_vehicle.OwnerPhoneNumber, i_vehicle.CarModel, i_vehicle.LicenseNumber)
         {
@@ -81,17 +90,7 @@ namespace Ex03.GarageLogic
 
         public override void inflateWheels()
         {
-            m_WheelData.setAirPressureTomax();
-        }
-
-        public static Dictionary<string, string[]> dataFromUser()
-        {
-            Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
-            dataToGet.Add("EngineSize", new string[] { "Please enter integer representing engine size: ", "int" });
-            dataToGet.Add("TypeOfLicense", new string[] { "Please enter license type (A, A1, AA or B): ", "enum: A, A1, AA, B" });
-            dataToGet.Add("ManufacturerName", new string[] { "Please enter wheels manufacturer name: ", "string" });
-            dataToGet.Add("CurrentAirPressure", new string[] { "Please enter current air pressure in wheels (smaller than max: " + r_MaxAirPressure + "): ", "float" });
-            return dataToGet;
+            m_WheelData.SetAirPressureToMax();
         }
     }
 }

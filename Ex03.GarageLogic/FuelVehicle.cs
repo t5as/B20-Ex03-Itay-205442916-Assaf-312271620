@@ -6,10 +6,10 @@ namespace Ex03.GarageLogic
 {
     internal class FuelVehicle
     {
+        private readonly float r_MaxFuelAmountLitres;
         private eFuelType m_FuelType;
         private float m_CurrentFuelAmountLitres;
-        private readonly float r_MaxFuelAmountLitres; 
-
+        
         public FuelVehicle(eFuelType i_fuelType, float i_maxFuelAmountLitres)
         {
             m_FuelType = i_fuelType;            
@@ -92,18 +92,6 @@ namespace Ex03.GarageLogic
             fuelData.Append("Fuel Type: " + m_FuelType + "\n");
             fuelData.Append("Fuel tank status: " + FuelStatus);
             return string.Format(fuelData.ToString());
-        }
-
-        public static Dictionary<string, string[]> fuelDataFromUser()
-        {
-            Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
-            dataToGet.Add(
-                "FuelType", 
-                new string[] { 
-                                 "Please enter fuel type(Octan98, Octan96, " + "Octan95, Soler): ", 
-                                 "enum: Octan98, Octan96, Octan95, Soler"
-                             });
-            return dataToGet;
         }
 
         public void Refuel(float i_litresToAdd)

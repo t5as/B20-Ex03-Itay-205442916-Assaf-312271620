@@ -12,6 +12,31 @@ namespace Ex03.GarageLogic
         private eCarColor m_CarColor;
         private Wheel m_WheelData;
 
+        public static Dictionary<string, string[]> dataFromUser()
+        {
+            Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
+            dataToGet.Add(
+                "NumberOfDoors",
+                new string[] {
+                                     "Please enter number of doors (two, three, four, five): ",
+                                     "enum: two, three, four, five"
+                                 });
+            dataToGet.Add(
+                "CarColor",
+                new string[]
+                    {
+                        "Please enter car color (red, white, black or silver): ",
+                        "enum: red, white, black, silver"
+                    });
+            dataToGet.Add(
+                "ManufacturerName",
+                new string[] { "Please enter wheels manufacturer name: ", "string" });
+            dataToGet.Add(
+                "CurrentAirPressure",
+                new string[] { "Please enter current air pressure in wheels (smaller than max: " + r_MaxAirPressure + "): ", "float" });
+            return dataToGet;
+        }
+
         public Car(Vehicle i_vehicle) : base(
             i_vehicle.OwnerName,
             i_vehicle.OwnerPhoneNumber, 
@@ -106,35 +131,13 @@ namespace Ex03.GarageLogic
             vehicleStringData.Append(m_WheelData.ToString() + "\n");
             vehicleStringData.Append("Number Of Doors: " + m_NumberOfDoors + "\n");
             vehicleStringData.Append("Car Color: " + m_CarColor);
+            
             return string.Format(vehicleStringData.ToString());
         }
 
         public override void inflateWheels()
         {
-            m_WheelData.setAirPressureTomax();
-        }
-
-        public static Dictionary<string, string[]> dataFromUser()
-        {
-            Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
-            dataToGet.Add(
-                "NumberOfDoors", 
-                new string[] { 
-                                     "Please enter number of doors (two, three, four, five): ",
-                "enum: two, three, four, five"
-            });
-            dataToGet.Add(
-                "CarColor", 
-                new string[] {"Please enter car color (red, white, black or silver): ",
-                "enum: red, white, black, silver"
-            });
-            dataToGet.Add(
-                "ManufacturerName", 
-                new string[] { "Please enter wheels manufacturer name: ", "string" });
-            dataToGet.Add(
-                "CurrentAirPressure", 
-                new string[] { "Please enter current air pressure in wheels (smaller than max: " + r_MaxAirPressure + "): ", "float" });
-            return dataToGet;
+            m_WheelData.SetAirPressureToMax();
         }
     }
 }

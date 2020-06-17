@@ -12,6 +12,22 @@ namespace Ex03.GarageLogic
         private string m_LicenseNumber; 
         private eVehicleState m_VehicleState = eVehicleState.InRepair;
 
+        public static eVehicleState getVehicleState(string i_vehicleState)
+        {
+            switch (i_vehicleState.ToLower())
+            {
+                case "inrepair":
+                    return eVehicleState.InRepair;
+                    break;
+                case "fixed":
+                    return eVehicleState.Fixed;
+                    break;
+                default:
+                    return eVehicleState.Payed;
+                    break;
+            }
+        }
+
         public Vehicle(string i_ownerName, string i_ownerPhoneNumber, string i_carModel, string i_licenseNumber)
         {
             m_OwnerName = i_ownerName;
@@ -82,33 +98,6 @@ namespace Ex03.GarageLogic
             Payed
         }
 
-        public static eVehicleState getVehicleState(string i_vehicleState)
-        {
-            switch (i_vehicleState.ToLower())
-            {
-                case "inrepair":
-                    return eVehicleState.InRepair;
-                    break;
-                case "fixed":
-                    return eVehicleState.Fixed;
-                    break;
-                default:
-                    return eVehicleState.Payed;
-                    break;
-            }
-        } 
-
-        public static List<string> getVehicleStates()
-        {
-            List<string> vehicleStates = new List<string>();
-            foreach(eVehicleState vehicleState in Enum.GetValues(typeof(eVehicleState)))
-            {
-                vehicleStates.Add(vehicleState.ToString());
-            }
-
-            return vehicleStates;
-        } 
-
         public virtual void inflateWheels()
         {
         } 
@@ -120,15 +109,5 @@ namespace Ex03.GarageLogic
         public virtual void fillUp(float i_numberOfMinutesToAdd)
         {
         }
-
-        /*public static Dictionary<string, string[]> dataFromUser()
-        {
-            Dictionary<string, string[]> dataToGet = new Dictionary<string, string[]>();
-            dataToGet.Add("OwnerName", new string[] { "Please enter vehicle owner name: ", "string" });
-            dataToGet.Add("OwnerPhone", new string[] {"Please enter vehicle owner phone number: ", "string"});
-            dataToGet.Add("VehicleModel", new string[] { "Please enter vehicle model: ", "string" });
-            dataToGet.Add("LicenseNumber", new string[] { "Please enter vehicle license number: ", "string" });
-            return dataToGet;
-        } */
     }
 }
