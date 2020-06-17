@@ -108,7 +108,7 @@ namespace Ex03.GarageLogic
             }
             catch (ArgumentException e)
             {
-                ArgumentException argumentException = new ArgumentException(string.Format("{0} is not the correct fuel type", m_FuelType), e);
+                ArgumentException argumentException = new ArgumentException(string.Format("{0} is not the correct fuel type", i_fuelType), e);
             }
             catch (ValueOutOfRangeException e)
             {
